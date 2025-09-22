@@ -11,9 +11,10 @@ interface SectionProps {
   className?: string
   id?: string
   delay?: number
+  style?: React.CSSProperties
 }
 
-export function Section({ children, className, id, delay = 0 }: SectionProps) {
+export function Section({ children, className, id, delay = 0, style }: SectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-10%" })
   const prefersReducedMotion = useReducedMotion()
@@ -39,6 +40,7 @@ export function Section({ children, className, id, delay = 0 }: SectionProps) {
       ref={ref}
       id={id}
       className={clsx("relative", className)}
+      style={style}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
