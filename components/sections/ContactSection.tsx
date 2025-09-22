@@ -34,13 +34,13 @@ const socialLinks = [
   {
     icon: Github,
     label: 'GitHub',
-    href: 'https://github.com/yangzhenzhao',
+    href: 'https://github.com/Zhenzha0',
     color: 'hover:text-white'
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/yangzhenzhao',
+    href: 'https://www.linkedin.com/in/zhenzhao-yang-6b30b2165',
     color: 'hover:text-blue-400'
   }
 ]
