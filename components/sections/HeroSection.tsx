@@ -197,103 +197,22 @@ export function HeroSection() {
             />
           </motion.h1>
       
-          {/* Innovative Animated Role Presentation */}
+          {/* Simplified Animated Role Presentation */}
           <motion.div 
             className="mb-6"
             variants={heroElementVariants}
           >
-            {/* Animated Role Cards */}
-            <div className="flex flex-wrap justify-center gap-3 mb-4">
-              {/* NUS Card */}
-              <motion.div
-                className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-full backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 2.5,
-                  ease: [0.23, 1, 0.320, 1]
-                }}
-                whileHover={{ scale: 1.05, y: -2 }}
-              >
-                <span className="text-blue-300 font-medium text-sm md:text-base">NUS</span>
-              </motion.div>
-
-              {/* Computer Engineering Card */}
-              <motion.div
-                className="px-4 py-2 bg-gradient-to-r from-emerald-600/20 to-emerald-500/20 border border-emerald-500/30 rounded-full backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0, rotate: 10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 2.7,
-                  ease: [0.23, 1, 0.320, 1]
-                }}
-                whileHover={{ scale: 1.05, y: -2 }}
-              >
-                <span className="text-emerald-300 font-medium text-sm md:text-base">Computer Engineering</span>
-              </motion.div>
-
-              {/* Student Card */}
-              <motion.div
-                className="px-4 py-2 bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30 rounded-full backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0, rotate: -5 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 2.9,
-                  ease: [0.23, 1, 0.320, 1]
-                }}
-                whileHover={{ scale: 1.05, y: -2 }}
-              >
-                <span className="text-purple-300 font-medium text-sm md:text-base">Student</span>
-              </motion.div>
-            </div>
-
-            {/* Animated Connecting Lines */}
-            <motion.div
-              className="flex justify-center items-center gap-2 mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 3.1, duration: 0.8 }}
-            >
-              <motion.div
-                className="w-8 h-px bg-gradient-to-r from-transparent to-cyan-400"
-                initial={{ width: 0 }}
-                animate={{ width: 32 }}
-                transition={{ delay: 3.2, duration: 0.8 }}
-              />
-              <motion.div
-                className="w-2 h-2 bg-cyan-400 rounded-full"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.7, 1, 0.7]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="w-8 h-px bg-gradient-to-l from-transparent to-cyan-400"
-                initial={{ width: 0 }}
-                animate={{ width: 32 }}
-                transition={{ delay: 3.4, duration: 0.8 }}
-              />
-            </motion.div>
-
-            {/* Main Role Text with Typewriter Effect */}
+            {/* Single Role Text with Smooth Typewriter Animation */}
             <motion.div 
-              className="text-xl md:text-2xl lg:text-3xl text-cyan-400 leading-relaxed mb-4 font-mono"
+              className="text-lg md:text-xl lg:text-2xl text-cyan-400 leading-relaxed mb-4 font-mono"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ 
                 duration: 0.8, 
-                delay: 3.6,
+                delay: 2.5,
                 ease: [0.23, 1, 0.320, 1]
               }}
               onAnimationComplete={() => setSubtitleComplete(true)}
@@ -301,7 +220,37 @@ export function HeroSection() {
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 3.8, duration: 0.5 }}
+                transition={{ delay: 2.7, duration: 0.6 }}
+              >
+                NUS Computer Engineering Student
+              </motion.span>
+            </motion.div>
+
+            {/* Main Role Text with Smooth Character Animation */}
+            <motion.div 
+              className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-4 font-light"
+              style={{
+                textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 3.0,
+                ease: [0.23, 1, 0.320, 1]
+              }}
+            >
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, y: 20, rotateX: -90 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 3.2,
+                  ease: [0.645, 0.045, 0.355, 1.000],
+                  type: "spring",
+                  stiffness: 100
+                }}
               >
                 AI Engineer & Full-Stack Developer
               </motion.span>
