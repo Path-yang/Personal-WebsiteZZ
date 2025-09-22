@@ -73,11 +73,6 @@ export function AboutSection() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ 
-              duration: 2,
-              delay: i * 0.3,
-              ease: "easeOut"
-            }}
             animate={{
               y: [-20, 20, -20],
               x: [-8, 8, -8],
