@@ -141,6 +141,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Optimize animations for better performance */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .motion-element {
+    will-change: auto;
+  }
+  
+  /* Optimize transforms */
+  .preserve-3d {
+    transform-style: flat;
+  }
+  
+  /* Reduce shadow complexity */
+  .glass-morphism {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
 /* Optimize particle animations */
 .particle-container {
   will-change: transform, opacity;

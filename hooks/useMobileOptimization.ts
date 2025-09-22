@@ -7,10 +7,16 @@ export function useMobileOptimization() {
   const [isTablet, setIsTablet] = useState(false)
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop')
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    // Set client-side flag to prevent hydration mismatches
+    setIsClient(true)
+    
     // Check if device is mobile
     const checkMobile = () => {
+      if (typeof window === 'undefined') return
+      
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       const isSmallScreen = window.innerWidth < 768
       const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024
@@ -33,6 +39,8 @@ export function useMobileOptimization() {
 
     // Check for low power mode indicators
     const checkLowPowerMode = () => {
+      if (typeof window === 'undefined') return
+      
       // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       
@@ -46,31 +54,35 @@ export function useMobileOptimization() {
       setIsLowPowerMode(prefersReducedMotion || isLowEndDevice || isSlowNetwork)
     }
 
-    checkMobile()
-    checkLowPowerMode()
+    // Only run on client-side
+    if (typeof window !== 'undefined') {
+      checkMobile()
+      checkLowPowerMode()
 
-    // Listen for window resize
-    window.addEventListener('resize', checkMobile)
-    
-    // Listen for reduced motion changes
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    mediaQuery.addEventListener('change', checkLowPowerMode)
+      // Listen for window resize
+      window.addEventListener('resize', checkMobile)
+      
+      // Listen for reduced motion changes
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      mediaQuery.addEventListener('change', checkLowPowerMode)
 
-    return () => {
-      window.removeEventListener('resize', checkMobile)
-      mediaQuery.removeEventListener('change', checkLowPowerMode)
+      return () => {
+        window.removeEventListener('resize', checkMobile)
+        mediaQuery.removeEventListener('change', checkLowPowerMode)
+      }
     }
   }, [])
 
   return {
-    isMobile,
-    isTablet,
-    isLowPowerMode,
-    screenSize,
-    shouldReduceAnimations: isMobile || isLowPowerMode,
-    shouldSimplifyParticles: isMobile,
-    shouldReduceParticleCount: isMobile || isLowPowerMode,
-    shouldOptimizeForTouch: isMobile || isTablet,
-    shouldReduceComplexity: isMobile || isLowPowerMode
+    isMobile: isClient ? isMobile : false,
+    isTablet: isClient ? isTablet : false,
+    isLowPowerMode: isClient ? isLowPowerMode : false,
+    screenSize: isClient ? screenSize : 'desktop',
+    isClient,
+    shouldReduceAnimations: isClient ? (isMobile || isLowPowerMode) : false,
+    shouldSimplifyParticles: isClient ? isMobile : false,
+    shouldReduceParticleCount: isClient ? (isMobile || isLowPowerMode) : false,
+    shouldOptimizeForTouch: isClient ? (isMobile || isTablet) : false,
+    shouldReduceComplexity: isClient ? (isMobile || isLowPowerMode) : false
   }
 }

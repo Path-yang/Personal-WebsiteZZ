@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useMobileOptimization } from '@/hooks/useMobileOptimization'
@@ -59,7 +59,7 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
@@ -69,7 +69,7 @@ export function Navigation() {
       })
     }
     setIsOpen(false)
-  }
+  }, [])
 
   const navVariants = {
     hidden: { 

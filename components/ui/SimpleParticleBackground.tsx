@@ -312,8 +312,8 @@ export function SimpleParticleBackground() {
         return particles
       }
 
-      // Memoize particle positions to avoid recalculation
-      const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, shouldReduceParticleCount])
+  // Memoize particle positions to avoid recalculation
+  const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, isMobile, shouldReduceParticleCount])
 
   // Reduce particle count for better performance
   const maxParticles = isMobile ? 8 : shouldReduceParticleCount ? 12 : 20

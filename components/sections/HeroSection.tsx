@@ -6,7 +6,7 @@ import { SimpleParticleBackground } from '@/components/ui/SimpleParticleBackgrou
 import { AnimatedText, HeroTitle } from '@/components/ui/AnimatedText'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useMobileOptimization } from '@/hooks/useMobileOptimization'
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
@@ -14,7 +14,7 @@ export function HeroSection() {
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
-  const containerVariants = {
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -23,9 +23,9 @@ export function HeroSection() {
         delayChildren: 0.2
       }
     }
-  }
+  }), [])
 
-  const heroElementVariants = {
+  const heroElementVariants = useMemo(() => ({
     hidden: { 
       opacity: 0,
       y: 100,
@@ -44,7 +44,7 @@ export function HeroSection() {
         stiffness: 100
       }
     }
-  }
+  }), [])
 
   const iconVariants = {
     hidden: {
@@ -74,9 +74,9 @@ export function HeroSection() {
       {/* Simple Particle Background */}
       <SimpleParticleBackground />
       
-      {/* Floating Tech Icons - Simplified for performance */}
+      {/* Floating Tech Icons - Optimized for performance */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
-        {[Brain, Code, Zap].map((Icon, i) => (
+        {useMemo(() => [Brain, Code, Zap], []).map((Icon, i) => (
           <motion.div
             key={i}
             className="absolute"
@@ -91,11 +91,11 @@ export function HeroSection() {
           >
             <motion.div
               className="p-4 bg-gradient-to-br from-accent-blue/30 to-accent-mint/30 rounded-full border border-accent-blue/40 backdrop-blur-lg shadow-lg"
-              animate={{
+              animate={prefersReducedMotion ? {} : {
                 y: [-10, 10, -10],
                 scale: [1, 1.05, 1]
               }}
-              transition={{
+              transition={prefersReducedMotion ? {} : {
                 duration: 4 + i,
                 repeat: Infinity,
                 ease: "easeInOut",
