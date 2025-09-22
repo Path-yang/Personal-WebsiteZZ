@@ -12,7 +12,7 @@ const educationData = [
     institution: 'National University of Singapore',
     degree: 'Bachelor of Engineering in Computer Engineering',
     period: 'Aug 2024 – Present',
-    status: 'current',
+    status: 'current' as const,
     description: [],
     icon: GraduationCap,
     location: 'Singapore'
@@ -22,7 +22,7 @@ const educationData = [
     institution: 'Hwa Chong Junior College',
     degree: 'GCE A-Levels',
     period: '2020 – 2021',
-    status: 'completed',
+    status: 'completed' as const,
     description: [],
     icon: Award,
     location: 'Singapore'
@@ -32,7 +32,7 @@ const educationData = [
     institution: 'Hwa Chong Institution',
     degree: 'Integrated Program',
     period: '2016 – 2019',
-    status: 'completed',
+    status: 'completed' as const,
     description: [],
     icon: BookOpen,
     location: 'Singapore'

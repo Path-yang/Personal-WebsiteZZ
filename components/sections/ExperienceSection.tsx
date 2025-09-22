@@ -77,7 +77,6 @@ export function ExperienceSection() {
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 0.6 }}
             viewport={{ once: true }}
-            transition={{ duration: 4, ease: "easeInOut" }}
             animate={{
               strokeDashoffset: [0, -80],
               opacity: [0.6, 0.9, 0.6]
@@ -108,7 +107,6 @@ export function ExperienceSection() {
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 0.4 }}
               viewport={{ once: true }}
-              transition={{ duration: 3, delay: i * 0.5, ease: "easeInOut" }}
               animate={{
                 strokeDashoffset: [0, -60],
                 opacity: [0.4, 0.7, 0.4]
@@ -148,7 +146,6 @@ export function ExperienceSection() {
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: i * 0.2 }}
                 animate={{
                   scale: [1, 1.3, 1],
                   opacity: [0.3, 0.6, 0.3]
@@ -169,7 +166,6 @@ export function ExperienceSection() {
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2 + 0.3 }}
                 animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0.6, 1, 0.6]
@@ -207,11 +203,6 @@ export function ExperienceSection() {
             initial={{ opacity: 0, scale: 0, y: 50 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ 
-              duration: 2,
-              delay: i * 0.2,
-              ease: "easeOut"
-            }}
             animate={{
               y: [-30, -15, -30],
               x: [-8, 8, -8],

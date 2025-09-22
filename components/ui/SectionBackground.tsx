@@ -93,11 +93,6 @@ export function SectionBackground({
               initial={{ pathLength: 0, y: 50 }}
               whileInView={{ pathLength: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                duration: 2 + i * 0.5,
-                delay: i * 0.3,
-                ease: "easeInOut"
-              }}
               animate={{
                 d: [
                   `M0,${200 + i * 150} Q300,${150 + i * 150} 600,${200 + i * 150} T1200,${200 + i * 150}`,
@@ -131,7 +126,6 @@ export function SectionBackground({
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: opacityByIntensity[intensity] }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 1 }}
             animate={{
               y: [-20, 20, -20],
               x: [-10, 10, -10],
@@ -166,12 +160,6 @@ export function SectionBackground({
                 initial={{ scale: 0, rotate: -180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
-                  duration: 1.5,
-                  delay: i * 0.3,
-                  type: "spring",
-                  stiffness: 100
-                }}
                 animate={{
                   rotate: [0, 360],
                   scale: [1, 1.1, 1]
@@ -192,7 +180,6 @@ export function SectionBackground({
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.3 + 0.5, duration: 0.5 }}
                 animate={{
                   scale: [1, 1.5, 1],
                   opacity: [1, 0.5, 1]
