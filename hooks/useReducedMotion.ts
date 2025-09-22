@@ -6,25 +6,24 @@ export function useReducedMotion(): boolean {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    // Check if we're in browser environment
+    // Only run in browser
     if (typeof window === 'undefined') return
 
     try {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
       setPrefersReducedMotion(mediaQuery.matches)
 
-      const handleChange = (event: MediaQueryListEvent) => {
-        setPrefersReducedMotion(event.matches)
+      const handleChange = () => {
+        setPrefersReducedMotion(mediaQuery.matches)
       }
 
       mediaQuery.addEventListener('change', handleChange)
       return () => mediaQuery.removeEventListener('change', handleChange)
-    } catch (error) {
-      console.warn('Error setting up reduced motion detection:', error)
+    } catch {
+      // Silent fail - return false
       setPrefersReducedMotion(false)
     }
   }, [])
 
   return prefersReducedMotion
 }
-

@@ -1,5 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { Navigation } from '@/components/ui/Navigation'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { FloatingActionButton } from '@/components/ui/FloatingActionButton'
+import { KeyboardShortcuts } from '@/components/ui/KeyboardShortcuts'
+import { LoadingScreen } from '@/components/ui/LoadingScreen'
+import { CursorEffects } from '@/components/ui/CursorEffects'
 
 export const metadata: Metadata = {
   title: 'Yang Zhenzhao - AI Engineer & Full-Stack Developer',
@@ -28,7 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
-        {children}
+        <LoadingScreen />
+        <CursorEffects />
+        <SmoothScrollProvider>
+          <ScrollProgress />
+          <Navigation />
+          {children}
+          <FloatingActionButton />
+          <KeyboardShortcuts />
+        </SmoothScrollProvider>
       </body>
     </html>
   )
