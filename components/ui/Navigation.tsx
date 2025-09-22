@@ -28,25 +28,29 @@ export function Navigation() {
   // Track scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      setIsVisible(true) // Always visible now
+      try {
+        const scrollPosition = window.scrollY + 100
+        setIsVisible(true) // Always visible now
 
-      // Find active section
-      const sections = navigationItems.map(item => ({
-        id: item.sectionId,
-        element: document.getElementById(item.sectionId)
-      }))
+        // Find active section
+        const sections = navigationItems.map(item => ({
+          id: item.sectionId,
+          element: document.getElementById(item.sectionId)
+        }))
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section.element) {
-          const rect = section.element.getBoundingClientRect()
-          const elementTop = rect.top + window.scrollY
-          if (scrollPosition >= elementTop - 200) {
-            setActiveSection(section.id)
-            break
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i]
+          if (section.element) {
+            const rect = section.element.getBoundingClientRect()
+            const elementTop = rect.top + window.scrollY
+            if (scrollPosition >= elementTop - 200) {
+              setActiveSection(section.id)
+              break
+            }
           }
         }
+      } catch (error) {
+        console.warn('Error in navigation scroll handler:', error)
       }
     }
 
@@ -58,13 +62,17 @@ export function Navigation() {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      })
+    try {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        })
+      }
+    } catch (error) {
+      console.warn('Error scrolling to section:', error)
     }
     setIsOpen(false)
   }

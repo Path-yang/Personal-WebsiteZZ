@@ -12,7 +12,11 @@ export function FloatingActionButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300)
+      try {
+        setIsVisible(window.scrollY > 300)
+      } catch (error) {
+        console.warn('Error in FAB scroll handler:', error)
+      }
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -20,25 +24,41 @@ export function FloatingActionButton() {
   }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (error) {
+      console.warn('Error scrolling to top:', error)
+    }
     setIsExpanded(false)
   }
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
+    try {
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    } catch (error) {
+      console.warn('Error scrolling to contact:', error)
     }
     setIsExpanded(false)
   }
 
   const contactEmail = () => {
-    window.location.href = 'mailto:robertyzz02@gmail.com'
+    try {
+      window.location.href = 'mailto:robertyzz02@gmail.com'
+    } catch (error) {
+      console.warn('Error opening email:', error)
+    }
     setIsExpanded(false)
   }
 
   const contactPhone = () => {
-    window.location.href = 'tel:+6593598155'
+    try {
+      window.location.href = 'tel:+6593598155'
+    } catch (error) {
+      console.warn('Error opening phone:', error)
+    }
     setIsExpanded(false)
   }
 
