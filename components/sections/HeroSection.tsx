@@ -10,7 +10,7 @@ import { useState, useMemo, useCallback } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile, isTablet, shouldOptimizeForTouch, isClient } = useMobileOptimization()
+  const { isMobile, isTablet, shouldOptimizeForTouch, isHydrated } = useMobileOptimization()
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
@@ -113,8 +113,8 @@ export function HeroSection() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transform: 'translateY(-60px)' }}>
         <motion.div 
           className={`backdrop-blur-[3px] rounded-full border border-white/10 ${
-            isMobile ? 'w-[280px] h-[280px]' : 
-            isTablet ? 'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px]' :
+            isHydrated && isMobile ? 'w-[280px] h-[280px]' : 
+            isHydrated && isTablet ? 'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px]' :
             'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] xl:w-[780px] xl:h-[780px]'
           }`}
           style={{ 
@@ -188,13 +188,13 @@ export function HeroSection() {
         animate="visible"
       >
         <div className={`text-center max-w-4xl mx-auto ${
-          isMobile ? 'px-4' : 'px-8'
+          isHydrated && isMobile ? 'px-4' : 'px-8'
         }`}>
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
             className={`heading mb-6 font-light tracking-tight ${
-              isMobile ? 'text-2xl' : 
-              isTablet ? 'text-3xl md:text-4xl' :
+              isHydrated && isMobile ? 'text-2xl' : 
+              isHydrated && isTablet ? 'text-3xl md:text-4xl' :
               'text-3xl md:text-5xl lg:text-6xl xl:text-7xl'
             }`}
             variants={heroElementVariants}
@@ -218,8 +218,8 @@ export function HeroSection() {
             {/* Single Role Text with Character-by-Character Typing Animation */}
             <motion.div 
               className={`text-cyan-400 leading-relaxed mb-4 font-mono ${
-                isMobile ? 'text-sm' : 
-                isTablet ? 'text-base md:text-lg' :
+                isHydrated && isMobile ? 'text-sm' : 
+                isHydrated && isTablet ? 'text-base md:text-lg' :
                 'text-lg md:text-xl lg:text-2xl'
               }`}
               style={{
@@ -262,8 +262,8 @@ export function HeroSection() {
             {/* Main Role Text with Character-by-Character Floating Animation */}
             <motion.div 
               className={`text-white leading-relaxed mb-4 font-light ${
-                isMobile ? 'text-base' : 
-                isTablet ? 'text-lg md:text-xl' :
+                isHydrated && isMobile ? 'text-base' : 
+                isHydrated && isTablet ? 'text-lg md:text-xl' :
                 'text-xl md:text-2xl lg:text-3xl'
               }`}
               style={{
@@ -351,8 +351,8 @@ export function HeroSection() {
           >
             <motion.p 
               className={`text-slate-300 leading-relaxed ${
-                isMobile ? 'text-sm' : 
-                isTablet ? 'text-base md:text-lg' :
+                isHydrated && isMobile ? 'text-sm' : 
+                isHydrated && isTablet ? 'text-base md:text-lg' :
                 'text-lg md:text-xl'
               }`}
               style={{
