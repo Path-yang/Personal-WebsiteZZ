@@ -38,13 +38,15 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
         <ErrorBoundary>
-          <ClientOnly>
+          <ClientOnly fallback={<div className="min-h-screen bg-slate-900" />}>
             <LoadingScreen />
             <CursorEffects />
           </ClientOnly>
           <SmoothScrollProvider>
-            <ClientOnly>
+            <ClientOnly fallback={<div className="fixed top-0 left-0 w-full h-1 bg-slate-800" />}>
               <ScrollProgress />
+            </ClientOnly>
+            <ClientOnly fallback={<div className="fixed top-0 left-0 right-0 h-16 bg-slate-900/90 backdrop-blur-sm z-50" />}>
               <Navigation />
             </ClientOnly>
             {children}

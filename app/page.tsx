@@ -11,35 +11,19 @@ import { ClientOnly } from '@/components/providers/ClientOnly'
 
 export default function Home() {
   return (
-    <ErrorBoundary>
-      <PageTransition>
-        <main className="relative">
-          <div id="hero">
-            <ErrorBoundary>
-              <HeroSection />
-            </ErrorBoundary>
-          </div>
-          <ErrorBoundary>
-            <AboutSection />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <EducationSection />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <ExperienceSection />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <ProjectsSection />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <SkillsSection />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <ContactSection />
-          </ErrorBoundary>
-        </main>
-      </PageTransition>
-    </ErrorBoundary>
+    <PageTransition>
+      <main className="relative">
+        <div id="hero">
+          <HeroSection />
+        </div>
+        <AboutSection />
+        <EducationSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+      </main>
+    </PageTransition>
   )
 }
 

@@ -11,8 +11,18 @@ export function useMobileOptimization() {
     setIsClient(true)
   }, [])
 
+  // Return safe defaults if not on client
+  if (!isClient) {
+    return {
+      isMobile: false,
+      isLowPowerMode: false,
+      shouldReduceAnimations: false,
+      shouldSimplifyParticles: false,
+      shouldReduceParticleCount: false
+    }
+  }
+
   useEffect(() => {
-    if (!isClient) return
     // Check if device is mobile
     const checkMobile = () => {
       try {

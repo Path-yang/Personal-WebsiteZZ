@@ -10,8 +10,12 @@ export function useReducedMotion(): boolean {
     setIsClient(true)
   }, [])
 
+  // Return safe default if not on client
+  if (!isClient) {
+    return false
+  }
+
   useEffect(() => {
-    if (!isClient) return
 
     try {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
