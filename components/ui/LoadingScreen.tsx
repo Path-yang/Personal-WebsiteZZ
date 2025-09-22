@@ -1,0 +1,315 @@
+'use client'
+
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+
+export function LoadingScreen() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [progress, setProgress] = useState(0)
+  const [loadingStage, setLoadingStage] = useState('Initializing')
+  const prefersReducedMotion = useReducedMotion()
+
+  const stages = [
+    'Initializing Neural Networks...',
+    'Loading AI Components...',
+    'Compiling Data Streams...',
+    'Optimizing Performance...',
+    'Ready to Innovate!'
+  ]
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setIsLoading(false)
+      return
+    }
+
+    let currentProgress = 0
+    let stageIndex = 0
+
+    const interval = setInterval(() => {
+      currentProgress += Math.random() * 15 + 5
+      
+      if (currentProgress >= 100) {
+        currentProgress = 100
+        setProgress(100)
+        setLoadingStage(stages[4])
+        
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 800)
+        
+        clearInterval(interval)
+      } else {
+        setProgress(currentProgress)
+        
+        // Update stage based on progress
+        const newStageIndex = Math.floor((currentProgress / 100) * (stages.length - 1))
+        if (newStageIndex !== stageIndex && newStageIndex < stages.length - 1) {
+          stageIndex = newStageIndex
+          setLoadingStage(stages[stageIndex])
+        }
+      }
+    }, 200)
+
+    return () => clearInterval(interval)
+  }, [prefersReducedMotion])
+
+  if (!isLoading) return null
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-[100] bg-gradient-to-br from-dark-bg via-dark-card to-dark-bg flex items-center justify-center"
+        initial={{ opacity: 1 }}
+        exit={{ 
+          opacity: 0,
+          scale: 1.1,
+          transition: { duration: 0.8, ease: "easeInOut" }
+        }}
+      >
+        {/* Animated background particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-accent-blue rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+                y: [0, -100, -200]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Central loading content */}
+        <div className="text-center z-10 px-8">
+          {/* Logo animation */}
+          <motion.div
+            className="mb-12"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ 
+              scale: 1, 
+              rotate: 0,
+              transition: {
+                duration: 1,
+                ease: [0.68, -0.55, 0.265, 1.55],
+                type: "spring",
+                stiffness: 200
+              }
+            }}
+          >
+            <motion.div
+              className="w-24 h-24 mx-auto bg-gradient-to-br from-accent-blue to-accent-mint rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
+              animate={{
+                boxShadow: [
+                  '0 0 20px rgba(96, 165, 250, 0.3)',
+                  '0 0 40px rgba(52, 211, 153, 0.5)',
+                  '0 0 20px rgba(96, 165, 250, 0.3)'
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              {/* Rotating background */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-accent-mint to-accent-blue"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+              
+              {/* Central icon */}
+              <motion.div
+                className="relative z-10 text-white text-3xl font-bold"
+                animate={{
+                  rotateY: [0, 180, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                YZ
+              </motion.div>
+
+              {/* Pulse rings */}
+              {[0, 1, 2].map(i => (
+                <motion.div
+                  key={i}
+                  className="absolute inset-0 border-2 border-accent-blue rounded-2xl"
+                  animate={{
+                    scale: [1, 1.5 + i * 0.3, 1],
+                    opacity: [0.8, 0, 0.8]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </motion.div>
+
+            <motion.h1 
+              className="text-4xl md:text-5xl font-light text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              Yang{' '}
+              <motion.span 
+                className="text-accent-blue font-medium"
+                animate={{
+                  textShadow: [
+                    '0 0 20px rgba(96, 165, 250, 0.5)',
+                    '0 0 40px rgba(96, 165, 250, 0.8)',
+                    '0 0 20px rgba(96, 165, 250, 0.5)'
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Zhenzhao
+              </motion.span>
+            </motion.h1>
+          </motion.div>
+
+          {/* Progress section */}
+          <motion.div
+            className="max-w-md mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+          >
+            {/* Loading text */}
+            <motion.p
+              className="text-lg text-slate-300 mb-6 h-6"
+              key={loadingStage}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {loadingStage}
+            </motion.p>
+
+            {/* Progress bar */}
+            <div className="relative">
+              <div className="w-full h-2 bg-dark-border rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-accent-blue to-accent-mint rounded-full relative"
+                  style={{ width: `${progress}%` }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  {/* Progress bar glow */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-mint opacity-50 blur-sm"
+                    animate={{
+                      opacity: [0.5, 1, 0.5]
+                    }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  />
+                </motion.div>
+              </div>
+              
+              {/* Progress percentage */}
+              <motion.div
+                className="absolute -top-8 text-accent-blue font-mono text-sm"
+                style={{ left: `${Math.max(progress - 5, 0)}%` }}
+                animate={{
+                  textShadow: [
+                    '0 0 10px rgba(96, 165, 250, 0.5)',
+                    '0 0 20px rgba(96, 165, 250, 0.8)',
+                    '0 0 10px rgba(96, 165, 250, 0.5)'
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                {Math.round(progress)}%
+              </motion.div>
+            </div>
+
+            {/* Loading dots */}
+            <motion.div 
+              className="flex justify-center gap-2 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              {[0, 1, 2].map(i => (
+                <motion.div
+                  key={i}
+                  className="w-2 h-2 bg-accent-blue rounded-full"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    delay: i * 0.2
+                  }}
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Bottom tech stack indicators */}
+          <motion.div
+            className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 text-slate-500 text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 0.8 }}
+          >
+            {['Next.js', 'TypeScript', 'Framer Motion', 'AI/ML'].map((tech, i) => (
+              <motion.span
+                key={tech}
+                animate={{
+                  color: ['#64748B', '#60A5FA', '#64748B']
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.5
+                }}
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Corner decorations */}
+        {[
+          { top: '20px', left: '20px', rotate: 0 },
+          { top: '20px', right: '20px', rotate: 90 },
+          { bottom: '20px', left: '20px', rotate: 270 },
+          { bottom: '20px', right: '20px', rotate: 180 }
+        ].map((pos, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-6 h-6 border-t-2 border-l-2 border-accent-blue/30"
+            style={pos}
+            initial={{ scale: 0, rotate: pos.rotate - 45 }}
+            animate={{ 
+              scale: 1, 
+              rotate: pos.rotate,
+              transition: {
+                delay: 1.5 + i * 0.1,
+                duration: 0.8,
+                type: "spring"
+              }
+            }}
+          />
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  )
+}

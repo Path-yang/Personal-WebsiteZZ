@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0F172A;
+    color: #F1F5F9;
+    line-height: 1.6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  :focus-visible {
+    outline: 2px solid #60A5FA;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .heading {
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 xl:px-32;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Hardware acceleration for animations */
+  .hw-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimize 3D transforms */
+  .preserve-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  /* Smooth animations */
+  .smooth-transform {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Glass morphism effect */
+  .glass-morphism {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+}
+
+/* Smooth scrolling for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Optimize touch targets for mobile */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve scroll performance on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce font sizes slightly for better mobile readability */
+  .section-padding {
+    @apply px-4 md:px-12 lg:px-24 xl:px-32;
+  }
+  
+    /* Optimize animations for mobile performance */
+    .hw-accelerated {
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+    
+    /* Performance optimizations for all devices */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Optimize particle animations */
+    .particle-container {
+      will-change: transform, opacity;
+      transform: translateZ(0);
+    }
+    
+    /* Reduce repaints on hover */
+    .project-card {
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+}
+
+/* High DPI mobile displays */
+@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px) {
+  /* Ensure crisp text rendering on retina mobile displays */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+

@@ -1,0 +1,6 @@
+Please add your real logo images here:
+- massivue.png
+- amcor.png  
+- spf.png
+
+See LOGO_INSTRUCTIONS.md for details.
