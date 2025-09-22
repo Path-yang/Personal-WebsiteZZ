@@ -5,24 +5,11 @@ import { useState, useEffect } from 'react'
 export function useMobileOptimization() {
   const [isMobile, setIsMobile] = useState(false)
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
-  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return
 
-  // Return safe defaults if not on client
-  if (!isClient) {
-    return {
-      isMobile: false,
-      isLowPowerMode: false,
-      shouldReduceAnimations: false,
-      shouldSimplifyParticles: false,
-      shouldReduceParticleCount: false
-    }
-  }
-
-  useEffect(() => {
     // Check if device is mobile
     const checkMobile = () => {
       try {

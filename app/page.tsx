@@ -6,8 +6,6 @@ import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageTransition } from '@/components/ui/PageTransition'
-import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
-import { ClientOnly } from '@/components/providers/ClientOnly'
 
 export default function Home() {
   return (

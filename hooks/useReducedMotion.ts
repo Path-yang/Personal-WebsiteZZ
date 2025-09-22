@@ -4,18 +4,10 @@ import { useEffect, useState } from 'react'
 
 export function useReducedMotion(): boolean {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  // Return safe default if not on client
-  if (!isClient) {
-    return false
-  }
-
-  useEffect(() => {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return
 
     try {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -29,10 +21,9 @@ export function useReducedMotion(): boolean {
       return () => mediaQuery.removeEventListener('change', handleChange)
     } catch (error) {
       console.warn('Error setting up reduced motion detection:', error)
-      // Fallback to false (no reduced motion)
       setPrefersReducedMotion(false)
     }
-  }, [isClient])
+  }, [])
 
   return prefersReducedMotion
 }

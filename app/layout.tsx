@@ -7,8 +7,6 @@ import { FloatingActionButton } from '@/components/ui/FloatingActionButton'
 import { KeyboardShortcuts } from '@/components/ui/KeyboardShortcuts'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
 import { CursorEffects } from '@/components/ui/CursorEffects'
-import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
-import { ClientOnly } from '@/components/providers/ClientOnly'
 
 export const metadata: Metadata = {
   title: 'Yang Zhenzhao - AI Engineer & Full-Stack Developer',
@@ -37,25 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
-        <ErrorBoundary>
-          <ClientOnly fallback={<div className="min-h-screen bg-slate-900" />}>
-            <LoadingScreen />
-            <CursorEffects />
-          </ClientOnly>
-          <SmoothScrollProvider>
-            <ClientOnly fallback={<div className="fixed top-0 left-0 w-full h-1 bg-slate-800" />}>
-              <ScrollProgress />
-            </ClientOnly>
-            <ClientOnly fallback={<div className="fixed top-0 left-0 right-0 h-16 bg-slate-900/90 backdrop-blur-sm z-50" />}>
-              <Navigation />
-            </ClientOnly>
-            {children}
-            <ClientOnly>
-              <FloatingActionButton />
-              <KeyboardShortcuts />
-            </ClientOnly>
-          </SmoothScrollProvider>
-        </ErrorBoundary>
+        <LoadingScreen />
+        <CursorEffects />
+        <SmoothScrollProvider>
+          <ScrollProgress />
+          <Navigation />
+          {children}
+          <FloatingActionButton />
+          <KeyboardShortcuts />
+        </SmoothScrollProvider>
       </body>
     </html>
   )
