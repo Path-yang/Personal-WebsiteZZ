@@ -34,7 +34,7 @@ export function SimpleParticleBackground() {
   const getParticlePositions = (shapeType: number) => {
     const particles = []
         // Mobile optimization: reduce particle count for better performance
-        const particleCount = 20
+        const particleCount = 50
 
     for (let i = 0; i < particleCount; i++) {
       let x, y, size, color, duration, nodeType = 'normal'
@@ -290,8 +290,8 @@ export function SimpleParticleBackground() {
   // Get particle positions
   const particles = getParticlePositions(currentShape)
 
-  // Reduce particle count for better performance
-  const maxParticles = 12
+  // Full particle count for complete animations
+  const maxParticles = 50
   const displayParticles = particles.slice(0, maxParticles)
 
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)
