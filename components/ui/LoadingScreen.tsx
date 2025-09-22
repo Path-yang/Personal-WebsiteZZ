@@ -68,24 +68,24 @@ export function LoadingScreen() {
           transition: { duration: 0.8, ease: "easeInOut" }
         }}
       >
-        {/* Simplified background particles - reduced for performance */}
+        {/* Minimal background particles for maximum performance */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-accent-blue rounded-full opacity-30"
+              className="absolute w-1 h-1 bg-accent-blue rounded-full opacity-20"
               style={{
-                left: `${20 + i * 5}%`,
-                top: `${20 + (i % 3) * 30}%`,
+                left: `${25 + i * 10}%`,
+                top: `${30 + (i % 2) * 40}%`,
               }}
               animate={{
-                opacity: [0.3, 0.8, 0.3],
-                y: [0, -50, -100]
+                opacity: [0.2, 0.6, 0.2],
+                y: [0, -30, -60]
               }}
               transition={{
-                duration: 4,
+                duration: 5,
                 repeat: Infinity,
-                delay: i * 0.2,
+                delay: i * 0.5,
                 ease: "easeOut"
               }}
             />
@@ -110,47 +110,29 @@ export function LoadingScreen() {
             }}
           >
             <motion.div
-              className="w-24 h-24 mx-auto bg-gradient-to-br from-accent-blue to-accent-mint rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
+              className="w-24 h-24 mx-auto bg-gradient-to-br from-accent-blue to-accent-mint rounded-2xl flex items-center justify-center mb-6 relative"
               animate={{
                 boxShadow: [
-                  '0 0 20px rgba(96, 165, 250, 0.3)',
-                  '0 0 30px rgba(52, 211, 153, 0.4)',
-                  '0 0 20px rgba(96, 165, 250, 0.3)'
+                  '0 0 15px rgba(96, 165, 250, 0.3)',
+                  '0 0 25px rgba(52, 211, 153, 0.4)',
+                  '0 0 15px rgba(96, 165, 250, 0.3)'
                 ]
               }}
-              transition={{ duration: 3, repeat: Infinity }}
+              transition={{ duration: 4, repeat: Infinity }}
             >
-              {/* Simplified rotating background */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-accent-mint to-accent-blue"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              />
+              {/* Static background for better performance */}
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-mint to-accent-blue rounded-2xl" />
               
-              {/* Central icon - simplified animation */}
+              {/* Central icon - minimal animation */}
               <motion.div
                 className="relative z-10 text-white text-3xl font-bold"
                 animate={{
-                  scale: [1, 1.05, 1]
+                  scale: [1, 1.02, 1]
                 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 YZ
               </motion.div>
-
-              {/* Single pulse ring for performance */}
-              <motion.div
-                className="absolute inset-0 border-2 border-accent-blue rounded-2xl"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.6, 0, 0.6]
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
             </motion.div>
 
             <motion.h1 
@@ -202,35 +184,24 @@ export function LoadingScreen() {
                   style={{ width: `${progress}%` }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {/* Simplified progress bar glow */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-mint opacity-60 blur-sm"
-                    animate={{
-                      opacity: [0.6, 0.8, 0.6]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
+                  {/* Static progress bar glow for performance */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-mint opacity-70 blur-sm" />
                 </motion.div>
               </div>
               
-              {/* Progress percentage */}
-              <motion.div
+              {/* Static progress percentage for performance */}
+              <div
                 className="absolute -top-8 text-accent-blue font-mono text-sm"
-                style={{ left: `${Math.max(progress - 5, 0)}%` }}
-                animate={{
-                  textShadow: [
-                    '0 0 10px rgba(96, 165, 250, 0.5)',
-                    '0 0 20px rgba(96, 165, 250, 0.8)',
-                    '0 0 10px rgba(96, 165, 250, 0.5)'
-                  ]
+                style={{ 
+                  left: `${Math.max(progress - 5, 0)}%`,
+                  textShadow: '0 0 15px rgba(96, 165, 250, 0.6)'
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
               >
                 {Math.round(progress)}%
-              </motion.div>
+              </div>
             </div>
 
-            {/* Loading dots */}
+            {/* Simplified loading dots */}
             <motion.div 
               className="flex justify-center gap-2 mt-8"
               initial={{ opacity: 0 }}
@@ -242,13 +213,12 @@ export function LoadingScreen() {
                   key={i}
                   className="w-2 h-2 bg-accent-blue rounded-full"
                   animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5]
+                    opacity: [0.4, 0.8, 0.4]
                   }}
                   transition={{
-                    duration: 1,
+                    duration: 2,
                     repeat: Infinity,
-                    delay: i * 0.2
+                    delay: i * 0.4
                   }}
                 />
               ))}
@@ -280,29 +250,6 @@ export function LoadingScreen() {
           </motion.div>
         </div>
 
-        {/* Corner decorations */}
-        {[
-          { top: '20px', left: '20px', rotate: 0 },
-          { top: '20px', right: '20px', rotate: 90 },
-          { bottom: '20px', left: '20px', rotate: 270 },
-          { bottom: '20px', right: '20px', rotate: 180 }
-        ].map((pos, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-6 h-6 border-t-2 border-l-2 border-accent-blue/30"
-            style={pos}
-            initial={{ scale: 0, rotate: pos.rotate - 45 }}
-            animate={{ 
-              scale: 1, 
-              rotate: pos.rotate,
-              transition: {
-                delay: 1.5 + i * 0.1,
-                duration: 0.8,
-                type: "spring"
-              }
-            }}
-          />
-        ))}
       </motion.div>
     </AnimatePresence>
   )
