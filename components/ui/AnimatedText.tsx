@@ -243,7 +243,7 @@ export function HeroTitle({ firstName, lastName, delay = 0 }: {
               ease: "easeOut"
             }}
           >
-            {char}
+            {char === ',' ? ', ' : char}
           </motion.span>
         ))}
       </motion.span>

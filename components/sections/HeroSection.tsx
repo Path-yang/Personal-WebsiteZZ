@@ -183,7 +183,7 @@ export function HeroSection() {
         <div className="text-center px-8 max-w-4xl mx-auto">
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className="heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 font-light tracking-tight"
+            className="heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 font-light tracking-tight"
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',

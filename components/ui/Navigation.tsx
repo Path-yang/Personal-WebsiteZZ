@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { CompactResumeButton } from '@/components/ui/CompactResumeButton'
+import { Github, Linkedin } from 'lucide-react'
 
 const navigationItems = [
   { label: 'Home', href: '#', sectionId: 'hero' },
@@ -204,13 +205,46 @@ export function Navigation() {
                 </motion.span>
               </motion.div>
 
-              {/* Compact Resume Button */}
+              {/* Social Buttons */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="hidden sm:block"
+                className="hidden sm:flex items-center gap-3"
               >
+                {/* LinkedIn Button */}
+                <motion.a
+                  href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
+                  whileHover={prefersReducedMotion ? {} : { 
+                    scale: 1.05,
+                    y: -2,
+                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)'
+                  }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                >
+                  <Linkedin size={18} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                </motion.a>
+
+                {/* GitHub Button */}
+                <motion.a
+                  href="https://github.com/Zhenzha0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
+                  whileHover={prefersReducedMotion ? {} : { 
+                    scale: 1.05,
+                    y: -2,
+                    boxShadow: '0 8px 25px rgba(107, 114, 128, 0.3)'
+                  }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                >
+                  <Github size={18} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
+                </motion.a>
+
+                {/* Resume Button */}
                 <CompactResumeButton />
               </motion.div>
             </div>
@@ -323,11 +357,46 @@ export function Navigation() {
               </motion.button>
             ))}
             
-            {/* Mobile Resume Button */}
+            {/* Mobile Social Buttons */}
             <motion.div
               className="pt-4 border-t border-dark-border/30"
               variants={mobileItemVariants}
             >
+              <div className="flex items-center justify-center gap-4 mb-4">
+                {/* LinkedIn Button */}
+                <motion.a
+                  href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
+                  whileHover={prefersReducedMotion ? {} : { 
+                    scale: 1.05,
+                    y: -2,
+                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)'
+                  }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                >
+                  <Linkedin size={20} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                </motion.a>
+
+                {/* GitHub Button */}
+                <motion.a
+                  href="https://github.com/Zhenzha0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
+                  whileHover={prefersReducedMotion ? {} : { 
+                    scale: 1.05,
+                    y: -2,
+                    boxShadow: '0 8px 25px rgba(107, 114, 128, 0.3)'
+                  }}
+                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                >
+                  <Github size={20} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
+                </motion.a>
+              </div>
+              
+              {/* Resume Button */}
               <CompactResumeButton />
             </motion.div>
           </div>
