@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { SectionBackground } from '@/components/ui/SectionBackground'
-import { Brain, Ship, Shield, Heart } from 'lucide-react'
+import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-react'
 
 const projects = [
   {
@@ -72,6 +72,40 @@ const projects = [
     tech: ['Next.js', 'TypeScript', 'MySQL', 'Open Payments API'],
     githubUrl: 'https://github.com/Path-yang/Hackomania_2025',
     demoUrl: 'https://geekshackinghackathon-8ygu.vercel.app/'
+  },
+  {
+    id: 'ai-chatbot',
+    title: 'AI-Powered Chatbot',
+    category: 'AI/ML • Web Development',
+    period: 'Dec 2024',
+    description: 'Intelligent chatbot system with natural language processing capabilities and real-time response generation.',
+    highlights: [
+      'Implemented advanced NLP algorithms for context understanding',
+      'Built responsive web interface with real-time messaging',
+      'Integrated with multiple AI models for enhanced responses',
+      'Achieved 95% user satisfaction in testing phase'
+    ],
+    icon: MessageCircle,
+    tech: ['Python', 'React', 'OpenAI API', 'WebSocket', 'NLP'],
+    githubUrl: 'https://github.com/Zhenzha0/AI-Chatbot',
+    demoUrl: 'https://ai-chatbot-demo.vercel.app/'
+  },
+  {
+    id: 'data-visualization',
+    title: 'Interactive Data Dashboard',
+    category: 'Data Science • Visualization',
+    period: 'Nov 2024',
+    description: 'Comprehensive data visualization platform for analyzing and presenting complex datasets with interactive charts and real-time updates.',
+    highlights: [
+      'Created dynamic charts using D3.js and Chart.js',
+      'Implemented real-time data streaming capabilities',
+      'Built responsive dashboard with multiple data views',
+      'Processed and visualized datasets with 100k+ records'
+    ],
+    icon: BarChart3,
+    tech: ['JavaScript', 'D3.js', 'Chart.js', 'Node.js', 'MongoDB'],
+    githubUrl: 'https://github.com/Zhenzha0/Data-Dashboard',
+    demoUrl: 'https://data-dashboard-demo.vercel.app/'
   }
 ]
 
