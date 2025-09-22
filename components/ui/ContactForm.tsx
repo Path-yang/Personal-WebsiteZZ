@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -15,7 +14,6 @@ export function ContactForm() {
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile, shouldOptimizeForTouch } = useMobileOptimization()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -77,7 +75,7 @@ export function ContactForm() {
       <motion.form 
         onSubmit={handleSubmit}
         className={`space-y-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl ${
-          isMobile ? 'p-4' : 'p-8'
+          'p-4 sm:p-8'
         }`}
         style={{
           transformStyle: 'preserve-3d',
@@ -107,7 +105,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 ${
-                isMobile ? 'px-3 py-4 text-base' : 'px-4 py-4'
+                'px-3 py-4 text-base sm:px-4 sm:py-4'
               }`}
               whileFocus={prefersReducedMotion ? {} : {
                 scale: 1.02,
@@ -127,7 +125,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 ${
-                isMobile ? 'px-3 py-4 text-base' : 'px-4 py-4'
+                'px-3 py-4 text-base sm:px-4 sm:py-4'
               }`}
               whileFocus={prefersReducedMotion ? {} : {
                 scale: 1.02,
@@ -166,7 +164,7 @@ export function ContactForm() {
             required
             rows={6}
             className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 resize-none ${
-              isMobile ? 'px-3 py-4 text-base' : 'px-4 py-4'
+              'px-3 py-4 text-base sm:px-4 sm:py-4'
             }`}
             whileFocus={prefersReducedMotion ? {} : {
               scale: 1.02,

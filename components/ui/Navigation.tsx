@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { CompactResumeButton } from '@/components/ui/CompactResumeButton'
 import { Github, Linkedin } from 'lucide-react'
 
@@ -23,7 +22,6 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState('hero')
   const [isVisible, setIsVisible] = useState(true) // Always visible from start
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile, shouldOptimizeForTouch, isClient } = useMobileOptimization()
 
   // Navigation is always visible, no scroll transforms needed
 
@@ -315,29 +313,27 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       <motion.div
-        className={`fixed top-20 left-0 right-0 z-40 md:hidden ${
-          isMobile ? 'px-4' : 'px-6'
-        }`}
+        className="fixed top-20 left-0 right-0 z-40 md:hidden px-4 sm:px-6"
         variants={mobileMenuVariants}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
           className={`bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl shadow-2xl ${
-            isMobile ? 'p-4' : 'p-6'
+            'p-4 sm:p-6'
           }`}
           style={{
             background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%)',
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
           }}
         >
-          <div className={`space-y-3 ${isMobile ? 'space-y-2' : ''}`}>
+          <div className="space-y-2 sm:space-y-3">
             {navigationItems.map((item, index) => (
               <motion.button
                 key={item.sectionId}
                 onClick={() => scrollToSection(item.sectionId)}
                 className={`w-full text-left rounded-xl font-medium transition-all duration-200 flex items-center gap-3 ${
-                  isMobile ? 'px-3 py-4' : 'px-4 py-3'
+                  'px-3 py-4 sm:px-4 sm:py-3'
                 }`}
                 variants={mobileItemVariants}
                 whileHover={prefersReducedMotion ? {} : {

@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { SectionBackground } from '@/components/ui/SectionBackground'
 import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-react'
 
@@ -110,7 +109,6 @@ const projects = [
 ]
 
 export function ProjectsSection() {
-  const { isMobile, isTablet } = useMobileOptimization()
   
   const containerVariants = {
     hidden: {},
@@ -127,20 +125,12 @@ export function ProjectsSection() {
       <SectionBackground variant="geometric" intensity="high" />
       
       <div className="container-max section-padding relative z-10">
-        <motion.h2 className={`heading mb-16 text-center text-accent-blue ${
-          isMobile ? 'text-2xl' : 
-          isTablet ? 'text-3xl md:text-4xl' :
-          'text-3xl md:text-4xl lg:text-5xl'
-        }`}>
+        <motion.h2 className="heading mb-16 text-center text-accent-blue text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
           Projects
         </motion.h2>
         
         <motion.div 
-          className={`grid gap-8 ${
-            isMobile ? 'grid-cols-1' : 
-            isTablet ? 'grid-cols-1 md:grid-cols-2' :
-            'grid-cols-1 md:grid-cols-2'
-          }`}
+          className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ perspective: '1000px' }}
           variants={containerVariants}
           initial="hidden"

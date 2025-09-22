@@ -2,12 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { useState, useEffect, useMemo } from 'react'
 
 export function SimpleParticleBackground() {
   const prefersReducedMotion = useReducedMotion()
-  const { shouldReduceParticleCount, shouldSimplifyParticles, isMobile, isTablet, isHydrated } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
 
 
@@ -17,36 +15,6 @@ export function SimpleParticleBackground() {
     )
   }
 
-  // Simplified mobile version
-  if (shouldSimplifyParticles) {
-    return (
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-slate-900" />
-        
-        {/* Simple floating dots for mobile */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-accent-blue rounded-full opacity-30"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-10, 10, -10],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
-      </div>
-    )
-  }
 
       // Cycle through all 4 patterns with extended duration
       useEffect(() => {
@@ -66,7 +34,7 @@ export function SimpleParticleBackground() {
   const getParticlePositions = (shapeType: number) => {
     const particles = []
         // Mobile optimization: reduce particle count for better performance
-        const particleCount = isMobile ? 8 : shouldReduceParticleCount ? 50 : 100
+        const particleCount = 20
 
     for (let i = 0; i < particleCount; i++) {
       let x, y, size, color, duration, nodeType = 'normal'
@@ -323,7 +291,7 @@ export function SimpleParticleBackground() {
   const particles = getParticlePositions(currentShape)
 
   // Reduce particle count for better performance
-  const maxParticles = isHydrated && isMobile ? 8 : shouldReduceParticleCount ? 12 : 20
+  const maxParticles = 12
   const displayParticles = particles.slice(0, maxParticles)
 
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)

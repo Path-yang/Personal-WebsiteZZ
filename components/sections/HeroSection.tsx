@@ -5,12 +5,10 @@ import { ArrowDown, Zap, Brain, Code } from 'lucide-react'
 import { SimpleParticleBackground } from '@/components/ui/SimpleParticleBackground'
 import { AnimatedText, HeroTitle } from '@/components/ui/AnimatedText'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { useState, useMemo, useCallback } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile, isTablet, shouldOptimizeForTouch, isHydrated } = useMobileOptimization()
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
@@ -112,11 +110,7 @@ export function HeroSection() {
       {/* Circular Signal Node Backdrop - Positioned Higher and Smaller */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transform: 'translateY(-60px)' }}>
         <motion.div 
-          className={`backdrop-blur-[3px] rounded-full border border-white/10 ${
-            isHydrated && isMobile ? 'w-[280px] h-[280px]' : 
-            isHydrated && isTablet ? 'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px]' :
-            'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] xl:w-[780px] xl:h-[780px]'
-          }`}
+          className="backdrop-blur-[3px] rounded-full border border-white/10 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[480px] md:h-[480px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[780px] 2xl:h-[780px]"
           style={{ 
             background: 'radial-gradient(circle, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.7) 40%, rgba(15, 23, 42, 0.3) 100%)',
             zIndex: 1
@@ -187,16 +181,10 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <div className={`text-center max-w-4xl mx-auto ${
-          isHydrated && isMobile ? 'px-4' : 'px-8'
-        }`}>
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className={`heading mb-6 font-light tracking-tight ${
-              isHydrated && isMobile ? 'text-2xl' : 
-              isHydrated && isTablet ? 'text-3xl md:text-4xl' :
-              'text-3xl md:text-5xl lg:text-6xl xl:text-7xl'
-            }`}
+            className="heading mb-6 font-light tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
@@ -217,11 +205,7 @@ export function HeroSection() {
           >
             {/* Single Role Text with Character-by-Character Typing Animation */}
             <motion.div 
-              className={`text-cyan-400 leading-relaxed mb-4 font-mono ${
-                isHydrated && isMobile ? 'text-sm' : 
-                isHydrated && isTablet ? 'text-base md:text-lg' :
-                'text-lg md:text-xl lg:text-2xl'
-              }`}
+              className="text-cyan-400 leading-relaxed mb-4 font-mono text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -261,11 +245,7 @@ export function HeroSection() {
 
             {/* Main Role Text with Character-by-Character Floating Animation */}
             <motion.div 
-              className={`text-white leading-relaxed mb-4 font-light ${
-                isHydrated && isMobile ? 'text-base' : 
-                isHydrated && isTablet ? 'text-lg md:text-xl' :
-                'text-xl md:text-2xl lg:text-3xl'
-              }`}
+              className="text-white leading-relaxed mb-4 font-light text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -350,11 +330,7 @@ export function HeroSection() {
             variants={heroElementVariants}
           >
             <motion.p 
-              className={`text-slate-300 leading-relaxed ${
-                isHydrated && isMobile ? 'text-sm' : 
-                isHydrated && isTablet ? 'text-base md:text-lg' :
-                'text-lg md:text-xl'
-              }`}
+              className="text-slate-300 leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl"
               style={{
                 textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 1)'
               }}

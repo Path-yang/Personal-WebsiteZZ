@@ -4,13 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowUp, MessageCircle, Mail, Phone } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 export function FloatingActionButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const prefersReducedMotion = useReducedMotion()
-  const { isClient } = useMobileOptimization()
 
   useEffect(() => {
     const handleScroll = () => {
