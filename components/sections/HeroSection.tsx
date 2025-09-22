@@ -14,7 +14,7 @@ export function HeroSection() {
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
-  const containerVariants = useMemo(() => ({
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -23,9 +23,9 @@ export function HeroSection() {
         delayChildren: 0.2
       }
     }
-  }), [])
+  }
 
-  const heroElementVariants = useMemo(() => ({
+  const heroElementVariants = {
     hidden: { 
       opacity: 0,
       y: 100,
@@ -44,7 +44,7 @@ export function HeroSection() {
         stiffness: 100
       }
     }
-  }), [])
+  }
 
   const iconVariants = {
     hidden: {
@@ -69,24 +69,6 @@ export function HeroSection() {
     aboutSection?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // Prevent hydration mismatch by not rendering until client-side
-  if (!isClient) {
-    return (
-      <section className="relative min-h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-slate-900" />
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="text-center px-8 max-w-4xl mx-auto">
-            <h1 className="heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 font-light tracking-tight text-white">
-              Hello, I'm Zhenzhao
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
-              Loading...
-            </p>
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -95,7 +77,7 @@ export function HeroSection() {
       
       {/* Floating Tech Icons - Optimized for performance */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
-        {useMemo(() => [Brain, Code, Zap], []).map((Icon, i) => (
+        {[Brain, Code, Zap].map((Icon, i) => (
           <motion.div
             key={i}
             className="absolute"

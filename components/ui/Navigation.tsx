@@ -29,8 +29,6 @@ export function Navigation() {
 
   // Track scroll position and active section
   useEffect(() => {
-    if (!isClient) return
-
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100
       setIsVisible(true) // Always visible now
@@ -59,7 +57,7 @@ export function Navigation() {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Initial call
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isClient])
+  }, [])
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)

@@ -10,12 +10,6 @@ export function SimpleParticleBackground() {
   const { shouldReduceParticleCount, shouldSimplifyParticles, isMobile, isTablet, isClient } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
 
-  // Prevent hydration mismatch by not rendering until client-side
-  if (!isClient) {
-    return (
-      <div className="absolute inset-0 bg-slate-900" />
-    )
-  }
 
   if (prefersReducedMotion) {
     return (
@@ -325,8 +319,8 @@ export function SimpleParticleBackground() {
         return particles
       }
 
-  // Memoize particle positions to avoid recalculation
-  const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, isMobile, shouldReduceParticleCount])
+  // Get particle positions
+  const particles = getParticlePositions(currentShape)
 
   // Reduce particle count for better performance
   const maxParticles = isMobile ? 8 : shouldReduceParticleCount ? 12 : 20

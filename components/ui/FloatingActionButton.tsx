@@ -13,15 +13,13 @@ export function FloatingActionButton() {
   const { isClient } = useMobileOptimization()
 
   useEffect(() => {
-    if (!isClient) return
-
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isClient])
+  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -90,9 +88,6 @@ export function FloatingActionButton() {
       }
     }
   }
-
-  // Don't render until client-side hydration is complete
-  if (!isClient) return null
 
   if (!isVisible) return null
 
