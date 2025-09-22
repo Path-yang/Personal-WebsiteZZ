@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin, Phone, MapPin, MessageCircle, Send, Heart } from 'lucide-react'
 import { Section } from '@/components/ui/Section'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { ContactForm } from '@/components/ui/ContactForm'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
@@ -47,6 +48,7 @@ const socialLinks = [
 
 export function ContactSection() {
   const prefersReducedMotion = useReducedMotion()
+  const { isMobile, isTablet } = useMobileOptimization()
 
   const containerVariants = {
     hidden: {},
@@ -132,14 +134,22 @@ export function ContactSection() {
           viewport={{ once: true, margin: "-10%" }}
         >
           <motion.h2 
-            className="heading text-3xl md:text-4xl lg:text-5xl mb-8 text-accent-blue"
+            className={`heading mb-8 text-accent-blue ${
+              isMobile ? 'text-2xl' : 
+              isTablet ? 'text-3xl md:text-4xl' :
+              'text-3xl md:text-4xl lg:text-5xl'
+            }`}
             variants={itemVariants}
           >
             Let's Connect
           </motion.h2>
           
           <motion.p 
-            className="text-lg md:text-xl text-slate-300 mb-12 leading-relaxed"
+            className={`text-slate-300 mb-12 leading-relaxed ${
+              isMobile ? 'text-sm' : 
+              isTablet ? 'text-base md:text-lg' :
+              'text-lg md:text-xl'
+            }`}
             variants={itemVariants}
           >
             Ready to collaborate on cutting-edge AI solutions? Let's discuss how we can 

@@ -4,16 +4,31 @@ import { useState, useEffect } from 'react'
 
 export function useMobileOptimization() {
   const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
+  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop')
 
   useEffect(() => {
     // Check if device is mobile
     const checkMobile = () => {
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       const isSmallScreen = window.innerWidth < 768
+      const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024
       const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
       
-      setIsMobile(isMobileDevice || (isSmallScreen && isTouchDevice))
+      const mobile = isMobileDevice || (isSmallScreen && isTouchDevice)
+      const tablet = isMediumScreen || (isMobileDevice && window.innerWidth >= 768)
+      
+      setIsMobile(mobile)
+      setIsTablet(tablet)
+      
+      if (mobile) {
+        setScreenSize('mobile')
+      } else if (tablet) {
+        setScreenSize('tablet')
+      } else {
+        setScreenSize('desktop')
+      }
     }
 
     // Check for low power mode indicators
@@ -49,9 +64,13 @@ export function useMobileOptimization() {
 
   return {
     isMobile,
+    isTablet,
     isLowPowerMode,
+    screenSize,
     shouldReduceAnimations: isMobile || isLowPowerMode,
     shouldSimplifyParticles: isMobile,
-    shouldReduceParticleCount: isMobile || isLowPowerMode
+    shouldReduceParticleCount: isMobile || isLowPowerMode,
+    shouldOptimizeForTouch: isMobile || isTablet,
+    shouldReduceComplexity: isMobile || isLowPowerMode
   }
 }

@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from 'react'
 
 export function SimpleParticleBackground() {
   const prefersReducedMotion = useReducedMotion()
-  const { shouldReduceParticleCount, shouldSimplifyParticles } = useMobileOptimization()
+  const { shouldReduceParticleCount, shouldSimplifyParticles, isMobile, isTablet } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
 
   if (prefersReducedMotion) {
@@ -59,7 +59,7 @@ export function SimpleParticleBackground() {
   const getParticlePositions = (shapeType: number) => {
     const particles = []
         // Mobile optimization: reduce particle count for better performance
-        const particleCount = shouldReduceParticleCount ? 50 : 100
+        const particleCount = isMobile ? 8 : shouldReduceParticleCount ? 50 : 100
 
     for (let i = 0; i < particleCount; i++) {
       let x, y, size, color, duration, nodeType = 'normal'
@@ -316,7 +316,7 @@ export function SimpleParticleBackground() {
       const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, shouldReduceParticleCount])
 
   // Reduce particle count for better performance
-  const maxParticles = shouldReduceParticleCount ? 12 : 20
+  const maxParticles = isMobile ? 8 : shouldReduceParticleCount ? 12 : 20
   const displayParticles = particles.slice(0, maxParticles)
 
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)

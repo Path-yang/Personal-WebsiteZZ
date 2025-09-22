@@ -5,7 +5,7 @@ import { Section } from '@/components/ui/Section'
 import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 export function AboutSection() {
-  const { shouldReduceAnimations } = useMobileOptimization()
+  const { shouldReduceAnimations, isMobile, isTablet } = useMobileOptimization()
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -162,14 +162,22 @@ export function AboutSection() {
           </motion.div>
 
           <motion.h2 
-            className="heading text-3xl md:text-4xl lg:text-5xl mb-8 text-accent-blue"
+            className={`heading mb-8 text-accent-blue ${
+              isMobile ? 'text-2xl' : 
+              isTablet ? 'text-3xl md:text-4xl' :
+              'text-3xl md:text-4xl lg:text-5xl'
+            }`}
             variants={itemVariants}
           >
             About Me
           </motion.h2>
           
           <motion.div 
-            className="text-lg md:text-xl text-slate-300 leading-relaxed space-y-6"
+            className={`text-slate-300 leading-relaxed space-y-6 ${
+              isMobile ? 'text-sm' : 
+              isTablet ? 'text-base md:text-lg' :
+              'text-lg md:text-xl'
+            }`}
             variants={itemVariants}
           >
             <motion.p

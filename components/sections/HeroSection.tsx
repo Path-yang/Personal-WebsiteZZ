@@ -5,10 +5,12 @@ import { ArrowDown, Zap, Brain, Code } from 'lucide-react'
 import { SimpleParticleBackground } from '@/components/ui/SimpleParticleBackground'
 import { AnimatedText, HeroTitle } from '@/components/ui/AnimatedText'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { useState } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
+  const { isMobile, isTablet, shouldOptimizeForTouch } = useMobileOptimization()
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
@@ -109,7 +111,11 @@ export function HeroSection() {
       {/* Circular Signal Node Backdrop - Positioned Higher and Smaller */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transform: 'translateY(-60px)' }}>
         <motion.div 
-          className="w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] xl:w-[780px] xl:h-[780px] backdrop-blur-[3px] rounded-full border border-white/10"
+          className={`backdrop-blur-[3px] rounded-full border border-white/10 ${
+            isMobile ? 'w-[280px] h-[280px]' : 
+            isTablet ? 'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px]' :
+            'w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] xl:w-[780px] xl:h-[780px]'
+          }`}
           style={{ 
             background: 'radial-gradient(circle, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.7) 40%, rgba(15, 23, 42, 0.3) 100%)',
             zIndex: 1
@@ -180,10 +186,16 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <div className="text-center px-8 max-w-4xl mx-auto">
+        <div className={`text-center max-w-4xl mx-auto ${
+          isMobile ? 'px-4' : 'px-8'
+        }`}>
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className="heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 font-light tracking-tight"
+            className={`heading mb-6 font-light tracking-tight ${
+              isMobile ? 'text-2xl' : 
+              isTablet ? 'text-3xl md:text-4xl' :
+              'text-3xl md:text-5xl lg:text-6xl xl:text-7xl'
+            }`}
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
@@ -204,7 +216,11 @@ export function HeroSection() {
           >
             {/* Single Role Text with Character-by-Character Typing Animation */}
             <motion.div 
-              className="text-lg md:text-xl lg:text-2xl text-cyan-400 leading-relaxed mb-4 font-mono"
+              className={`text-cyan-400 leading-relaxed mb-4 font-mono ${
+                isMobile ? 'text-sm' : 
+                isTablet ? 'text-base md:text-lg' :
+                'text-lg md:text-xl lg:text-2xl'
+              }`}
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -244,7 +260,11 @@ export function HeroSection() {
 
             {/* Main Role Text with Character-by-Character Floating Animation */}
             <motion.div 
-              className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-4 font-light"
+              className={`text-white leading-relaxed mb-4 font-light ${
+                isMobile ? 'text-base' : 
+                isTablet ? 'text-lg md:text-xl' :
+                'text-xl md:text-2xl lg:text-3xl'
+              }`}
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -329,7 +349,11 @@ export function HeroSection() {
             variants={heroElementVariants}
           >
             <motion.p 
-              className="text-lg md:text-xl text-slate-300 leading-relaxed"
+              className={`text-slate-300 leading-relaxed ${
+                isMobile ? 'text-sm' : 
+                isTablet ? 'text-base md:text-lg' :
+                'text-lg md:text-xl'
+              }`}
               style={{
                 textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 1)'
               }}

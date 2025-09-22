@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { CompactResumeButton } from '@/components/ui/CompactResumeButton'
 import { Github, Linkedin } from 'lucide-react'
 
@@ -22,6 +23,7 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState('hero')
   const [isVisible, setIsVisible] = useState(true) // Always visible from start
   const prefersReducedMotion = useReducedMotion()
+  const { isMobile, shouldOptimizeForTouch } = useMobileOptimization()
 
   // Navigation is always visible, no scroll transforms needed
 
@@ -313,24 +315,30 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       <motion.div
-        className="fixed top-20 left-0 right-0 z-40 px-6 md:hidden"
+        className={`fixed top-20 left-0 right-0 z-40 md:hidden ${
+          isMobile ? 'px-4' : 'px-6'
+        }`}
         variants={mobileMenuVariants}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
-          className="bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl p-6 shadow-2xl"
+          className={`bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl shadow-2xl ${
+            isMobile ? 'p-4' : 'p-6'
+          }`}
           style={{
             background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%)',
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
           }}
         >
-          <div className="space-y-3">
+          <div className={`space-y-3 ${isMobile ? 'space-y-2' : ''}`}>
             {navigationItems.map((item, index) => (
               <motion.button
                 key={item.sectionId}
                 onClick={() => scrollToSection(item.sectionId)}
-                className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
+                className={`w-full text-left rounded-xl font-medium transition-all duration-200 flex items-center gap-3 ${
+                  isMobile ? 'px-3 py-4' : 'px-4 py-3'
+                }`}
                 variants={mobileItemVariants}
                 whileHover={prefersReducedMotion ? {} : {
                   scale: 1.02,
