@@ -4,20 +4,24 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowUp, MessageCircle, Mail, Phone } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 export function FloatingActionButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const prefersReducedMotion = useReducedMotion()
+  const { isClient } = useMobileOptimization()
 
   useEffect(() => {
+    if (!isClient) return
+
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isClient])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -86,6 +90,9 @@ export function FloatingActionButton() {
       }
     }
   }
+
+  // Don't render until client-side hydration is complete
+  if (!isClient) return null
 
   if (!isVisible) return null
 

@@ -10,7 +10,7 @@ import { useState, useMemo, useCallback } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile, isTablet, shouldOptimizeForTouch } = useMobileOptimization()
+  const { isMobile, isTablet, shouldOptimizeForTouch, isClient } = useMobileOptimization()
   const [titleComplete, setTitleComplete] = useState(false)
   const [subtitleComplete, setSubtitleComplete] = useState(false)
 
@@ -67,6 +67,25 @@ export function HeroSection() {
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about')
     aboutSection?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return (
+      <section className="relative min-h-screen overflow-hidden">
+        <div className="absolute inset-0 bg-slate-900" />
+        <div className="relative z-10 flex items-center justify-center min-h-screen">
+          <div className="text-center px-8 max-w-4xl mx-auto">
+            <h1 className="heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 font-light tracking-tight text-white">
+              Hello, I'm Zhenzhao
+            </h1>
+            <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+              Loading...
+            </p>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (

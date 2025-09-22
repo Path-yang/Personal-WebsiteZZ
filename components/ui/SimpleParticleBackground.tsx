@@ -7,8 +7,15 @@ import { useState, useEffect, useMemo } from 'react'
 
 export function SimpleParticleBackground() {
   const prefersReducedMotion = useReducedMotion()
-  const { shouldReduceParticleCount, shouldSimplifyParticles, isMobile, isTablet } = useMobileOptimization()
+  const { shouldReduceParticleCount, shouldSimplifyParticles, isMobile, isTablet, isClient } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return (
+      <div className="absolute inset-0 bg-slate-900" />
+    )
+  }
 
   if (prefersReducedMotion) {
     return (
