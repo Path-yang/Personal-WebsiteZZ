@@ -9,8 +9,13 @@ export function SimpleParticleBackground() {
   const prefersReducedMotion = useReducedMotion()
   const { shouldReduceParticleCount, shouldSimplifyParticles } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
+  const [isClient, setIsClient] = useState(false)
 
-  if (prefersReducedMotion) {
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient || prefersReducedMotion) {
     return (
       <div className="absolute inset-0 bg-slate-900" />
     )
@@ -57,11 +62,12 @@ export function SimpleParticleBackground() {
 
   // CRYSTAL CLEAR meaningful shapes with perfect structure
   const getParticlePositions = (shapeType: number) => {
-    const particles = []
-        // Mobile optimization: reduce particle count for better performance
-        const particleCount = shouldReduceParticleCount ? 50 : 100
+    try {
+      const particles = []
+      // Mobile optimization: reduce particle count for better performance
+      const particleCount = shouldReduceParticleCount ? 50 : 100
 
-    for (let i = 0; i < particleCount; i++) {
+      for (let i = 0; i < particleCount; i++) {
       let x, y, size, color, duration, nodeType = 'normal'
 
       switch (shapeType) {
@@ -309,15 +315,36 @@ export function SimpleParticleBackground() {
         nodeType
       })
     }
-        return particles
-      }
+      return particles
+    } catch (error) {
+      console.warn('Error generating particle positions:', error)
+      // Return minimal fallback particles
+      return Array.from({ length: 10 }, (_, i) => ({
+        id: i,
+        x: 20 + i * 8,
+        y: 20 + (i % 3) * 30,
+        size: 4,
+        color: '#60A5FA',
+        duration: 6,
+        delay: 0,
+        nodeType: 'fallback'
+      }))
+    }
+  }
 
       // Memoize particle positions to avoid recalculation
-      const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, shouldReduceParticleCount])
+      const particles = useMemo(() => {
+        try {
+          return getParticlePositions(currentShape)
+        } catch (error) {
+          console.warn('Error in particle memoization:', error)
+          return []
+        }
+      }, [currentShape, shouldReduceParticleCount])
 
   // Reduce particle count for better performance
   const maxParticles = shouldReduceParticleCount ? 12 : 20
-  const displayParticles = particles.slice(0, maxParticles)
+  const displayParticles = particles ? particles.slice(0, maxParticles) : []
 
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)
   const enhancedParticles = displayParticles
@@ -351,7 +378,7 @@ export function SimpleParticleBackground() {
       <div className="absolute inset-0 bg-black/30" />
 
       {/* MAGNETICALLY ENHANCED PARTICLES */}
-      {enhancedParticles.map((particle) => (
+      {enhancedParticles && enhancedParticles.length > 0 ? enhancedParticles.map((particle) => (
         <motion.div
           key={`${currentShape}-${particle.id}`}
           className="absolute rounded-full opacity-80"
@@ -477,7 +504,12 @@ export function SimpleParticleBackground() {
             }
           }}
         />
-      ))}
+      )) : (
+        // Fallback when no particles available
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-slate-500 text-sm">Loading particles...</div>
+        </div>
+      )}
 
       {/* Connection lines between nearby particles */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none">
@@ -490,7 +522,7 @@ export function SimpleParticleBackground() {
         </defs>
         
         {/* STRUCTURED MEANINGFUL CONNECTIONS */}
-        {currentShape === 0 && ( // Neural Network - Layer-to-layer connections
+        {currentShape === 0 && particles && particles.length > 0 && ( // Neural Network - Layer-to-layer connections
           <>
             {/* Input to Hidden Layer 1 */}
             {particles.filter(p => p.nodeType === 'input').map((inputNode, i) => 
@@ -570,7 +602,7 @@ export function SimpleParticleBackground() {
           </>
         )}
 
-        {currentShape === 1 && ( // DNA Double Helix - Genetic connections
+        {currentShape === 1 && particles && particles.length > 0 && ( // DNA Double Helix - Genetic connections
           <>
             {/* Left DNA strand backbone connections */}
             {particles.filter(p => p.nodeType === 'dna-left').map((leftNode, i) => {
@@ -733,7 +765,7 @@ export function SimpleParticleBackground() {
           </>
         )}
 
-        {currentShape === 2 && ( // Quantum Computing - Quantum connections and entanglement
+        {currentShape === 2 && particles && particles.length > 0 && ( // Quantum Computing - Quantum connections and entanglement
           <>
             {/* Quantum Core Connections - Inner ring connections */}
             {particles.filter(p => p.nodeType === 'qubit').map((qubitNode, i) => {
@@ -885,7 +917,7 @@ export function SimpleParticleBackground() {
           </>
         )}
 
-        {currentShape === 3 && ( // Computer Chip - Digital pathways (brought back!)
+        {currentShape === 3 && particles && particles.length > 0 && ( // Computer Chip - Digital pathways (brought back!)
           <>
             {/* Core to Cache connections */}
             {particles.filter(p => p.nodeType === 'core').map((coreNode, i) => 
@@ -1167,7 +1199,7 @@ export function SimpleParticleBackground() {
           <span>ENHANCED MODE</span>
         </div>
         <div className="text-accent-blue/70 mt-1 text-center">
-          {enhancedParticles.length} PARTICLES
+          {enhancedParticles ? enhancedParticles.length : 0} PARTICLES
         </div>
       </motion.div>
     </div>
