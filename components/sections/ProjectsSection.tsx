@@ -74,38 +74,38 @@ const projects = [
     demoUrl: 'https://geekshackinghackathon-8ygu.vercel.app/'
   },
   {
-    id: 'ai-chatbot',
-    title: 'AI-Powered Chatbot',
-    category: 'AI/ML • Web Development',
-    period: 'Dec 2024',
-    description: 'Intelligent chatbot system with natural language processing capabilities and real-time response generation.',
+    id: 'sentinel-ai',
+    title: 'SentinelAI',
+    category: 'Machine Learning • Full Stack Development',
+    period: 'Aug 2025 - Sep 2025',
+    description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
     highlights: [
-      'Implemented advanced NLP algorithms for context understanding',
-      'Built responsive web interface with real-time messaging',
-      'Integrated with multiple AI models for enhanced responses',
-      'Achieved 95% user satisfaction in testing phase'
+      'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
+      'Developed cloud-based streaming technology for global camera access',
+      'Implemented WebSocket-based alerts and real-time video streaming',
+      'Gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
     ],
-    icon: MessageCircle,
-    tech: ['Python', 'React', 'OpenAI API', 'WebSocket', 'NLP'],
-    githubUrl: 'https://github.com/Zhenzha0/AI-Chatbot',
-    demoUrl: 'https://ai-chatbot-demo.vercel.app/'
+    icon: Shield,
+    tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
+    githubUrl: 'https://github.com/Path-yang/SentinelAI',
+    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
   },
   {
-    id: 'data-visualization',
-    title: 'Interactive Data Dashboard',
-    category: 'Data Science • Visualization',
-    period: 'Nov 2024',
-    description: 'Comprehensive data visualization platform for analyzing and presenting complex datasets with interactive charts and real-time updates.',
+    id: 'silver-sigma',
+    title: 'SilverSigma',
+    category: 'Full Stack Development • AI Integration',
+    period: 'Sep 2025',
+    description: 'Part of a team of 5 to build an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
-      'Created dynamic charts using D3.js and Chart.js',
-      'Implemented real-time data streaming capabilities',
-      'Built responsive dashboard with multiple data views',
-      'Processed and visualized datasets with 100k+ records'
+      'Developed AI-powered companion platform for elderly care',
+      'Implemented real-time avatar conversation system',
+      'Built hobby discovery and social networking features',
+      'Created secure social space for senior community engagement'
     ],
-    icon: BarChart3,
-    tech: ['JavaScript', 'D3.js', 'Chart.js', 'Node.js', 'MongoDB'],
-    githubUrl: 'https://github.com/Zhenzha0/Data-Dashboard',
-    demoUrl: 'https://data-dashboard-demo.vercel.app/'
+    icon: Heart,
+    tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
+    githubUrl: 'https://github.com/Path-yang/SilverSigma',
+    demoUrl: 'https://silver-sigma-demo.vercel.app/'
   }
 ]
 
