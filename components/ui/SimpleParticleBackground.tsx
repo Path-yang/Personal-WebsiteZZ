@@ -284,8 +284,8 @@ export function SimpleParticleBackground() {
         nodeType
       })
     }
-        return particles
-      }
+    return particles
+  }
 
   // Get particle positions
   const particles = getParticlePositions(currentShape)
@@ -326,7 +326,7 @@ export function SimpleParticleBackground() {
       <div className="absolute inset-0 bg-black/30" />
 
       {/* MAGNETICALLY ENHANCED PARTICLES */}
-      {enhancedParticles.map((particle) => (
+      {enhancedParticles.filter(particle => particle && particle.x !== undefined && particle.y !== undefined).map((particle) => (
         <motion.div
           key={`${currentShape}-${particle.id}`}
           className="absolute rounded-full opacity-80"
