@@ -183,25 +183,107 @@ export function HeroSection() {
         <div className="text-center px-8 max-w-4xl mx-auto">
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 font-light tracking-tight"
+            className="heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 font-light tracking-tight"
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
-              transformStyle: 'preserve-3d',
-              background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
+              transformStyle: 'preserve-3d'
             }}
           >
-            Hello, I'm Yang
+            <HeroTitle 
+              firstName="Hello, I'm" 
+              lastName="Zhenzhao" 
+              delay={0.5}
+            />
           </motion.h1>
       
-          {/* Animated Role Title */}
+          {/* Innovative Animated Role Presentation */}
           <motion.div 
             className="mb-6"
             variants={heroElementVariants}
           >
+            {/* Animated Role Cards */}
+            <div className="flex flex-wrap justify-center gap-3 mb-4">
+              {/* NUS Card */}
+              <motion.div
+                className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-full backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 2.5,
+                  ease: [0.23, 1, 0.320, 1]
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <span className="text-blue-300 font-medium text-sm md:text-base">NUS</span>
+              </motion.div>
+
+              {/* Computer Engineering Card */}
+              <motion.div
+                className="px-4 py-2 bg-gradient-to-r from-emerald-600/20 to-emerald-500/20 border border-emerald-500/30 rounded-full backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: 10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 2.7,
+                  ease: [0.23, 1, 0.320, 1]
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <span className="text-emerald-300 font-medium text-sm md:text-base">Computer Engineering</span>
+              </motion.div>
+
+              {/* Student Card */}
+              <motion.div
+                className="px-4 py-2 bg-gradient-to-r from-purple-600/20 to-purple-500/20 border border-purple-500/30 rounded-full backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 2.9,
+                  ease: [0.23, 1, 0.320, 1]
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <span className="text-purple-300 font-medium text-sm md:text-base">Student</span>
+              </motion.div>
+            </div>
+
+            {/* Animated Connecting Lines */}
+            <motion.div
+              className="flex justify-center items-center gap-2 mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 3.1, duration: 0.8 }}
+            >
+              <motion.div
+                className="w-8 h-px bg-gradient-to-r from-transparent to-cyan-400"
+                initial={{ width: 0 }}
+                animate={{ width: 32 }}
+                transition={{ delay: 3.2, duration: 0.8 }}
+              />
+              <motion.div
+                className="w-2 h-2 bg-cyan-400 rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.7, 1, 0.7]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="w-8 h-px bg-gradient-to-l from-transparent to-cyan-400"
+                initial={{ width: 0 }}
+                animate={{ width: 32 }}
+                transition={{ delay: 3.4, duration: 0.8 }}
+              />
+            </motion.div>
+
+            {/* Main Role Text with Typewriter Effect */}
             <motion.div 
               className="text-xl md:text-2xl lg:text-3xl text-cyan-400 leading-relaxed mb-4 font-mono"
               style={{
@@ -211,12 +293,18 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ 
                 duration: 0.8, 
-                delay: 2.5,
+                delay: 3.6,
                 ease: [0.23, 1, 0.320, 1]
               }}
               onAnimationComplete={() => setSubtitleComplete(true)}
             >
-              const role = NUS Computer Engineering Student
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3.8, duration: 0.5 }}
+              >
+                AI Engineer & Full-Stack Developer
+              </motion.span>
             </motion.div>
             {subtitleComplete && (
               <motion.div
