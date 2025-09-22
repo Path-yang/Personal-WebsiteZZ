@@ -18,9 +18,15 @@ const shortcuts = [
 export function KeyboardShortcuts() {
   const [showHelp, setShowHelp] = useState(false)
   const [recentShortcut, setRecentShortcut] = useState<string | null>(null)
+  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
     const handleKeyDown = (e: KeyboardEvent) => {
       try {
         // Toggle help with '?' or 'h'
@@ -80,7 +86,7 @@ export function KeyboardShortcuts() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [showHelp])
+  }, [showHelp, isClient])
 
   return (
     <>

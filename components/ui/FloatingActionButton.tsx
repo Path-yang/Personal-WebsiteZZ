@@ -8,9 +8,15 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 export function FloatingActionButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
     const handleScroll = () => {
       try {
         setIsVisible(window.scrollY > 300)
@@ -21,7 +27,7 @@ export function FloatingActionButton() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isClient])
 
   const scrollToTop = () => {
     try {

@@ -21,12 +21,18 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const [isVisible, setIsVisible] = useState(true) // Always visible from start
+  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Navigation is always visible, no scroll transforms needed
 
   // Track scroll position and active section
   useEffect(() => {
+    if (!isClient) return
     const handleScroll = () => {
       try {
         const scrollPosition = window.scrollY + 100
@@ -59,7 +65,7 @@ export function Navigation() {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Initial call
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isClient])
 
   const scrollToSection = (sectionId: string) => {
     try {

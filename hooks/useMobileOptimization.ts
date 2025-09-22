@@ -5,8 +5,14 @@ import { useState, useEffect } from 'react'
 export function useMobileOptimization() {
   const [isMobile, setIsMobile] = useState(false)
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
     // Check if device is mobile
     const checkMobile = () => {
       try {
