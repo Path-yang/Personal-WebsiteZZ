@@ -104,8 +104,7 @@ const projects = [
     ],
     icon: Heart,
     tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
-    githubUrl: 'https://github.com/Path-yang/SilverSigma',
-    demoUrl: 'https://silver-sigma-demo.vercel.app/'
+    githubUrl: 'https://github.com/Path-yang/SilverSigma'
   }
 ]
 
