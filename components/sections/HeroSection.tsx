@@ -202,7 +202,7 @@ export function HeroSection() {
             className="mb-6"
             variants={heroElementVariants}
           >
-            {/* Single Role Text with Smooth Typewriter Animation */}
+            {/* Single Role Text with Character-by-Character Typing Animation */}
             <motion.div 
               className="text-lg md:text-xl lg:text-2xl text-cyan-400 leading-relaxed mb-4 font-mono"
               style={{
@@ -217,16 +217,32 @@ export function HeroSection() {
               }}
               onAnimationComplete={() => setSubtitleComplete(true)}
             >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2.7, duration: 0.6 }}
-              >
-                NUS Computer Engineering Student
-              </motion.span>
+              {"NUS Computer Engineering Student".split('').map((char, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block"
+                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 2.7 + i * 0.05,
+                    ease: [0.645, 0.045, 0.355, 1.000],
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    y: -2,
+                    textShadow: '0 0 20px rgba(96, 165, 250, 0.8)',
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
             </motion.div>
 
-            {/* Main Role Text with Smooth Character Animation */}
+            {/* Main Role Text with Character-by-Character Floating Animation */}
             <motion.div 
               className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-4 font-light"
               style={{
@@ -240,20 +256,59 @@ export function HeroSection() {
                 ease: [0.23, 1, 0.320, 1]
               }}
             >
-              <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, y: 20, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 3.2,
-                  ease: [0.645, 0.045, 0.355, 1.000],
-                  type: "spring",
-                  stiffness: 100
-                }}
-              >
-                AI Engineer & Full-Stack Developer
-              </motion.span>
+              {"AI Engineer & Full-Stack Developer".split('').map((char, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block"
+                  initial={{ opacity: 0, y: 30, rotateX: -90, scale: 0.8 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: [0, -2, 0], 
+                    rotateX: 0, 
+                    scale: 1
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 3.2 + i * 0.03,
+                      ease: [0.645, 0.045, 0.355, 1.000],
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 12
+                    },
+                    y: {
+                      duration: 3 + i * 0.1,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 4.5 + i * 0.05
+                    },
+                    rotateX: {
+                      duration: 0.5,
+                      delay: 3.2 + i * 0.03,
+                      ease: [0.645, 0.045, 0.355, 1.000],
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 12
+                    },
+                    scale: {
+                      duration: 0.5,
+                      delay: 3.2 + i * 0.03,
+                      ease: [0.645, 0.045, 0.355, 1.000],
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 12
+                    }
+                  }}
+                  whileHover={{ 
+                    y: -3,
+                    scale: 1.05,
+                    textShadow: '0 0 25px rgba(255, 255, 255, 0.6)',
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
             </motion.div>
             {subtitleComplete && (
               <motion.div
@@ -268,7 +323,7 @@ export function HeroSection() {
             )}
           </motion.div>
 
-          {/* Description Paragraph */}
+          {/* Description Paragraph with Word-by-Word Animation */}
           <motion.div 
             className="mb-8 max-w-3xl mx-auto"
             variants={heroElementVariants}
@@ -286,7 +341,48 @@ export function HeroSection() {
                 ease: [0.23, 1, 0.320, 1]
               }}
             >
-              I am dedicated to building practical, impactful, and user-friendly products that bridge the gap between ideas and execution. Passionate about creating solutions that combine functionality with beautiful design.
+              {"I am dedicated to building practical, impactful, and user-friendly products that bridge the gap between ideas and execution. Passionate about creating solutions that combine functionality with beautiful design.".split(' ').map((word, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block mr-1"
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: [0, -1, 0], 
+                    scale: 1
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.4,
+                      delay: 3.7 + i * 0.08,
+                      ease: [0.645, 0.045, 0.355, 1.000],
+                      type: "spring",
+                      stiffness: 120
+                    },
+                    y: {
+                      duration: 4 + i * 0.1,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 5.5 + i * 0.02
+                    },
+                    scale: {
+                      duration: 0.4,
+                      delay: 3.7 + i * 0.08,
+                      ease: [0.645, 0.045, 0.355, 1.000],
+                      type: "spring",
+                      stiffness: 120
+                    }
+                  }}
+                  whileHover={{ 
+                    y: -2,
+                    scale: 1.05,
+                    textShadow: '0 0 15px rgba(148, 163, 184, 0.5)',
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.p>
           </motion.div>
       
