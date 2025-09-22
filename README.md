@@ -243,3 +243,5 @@ animation: {
 
 Built with ❤️ using Next.js, Tailwind CSS, and Framer Motion.
 
+#   T r i g g e r   r e d e p l o y  
+ 

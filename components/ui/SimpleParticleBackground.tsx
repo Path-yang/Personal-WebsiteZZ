@@ -315,8 +315,12 @@ export function SimpleParticleBackground() {
       // Memoize particle positions to avoid recalculation
       const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, shouldReduceParticleCount])
 
+  // Reduce particle count for better performance
+  const maxParticles = shouldReduceParticleCount ? 12 : 20
+  const displayParticles = particles.slice(0, maxParticles)
+
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)
-  const enhancedParticles = particles
+  const enhancedParticles = displayParticles
 
   return (
     <div 

@@ -72,7 +72,7 @@ export function HeroSection() {
       {/* Simple Particle Background */}
       <SimpleParticleBackground />
       
-      {/* Floating Tech Icons */}
+      {/* Floating Tech Icons - Simplified for performance */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
         {[Brain, Code, Zap].map((Icon, i) => (
           <motion.div
@@ -90,23 +90,17 @@ export function HeroSection() {
             <motion.div
               className="p-4 bg-gradient-to-br from-accent-blue/30 to-accent-mint/30 rounded-full border border-accent-blue/40 backdrop-blur-lg shadow-lg"
               animate={{
-                y: [-15, 15, -15],
-                rotate: [0, 8, 0, -8, 0],
-                scale: [1, 1.15, 1],
-                boxShadow: [
-                  '0 0 20px rgba(96, 165, 250, 0.3)',
-                  '0 0 40px rgba(52, 211, 153, 0.5)',
-                  '0 0 20px rgba(96, 165, 250, 0.3)'
-                ]
+                y: [-10, 10, -10],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 5 + i,
+                duration: 4 + i,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: i * 0.5
               }}
             >
-              <Icon size={24} className="text-accent-blue" />
+              <Icon size={20} className="text-accent-blue" />
             </motion.div>
           </motion.div>
         ))}
@@ -132,15 +126,15 @@ export function HeroSection() {
             rotate: { duration: 120, repeat: Infinity, ease: "linear" }
           }}
         >
-          {/* Radar-style rings */}
+          {/* Simplified radar-style rings */}
           <motion.div 
             className="absolute inset-8 border border-accent-blue/20 rounded-full"
             animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.3, 0.6, 0.3]
+              scale: [1, 1.05, 1],
+              opacity: [0.3, 0.5, 0.3]
             }}
             transition={{
-              duration: 4,
+              duration: 6,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -148,27 +142,14 @@ export function HeroSection() {
           <motion.div 
             className="absolute inset-16 border border-accent-mint/15 rounded-full"
             animate={{ 
-              scale: [1, 1.05, 1],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div 
-            className="absolute inset-24 border border-purple-400/10 rounded-full"
-            animate={{ 
-              scale: [1, 1.08, 1],
-              opacity: [0.1, 0.4, 0.1]
+              scale: [1, 1.03, 1],
+              opacity: [0.2, 0.4, 0.2]
             }}
             transition={{
               duration: 8,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 2
+              delay: 1
             }}
           />
 
@@ -194,7 +175,7 @@ export function HeroSection() {
       
       {/* Hero Content - Centered on Screen */}
       <motion.div 
-        className="relative z-10 flex items-center justify-center min-h-screen"
+        className="relative z-10 flex items-center justify-center min-h-screen hero-content hw-accelerated"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -202,18 +183,18 @@ export function HeroSection() {
         <div className="text-center px-8 max-w-4xl mx-auto">
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className="heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 font-light tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 font-light tracking-tight"
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
-              transformStyle: 'preserve-3d'
+              transformStyle: 'preserve-3d',
+              background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
             }}
           >
-            <HeroTitle 
-              firstName="Yang" 
-              lastName="Zhenzhao" 
-              delay={0.5}
-            />
+            Hello, I'm Yang
           </motion.h1>
       
           {/* Animated Role Title */}
@@ -222,7 +203,7 @@ export function HeroSection() {
             variants={heroElementVariants}
           >
             <motion.div 
-              className="text-2xl md:text-3xl lg:text-4xl text-slate-200 leading-relaxed mb-4"
+              className="text-xl md:text-2xl lg:text-3xl text-cyan-400 leading-relaxed mb-4 font-mono"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -235,7 +216,7 @@ export function HeroSection() {
               }}
               onAnimationComplete={() => setSubtitleComplete(true)}
             >
-              AI Engineer & Full-Stack Developer
+              const role = NUS Computer Engineering Student
             </motion.div>
             {subtitleComplete && (
               <motion.div
@@ -248,6 +229,28 @@ export function HeroSection() {
                 }}
               />
             )}
+          </motion.div>
+
+          {/* Description Paragraph */}
+          <motion.div 
+            className="mb-8 max-w-3xl mx-auto"
+            variants={heroElementVariants}
+          >
+            <motion.p 
+              className="text-lg md:text-xl text-slate-300 leading-relaxed"
+              style={{
+                textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 1)'
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 3.5,
+                ease: [0.23, 1, 0.320, 1]
+              }}
+            >
+              I am dedicated to building practical, impactful, and user-friendly products that bridge the gap between ideas and execution. Passionate about creating solutions that combine functionality with beautiful design.
+            </motion.p>
           </motion.div>
       
           
