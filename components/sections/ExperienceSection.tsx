@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { Timeline } from '@/components/ui/Timeline'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { SectionBackground } from '@/components/ui/SectionBackground'
 
 const experiences = [
@@ -41,6 +42,7 @@ const experiences = [
 ]
 
 export function ExperienceSection() {
+  const { shouldReduceAnimations } = useMobileOptimization()
   
   return (
     <Section id="experience" className="py-24 md:py-32 relative overflow-hidden">
@@ -180,7 +182,7 @@ export function ExperienceSection() {
         </svg>
 
         {/* Floating Professional Elements - Reduce count on mobile */}
-        {[...Array(8)].map((_, i) => (
+        {[...Array(shouldReduceAnimations ? 4 : 8)].map((_, i) => (
           <motion.div
             key={`prof-element-${i}`}
             className="absolute rounded-full"

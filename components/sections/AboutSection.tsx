@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 export function AboutSection() {
+  const { shouldReduceAnimations } = useMobileOptimization()
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -49,7 +52,7 @@ export function AboutSection() {
         />
         
         {/* Floating Light Orbs - Reduce count on mobile */}
-        {[...Array(6)].map((_, i) => (
+        {[...Array(shouldReduceAnimations ? 3 : 6)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -159,14 +162,14 @@ export function AboutSection() {
           </motion.div>
 
           <motion.h2 
-            className="heading mb-8 text-accent-blue text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+            className="heading text-3xl md:text-4xl lg:text-5xl mb-8 text-accent-blue"
             variants={itemVariants}
           >
             About Me
           </motion.h2>
           
           <motion.div 
-            className="text-slate-300 leading-relaxed space-y-6 text-sm sm:text-base md:text-lg lg:text-xl"
+            className="text-lg md:text-xl text-slate-300 leading-relaxed space-y-6"
             variants={itemVariants}
           >
             <motion.p

@@ -5,7 +5,7 @@ import { ArrowDown, Zap, Brain, Code } from 'lucide-react'
 import { SimpleParticleBackground } from '@/components/ui/SimpleParticleBackground'
 import { AnimatedText, HeroTitle } from '@/components/ui/AnimatedText'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useState, useMemo, useCallback } from 'react'
+import { useState } from 'react'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
@@ -62,22 +62,17 @@ export function HeroSection() {
     })
   }
 
-  const scrollToNext = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const scrollToNext = () => {
     const aboutSection = document.getElementById('about')
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' })
-    }
+    aboutSection?.scrollIntoView({ behavior: 'smooth' })
   }
-
 
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Simple Particle Background */}
       <SimpleParticleBackground />
       
-      {/* Floating Tech Icons - Optimized for performance */}
+      {/* Floating Tech Icons - Simplified for performance */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
         {[Brain, Code, Zap].map((Icon, i) => (
           <motion.div
@@ -94,11 +89,11 @@ export function HeroSection() {
           >
             <motion.div
               className="p-4 bg-gradient-to-br from-accent-blue/30 to-accent-mint/30 rounded-full border border-accent-blue/40 backdrop-blur-lg shadow-lg"
-              animate={prefersReducedMotion ? {} : {
+              animate={{
                 y: [-10, 10, -10],
                 scale: [1, 1.05, 1]
               }}
-              transition={prefersReducedMotion ? {} : {
+              transition={{
                 duration: 4 + i,
                 repeat: Infinity,
                 ease: "easeInOut",
@@ -114,7 +109,7 @@ export function HeroSection() {
       {/* Circular Signal Node Backdrop - Positioned Higher and Smaller */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transform: 'translateY(-60px)' }}>
         <motion.div 
-          className="backdrop-blur-[3px] rounded-full border border-white/10 w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] xl:w-[750px] xl:h-[750px] 2xl:w-[850px] 2xl:h-[850px]"
+          className="w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] xl:w-[780px] xl:h-[780px] backdrop-blur-[3px] rounded-full border border-white/10"
           style={{ 
             background: 'radial-gradient(circle, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.7) 40%, rgba(15, 23, 42, 0.3) 100%)',
             zIndex: 1
@@ -185,10 +180,10 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <div className="text-center max-w-4xl mx-auto px-2 sm:px-6 md:px-8">
+        <div className="text-center px-8 max-w-4xl mx-auto">
           {/* Dramatic Title with Character Animation */}
           <motion.h1 
-            className="heading mb-6 font-light tracking-tight text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl"
+            className="heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 font-light tracking-tight"
             variants={heroElementVariants}
             style={{
               textShadow: '0 0 50px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.4), 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
@@ -209,7 +204,7 @@ export function HeroSection() {
           >
             {/* Single Role Text with Character-by-Character Typing Animation */}
             <motion.div 
-              className="text-cyan-400 leading-relaxed mb-4 font-mono text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+              className="text-lg md:text-xl lg:text-2xl text-cyan-400 leading-relaxed mb-4 font-mono"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -249,7 +244,7 @@ export function HeroSection() {
 
             {/* Main Role Text with Character-by-Character Floating Animation */}
             <motion.div 
-              className="text-white leading-relaxed mb-4 font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
+              className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed mb-4 font-light"
               style={{
                 textShadow: '0 0 30px rgba(96, 165, 250, 0.5), 0 0 60px rgba(96, 165, 250, 0.3), 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1)'
               }}
@@ -334,7 +329,7 @@ export function HeroSection() {
             variants={heroElementVariants}
           >
             <motion.p 
-              className="text-slate-300 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg"
+              className="text-lg md:text-xl text-slate-300 leading-relaxed"
               style={{
                 textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 1)'
               }}
@@ -390,7 +385,6 @@ export function HeroSection() {
               ))}
             </motion.p>
           </motion.div>
-
       
           
           {/* Spectacular Scroll Indicator */}
@@ -419,11 +413,6 @@ export function HeroSection() {
             
             <motion.button
               onClick={scrollToNext}
-              onTouchEnd={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                scrollToNext(e as any)
-              }}
               className="group relative p-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 border border-dark-border/50 rounded-full backdrop-blur-sm transition-all duration-500 overflow-hidden"
               whileHover={prefersReducedMotion ? {} : { 
                 scale: 1.1,

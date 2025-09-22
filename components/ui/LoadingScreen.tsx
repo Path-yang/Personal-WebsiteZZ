@@ -28,7 +28,7 @@ export function LoadingScreen() {
     let stageIndex = 0
 
     const interval = setInterval(() => {
-      currentProgress += Math.random() * 15 + 10 // Slightly faster loading
+      currentProgress += Math.random() * 20 + 8
       
       if (currentProgress >= 100) {
         currentProgress = 100
@@ -37,7 +37,7 @@ export function LoadingScreen() {
         
         setTimeout(() => {
           setIsLoading(false)
-        }, 400) // Shorter delay
+        }, 600)
         
         clearInterval(interval)
       } else {
@@ -50,7 +50,7 @@ export function LoadingScreen() {
           setLoadingStage(stages[stageIndex])
         }
       }
-    }, 250) // Faster interval
+    }, 300)
 
     return () => clearInterval(interval)
   }, [prefersReducedMotion])

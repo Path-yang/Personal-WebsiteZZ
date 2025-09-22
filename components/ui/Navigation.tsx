@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { CompactResumeButton } from '@/components/ui/CompactResumeButton'
@@ -57,7 +57,7 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = useCallback((sectionId: string) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
@@ -67,7 +67,7 @@ export function Navigation() {
       })
     }
     setIsOpen(false)
-  }, [])
+  }
 
   const navVariants = {
     hidden: { 
@@ -313,28 +313,24 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       <motion.div
-        className="fixed top-20 left-0 right-0 z-40 md:hidden px-4 sm:px-6"
+        className="fixed top-20 left-0 right-0 z-40 px-6 md:hidden"
         variants={mobileMenuVariants}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
-          className={`bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl shadow-2xl ${
-            'p-4 sm:p-6'
-          }`}
+          className="bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl p-6 shadow-2xl"
           style={{
             background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%)',
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
           }}
         >
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-3">
             {navigationItems.map((item, index) => (
               <motion.button
                 key={item.sectionId}
                 onClick={() => scrollToSection(item.sectionId)}
-                className={`w-full text-left rounded-xl font-medium transition-all duration-200 flex items-center gap-3 ${
-                  'px-3 py-4 sm:px-4 sm:py-3'
-                }`}
+                className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
                 variants={mobileItemVariants}
                 whileHover={prefersReducedMotion ? {} : {
                   scale: 1.02,

@@ -132,14 +132,14 @@ export function ContactSection() {
           viewport={{ once: true, margin: "-10%" }}
         >
           <motion.h2 
-            className="heading mb-8 text-accent-blue text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+            className="heading text-3xl md:text-4xl lg:text-5xl mb-8 text-accent-blue"
             variants={itemVariants}
           >
             Let's Connect
           </motion.h2>
           
           <motion.p 
-            className="text-slate-300 mb-12 leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl"
+            className="text-lg md:text-xl text-slate-300 mb-12 leading-relaxed"
             variants={itemVariants}
           >
             Ready to collaborate on cutting-edge AI solutions? Let's discuss how we can 

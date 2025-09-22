@@ -74,9 +74,7 @@ export function ContactForm() {
     >
       <motion.form 
         onSubmit={handleSubmit}
-        className={`space-y-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl ${
-          'p-4 sm:p-8'
-        }`}
+        className="space-y-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl p-8"
         style={{
           transformStyle: 'preserve-3d',
           boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
@@ -104,9 +102,7 @@ export function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 ${
-                'px-3 py-4 text-base sm:px-4 sm:py-4'
-              }`}
+              className="w-full px-4 py-4 bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300"
               whileFocus={prefersReducedMotion ? {} : {
                 scale: 1.02,
                 boxShadow: '0 0 30px rgba(96, 165, 250, 0.3)',
@@ -124,9 +120,7 @@ export function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 ${
-                'px-3 py-4 text-base sm:px-4 sm:py-4'
-              }`}
+              className="w-full px-4 py-4 bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300"
               whileFocus={prefersReducedMotion ? {} : {
                 scale: 1.02,
                 boxShadow: '0 0 30px rgba(96, 165, 250, 0.3)',
@@ -163,9 +157,7 @@ export function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className={`w-full bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 resize-none ${
-              'px-3 py-4 text-base sm:px-4 sm:py-4'
-            }`}
+            className="w-full px-4 py-4 bg-dark-bg/50 border border-dark-border rounded-xl text-white placeholder-slate-400 focus:border-accent-blue focus:outline-none transition-all duration-300 resize-none"
             whileFocus={prefersReducedMotion ? {} : {
               scale: 1.02,
               boxShadow: '0 0 30px rgba(96, 165, 250, 0.3)',

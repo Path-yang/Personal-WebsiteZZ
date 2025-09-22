@@ -109,7 +109,6 @@ const projects = [
 ]
 
 export function ProjectsSection() {
-  
   const containerVariants = {
     hidden: {},
     visible: {
@@ -125,12 +124,12 @@ export function ProjectsSection() {
       <SectionBackground variant="geometric" intensity="high" />
       
       <div className="container-max section-padding relative z-10">
-        <motion.h2 className="heading mb-16 text-center text-accent-blue text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+        <motion.h2 className="heading text-3xl md:text-4xl lg:text-5xl mb-16 text-center text-accent-blue">
           Projects
         </motion.h2>
         
         <motion.div 
-          className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
           style={{ perspective: '1000px' }}
           variants={containerVariants}
           initial="hidden"

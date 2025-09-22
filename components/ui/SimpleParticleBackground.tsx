@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { useState, useEffect, useMemo } from 'react'
 
 export function SimpleParticleBackground() {
   const prefersReducedMotion = useReducedMotion()
+  const { shouldReduceParticleCount, shouldSimplifyParticles } = useMobileOptimization()
   const [currentShape, setCurrentShape] = useState(0)
-
 
   if (prefersReducedMotion) {
     return (
@@ -15,303 +16,307 @@ export function SimpleParticleBackground() {
     )
   }
 
+  // Simplified mobile version
+  if (shouldSimplifyParticles) {
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-slate-900" />
+        
+        {/* Simple floating dots for mobile */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-accent-blue rounded-full opacity-30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-10, 10, -10],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2
+            }}
+          />
+        ))}
+      </div>
+    )
+  }
 
       // Cycle through all 4 patterns with extended duration
       useEffect(() => {
         const interval = setInterval(() => {
           setCurrentShape(prev => (prev + 1) % 4)
         }, 9000) // Extended by 1 second as requested (8s → 9s)
-        return () => {
-          try {
-            clearInterval(interval)
-          } catch (error) {
-            console.warn('Error clearing particle interval:', error)
-          }
-        }
+        return () => clearInterval(interval)
       }, [])
 
   // CRYSTAL CLEAR meaningful shapes with perfect structure
   const getParticlePositions = (shapeType: number) => {
     const particles = []
-    const particleCount = 50
+        // Mobile optimization: reduce particle count for better performance
+        const particleCount = shouldReduceParticleCount ? 50 : 100
 
     for (let i = 0; i < particleCount; i++) {
-      let x = 50, y = 50, size = 4, color = '#60A5FA', duration = 8, nodeType = 'default'
+      let x, y, size, color, duration, nodeType = 'normal'
 
-      try {
-        switch (shapeType) {
-          case 0: // NEURAL NETWORK - Clear network topology
-            if (i < 15) {
-              // Input layer (left)
-              x = 15
-              y = 20 + (i / 14) * 60
-              size = 8
-              color = '#60A5FA'
-              nodeType = 'input'
-            } else if (i < 35) {
-              // Hidden layer 1
-              x = 35
-              y = 15 + ((i - 15) / 19) * 70
-              size = 6
-              color = '#34D399'
-              nodeType = 'hidden1'
-            } else if (i < 55) {
-              // Hidden layer 2  
-              x = 55
-              y = 15 + ((i - 35) / 19) * 70
-              size = 6
-              color = '#8B5CF6'
-              nodeType = 'hidden2'
-            } else if (i < 70) {
-              // Hidden layer 3
-              x = 75
-              y = 20 + ((i - 55) / 14) * 60
-              size = 6
-              color = '#F59E0B'
-              nodeType = 'hidden3'
-            } else {
-              // Output layer (right)
-              x = 90
-              y = 30 + ((i - 70) / 29) * 40
-              size = 8
-              color = '#EF4444'
-              nodeType = 'output'
-            }
-            break
-
-          case 1: // DNA DOUBLE HELIX - Elegant spiral structure
-            if (i < 25) {
-              // Left DNA strand - spiral backbone
-              const helixProgress = (i / 25) * 4 * Math.PI // 4 full rotations
-              const verticalPos = 15 + (i / 25) * 70 // Top to bottom
-              const radius = 12
-              x = 50 - Math.cos(helixProgress) * radius
-              y = verticalPos
-              size = 6
-              color = '#60A5FA'
-              nodeType = 'dna-left'
-            } else if (i < 50) {
-              // Right DNA strand - spiral backbone
-              const strandIndex = i - 25
-              const helixProgress = (strandIndex / 25) * 4 * Math.PI // 4 full rotations
-              const verticalPos = 15 + (strandIndex / 25) * 70 // Top to bottom
-              const radius = 12
-              x = 50 + Math.cos(helixProgress) * radius
-              y = verticalPos
-              size = 6
-              color = '#34D399'
-              nodeType = 'dna-right'
-            } else if (i < 75) {
-              // Base pairs - connecting the two strands
-              const pairIndex = i - 50
-              const pairProgress = (pairIndex / 25) * 4 * Math.PI
-              const verticalPos = 18 + (pairIndex / 25) * 64 // Slightly inset
-              const leftRadius = 12
-              const rightRadius = 12
-              
-              // Alternate between left and right base
-              if (pairIndex % 2 === 0) {
-                // Left base (A or T)
-                x = 50 - Math.cos(pairProgress) * leftRadius * 0.7
-                y = verticalPos
-                size = 4
-                color = '#8B5CF6'
-                nodeType = 'base-left'
-              } else {
-                // Right base (G or C)
-                x = 50 + Math.cos(pairProgress) * rightRadius * 0.7
-                y = verticalPos
-                size = 4
-                color = '#F59E0B'
-                nodeType = 'base-right'
-              }
-            } else {
-              // Information flow particles - traveling along the helix
-              const flowIndex = i - 75
-              const flowProgress = (flowIndex / 25) * 4 * Math.PI + Date.now() * 0.001
-              const verticalPos = 20 + (flowIndex / 25) * 60
-              const flowRadius = 8
-              x = 50 + Math.cos(flowProgress) * flowRadius
-              y = verticalPos
-              size = 3
-              color = '#EF4444'
-              nodeType = 'info-flow'
-            }
-            break
-
-          case 2: // QUANTUM COMPUTING - Qubit visualization with quantum gates
-            if (i < 20) {
-              // Central Quantum Core - circular arrangement
-              const angle = (i / 20) * Math.PI * 2
-              const radius = 12
-              x = 50 + Math.cos(angle) * radius
-              y = 50 + Math.sin(angle) * radius
-              size = 8
-              color = '#60A5FA'
-              nodeType = 'qubit'
-            } else if (i < 40) {
-              // Quantum Gates - forming geometric patterns
-              const gateIndex = i - 20
-              const layer = Math.floor(gateIndex / 5)
-              const pos = gateIndex % 5
-              
-              // Create quantum gate layers in expanding rings
-              const gateAngle = (pos / 5) * Math.PI * 2
-              const gateRadius = 20 + layer * 8
-              x = 50 + Math.cos(gateAngle) * gateRadius
-              y = 50 + Math.sin(gateAngle) * gateRadius
-              size = 6
-              color = '#34D399'
-              nodeType = 'gate'
-            } else if (i < 60) {
-              // Entangled Particles - paired positions
-              const pairIndex = (i - 40) / 2
-              const isPrimary = (i - 40) % 2 === 0
-              const pairAngle = (pairIndex / 10) * Math.PI * 2
-              const entangleRadius = 35
-              
-              x = 50 + Math.cos(pairAngle) * entangleRadius + (isPrimary ? 3 : -3)
-              y = 50 + Math.sin(pairAngle) * entangleRadius + (isPrimary ? 3 : -3)
-              size = 5
-              color = '#8B5CF6'
-              nodeType = isPrimary ? 'entangled-a' : 'entangled-b'
-            } else if (i < 80) {
-              // Quantum Superposition Cloud - probabilistic positions
-              const cloudIndex = i - 60
-              const superAngle = (cloudIndex / 20) * Math.PI * 4 // Double rotation
-              const superRadius = 45 + Math.sin(cloudIndex * 0.5) * 10
-              x = 50 + Math.cos(superAngle) * superRadius
-              y = 50 + Math.sin(superAngle) * superRadius
-              size = 4
-              color = '#F59E0B'
-              nodeType = 'superposition'
-            } else {
-              // Quantum Measurement Points - observation nodes
-              const measureIndex = i - 80
-              const measureAngle = (measureIndex / 20) * Math.PI * 2
-              const measureRadius = 55
-              x = 50 + Math.cos(measureAngle) * measureRadius
-              y = 50 + Math.sin(measureAngle) * measureRadius
-              size = 3
-              color = '#EF4444'
-              nodeType = 'measurement'
-            }
-            break
-
-          case 3: // COMPUTER CHIP - Integrated circuit layout
-            if (i < 25) {
-              // Main processor cores (center grid)
-              const row = Math.floor(i / 5)
-              const col = i % 5
-              x = 35 + col * 6
-              y = 35 + row * 6
-              size = 6
-              color = '#60A5FA'
-              nodeType = 'core'
-            } else if (i < 50) {
-              // Cache memory (surrounding cores)
-              const cacheIndex = i - 25
-              const side = Math.floor(cacheIndex / 6.25)
-              const pos = cacheIndex % 6.25
-              
-              if (side === 0) { // Top
-                x = 30 + pos * 5
-                y = 25
-              } else if (side === 1) { // Right
-                x = 70
-                y = 30 + pos * 5
-              } else if (side === 2) { // Bottom
-                x = 65 - pos * 5
-                y = 75
-              } else { // Left
-                x = 25
-                y = 70 - pos * 5
-              }
-              size = 4
-              color = '#34D399'
-              nodeType = 'cache'
-            } else if (i < 75) {
-              // I/O pins (edges)
-              const pinIndex = i - 50
-              const edge = Math.floor(pinIndex / 6.25)
-              const pinPos = pinIndex % 6.25
-              
-              if (edge === 0) { // Top edge
-                x = 10 + pinPos * 12
-                y = 10
-              } else if (edge === 1) { // Right edge
-                x = 90
-                y = 10 + pinPos * 12
-              } else if (edge === 2) { // Bottom edge
-                x = 90 - pinPos * 12
-                y = 90
-              } else { // Left edge
-                x = 10
-                y = 90 - pinPos * 12
-              }
-              size = 3
-              color = '#8B5CF6'
-              nodeType = 'io'
-            } else {
-              // Power distribution (connecting paths)
-              const pathIndex = i - 75
-              x = 15 + (pathIndex % 8) * 10
-              y = 15 + Math.floor(pathIndex / 8) * 15
-              size = 2
-              color = '#F59E0B'
-              nodeType = 'power'
-            }
-            break
-
-          default:
-            x = Math.random() * 100
-            y = Math.random() * 100
-            size = Math.random() * 6 + 3
+      switch (shapeType) {
+        case 0: // NEURAL NETWORK - Clear network topology
+          if (i < 15) {
+            // Input layer (left)
+            x = 15
+            y = 20 + (i / 14) * 60
+            size = 8
             color = '#60A5FA'
-            nodeType = 'default'
-        }
+            nodeType = 'input'
+          } else if (i < 35) {
+            // Hidden layer 1
+            x = 35
+            y = 15 + ((i - 15) / 19) * 70
+            size = 6
+            color = '#34D399'
+            nodeType = 'hidden1'
+          } else if (i < 55) {
+            // Hidden layer 2  
+            x = 55
+            y = 15 + ((i - 35) / 19) * 70
+            size = 6
+            color = '#8B5CF6'
+            nodeType = 'hidden2'
+          } else if (i < 70) {
+            // Hidden layer 3
+            x = 75
+            y = 20 + ((i - 55) / 14) * 60
+            size = 6
+            color = '#F59E0B'
+            nodeType = 'hidden3'
+          } else {
+            // Output layer (right)
+            x = 90
+            y = 30 + ((i - 70) / 29) * 40
+            size = 8
+            color = '#EF4444'
+            nodeType = 'output'
+          }
+          break
 
-        duration = Math.random() * 8 + 6
+        case 1: // DNA DOUBLE HELIX - Elegant spiral structure
+          if (i < 25) {
+            // Left DNA strand - spiral backbone
+            const helixProgress = (i / 25) * 4 * Math.PI // 4 full rotations
+            const verticalPos = 15 + (i / 25) * 70 // Top to bottom
+            const radius = 12
+            x = 50 - Math.cos(helixProgress) * radius
+            y = verticalPos
+            size = 6
+            color = '#60A5FA'
+            nodeType = 'dna-left'
+          } else if (i < 50) {
+            // Right DNA strand - spiral backbone
+            const strandIndex = i - 25
+            const helixProgress = (strandIndex / 25) * 4 * Math.PI // 4 full rotations
+            const verticalPos = 15 + (strandIndex / 25) * 70 // Top to bottom
+            const radius = 12
+            x = 50 + Math.cos(helixProgress) * radius
+            y = verticalPos
+            size = 6
+            color = '#34D399'
+            nodeType = 'dna-right'
+          } else if (i < 75) {
+            // Base pairs - connecting the two strands
+            const pairIndex = i - 50
+            const pairProgress = (pairIndex / 25) * 4 * Math.PI
+            const verticalPos = 18 + (pairIndex / 25) * 64 // Slightly inset
+            const leftRadius = 12
+            const rightRadius = 12
+            
+            // Alternate between left and right base
+            if (pairIndex % 2 === 0) {
+              // Left base (A or T)
+              x = 50 - Math.cos(pairProgress) * leftRadius * 0.7
+              y = verticalPos
+              size = 4
+              color = '#8B5CF6'
+              nodeType = 'base-left'
+            } else {
+              // Right base (G or C)
+              x = 50 + Math.cos(pairProgress) * rightRadius * 0.7
+              y = verticalPos
+              size = 4
+              color = '#F59E0B'
+              nodeType = 'base-right'
+            }
+          } else {
+            // Information flow particles - traveling along the helix
+            const flowIndex = i - 75
+            const flowProgress = (flowIndex / 25) * 4 * Math.PI + Date.now() * 0.001
+            const verticalPos = 20 + (flowIndex / 25) * 60
+            const flowRadius = 8
+            x = 50 + Math.cos(flowProgress) * flowRadius
+            y = verticalPos
+            size = 3
+            color = '#EF4444'
+            nodeType = 'info-flow'
+          }
+          break
 
-        // Ensure all values are valid
-        if (isNaN(x) || isNaN(y) || isNaN(size)) {
-          x = 50
-          y = 50
-          size = 4
-        }
+        case 2: // QUANTUM COMPUTING - Qubit visualization with quantum gates
+          if (i < 20) {
+            // Central Quantum Core - circular arrangement
+            const angle = (i / 20) * Math.PI * 2
+            const radius = 12
+            x = 50 + Math.cos(angle) * radius
+            y = 50 + Math.sin(angle) * radius
+            size = 8
+            color = '#60A5FA'
+            nodeType = 'qubit'
+          } else if (i < 40) {
+            // Quantum Gates - forming geometric patterns
+            const gateIndex = i - 20
+            const layer = Math.floor(gateIndex / 5)
+            const pos = gateIndex % 5
+            
+            // Create quantum gate layers in expanding rings
+            const gateAngle = (pos / 5) * Math.PI * 2
+            const gateRadius = 20 + layer * 8
+            x = 50 + Math.cos(gateAngle) * gateRadius
+            y = 50 + Math.sin(gateAngle) * gateRadius
+            size = 6
+            color = '#34D399'
+            nodeType = 'gate'
+          } else if (i < 60) {
+            // Entangled Particles - paired positions
+            const pairIndex = (i - 40) / 2
+            const isPrimary = (i - 40) % 2 === 0
+            const pairAngle = (pairIndex / 10) * Math.PI * 2
+            const entangleRadius = 35
+            
+            x = 50 + Math.cos(pairAngle) * entangleRadius + (isPrimary ? 3 : -3)
+            y = 50 + Math.sin(pairAngle) * entangleRadius + (isPrimary ? 3 : -3)
+            size = 5
+            color = '#8B5CF6'
+            nodeType = isPrimary ? 'entangled-a' : 'entangled-b'
+          } else if (i < 80) {
+            // Quantum Superposition Cloud - probabilistic positions
+            const cloudIndex = i - 60
+            const superAngle = (cloudIndex / 20) * Math.PI * 4 // Double rotation
+            const superRadius = 45 + Math.sin(cloudIndex * 0.5) * 10
+            x = 50 + Math.cos(superAngle) * superRadius
+            y = 50 + Math.sin(superAngle) * superRadius
+            size = 4
+            color = '#F59E0B'
+            nodeType = 'superposition'
+          } else {
+            // Quantum Measurement Points - observation nodes
+            const measureIndex = i - 80
+            const measureAngle = (measureIndex / 20) * Math.PI * 2
+            const measureRadius = 55
+            x = 50 + Math.cos(measureAngle) * measureRadius
+            y = 50 + Math.sin(measureAngle) * measureRadius
+            size = 3
+            color = '#EF4444'
+            nodeType = 'measurement'
+          }
+          break
 
-        particles.push({
-          id: i,
-          x: Math.max(5, Math.min(95, x)),
-          y: Math.max(5, Math.min(95, y)),
-          size: Math.max(1, Math.min(20, size)),
-          color,
-          duration,
-          delay: Math.random() * 0.5,
-          nodeType
-        })
-      } catch (error) {
-        // Fallback particle if there's an error
-        particles.push({
-          id: i,
-          x: 50,
-          y: 50,
-          size: 4,
-          color: '#60A5FA',
-          duration: 8,
-          delay: Math.random() * 0.5,
-          nodeType: 'fallback'
-        })
+        case 3: // COMPUTER CHIP - Integrated circuit layout (brought back!)
+          if (i < 25) {
+            // Main processor cores (center grid)
+            const row = Math.floor(i / 5)
+            const col = i % 5
+            x = 35 + col * 6
+            y = 35 + row * 6
+            size = 6
+            color = '#60A5FA'
+            nodeType = 'core'
+          } else if (i < 50) {
+            // Cache memory (surrounding cores)
+            const cacheIndex = i - 25
+            const side = Math.floor(cacheIndex / 6.25)
+            const pos = cacheIndex % 6.25
+            
+            if (side === 0) { // Top
+              x = 30 + pos * 5
+              y = 25
+            } else if (side === 1) { // Right
+              x = 70
+              y = 30 + pos * 5
+            } else if (side === 2) { // Bottom
+              x = 65 - pos * 5
+              y = 75
+            } else { // Left
+              x = 25
+              y = 70 - pos * 5
+            }
+            size = 4
+            color = '#34D399'
+            nodeType = 'cache'
+          } else if (i < 75) {
+            // I/O pins (edges)
+            const pinIndex = i - 50
+            const edge = Math.floor(pinIndex / 6.25)
+            const pinPos = pinIndex % 6.25
+            
+            if (edge === 0) { // Top edge
+              x = 10 + pinPos * 12
+              y = 10
+            } else if (edge === 1) { // Right edge
+              x = 90
+              y = 10 + pinPos * 12
+            } else if (edge === 2) { // Bottom edge
+              x = 90 - pinPos * 12
+              y = 90
+            } else { // Left edge
+              x = 10
+              y = 90 - pinPos * 12
+            }
+            size = 3
+            color = '#8B5CF6'
+            nodeType = 'io'
+          } else {
+            // Power distribution (connecting paths)
+            const pathIndex = i - 75
+            x = 15 + (pathIndex % 8) * 10
+            y = 15 + Math.floor(pathIndex / 8) * 15
+            size = 2
+            color = '#F59E0B'
+            nodeType = 'power'
+          }
+          break
+
+        default:
+          x = Math.random() * 100
+          y = Math.random() * 100
+          size = Math.random() * 6 + 3
+          color = '#60A5FA'
+          nodeType = 'default'
       }
+
+      duration = Math.random() * 8 + 6
+
+      particles.push({
+        id: i,
+        x: Math.max(5, Math.min(95, x)),
+        y: Math.max(5, Math.min(95, y)),
+        size,
+        color,
+        duration,
+        delay: Math.random() * 0.5,
+        nodeType
+      })
     }
-    return particles
-  }
+        return particles
+      }
 
-  // Get particle positions
-  const particles = getParticlePositions(currentShape)
+      // Memoize particle positions to avoid recalculation
+      const particles = useMemo(() => getParticlePositions(currentShape), [currentShape, shouldReduceParticleCount])
 
-  // Full particle count for complete animations
-  const maxParticles = 50
+  // Reduce particle count for better performance
+  const maxParticles = shouldReduceParticleCount ? 12 : 20
   const displayParticles = particles.slice(0, maxParticles)
 
   // Simplified enhanced particles (removing complex useTransform to fix runtime issues)
