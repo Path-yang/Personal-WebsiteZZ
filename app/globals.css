@@ -103,12 +103,13 @@
     @apply px-4 md:px-12 lg:px-24 xl:px-32;
   }
   
-    /* Optimize animations for mobile performance */
-    .hw-accelerated {
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-    
+  /* Optimize animations for mobile performance */
+  .hw-accelerated {
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+}
+
 /* Performance optimizations for all devices */
 * {
   -webkit-font-smoothing: antialiased;
