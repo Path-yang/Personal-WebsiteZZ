@@ -28,7 +28,7 @@ export function LoadingScreen() {
     let stageIndex = 0
 
     const interval = setInterval(() => {
-      currentProgress += Math.random() * 15 + 5
+      currentProgress += Math.random() * 20 + 8
       
       if (currentProgress >= 100) {
         currentProgress = 100
@@ -37,7 +37,7 @@ export function LoadingScreen() {
         
         setTimeout(() => {
           setIsLoading(false)
-        }, 800)
+        }, 600)
         
         clearInterval(interval)
       } else {
@@ -50,7 +50,7 @@ export function LoadingScreen() {
           setLoadingStage(stages[stageIndex])
         }
       }
-    }, 200)
+    }, 300)
 
     return () => clearInterval(interval)
   }, [prefersReducedMotion])
@@ -68,25 +68,24 @@ export function LoadingScreen() {
           transition: { duration: 0.8, ease: "easeInOut" }
         }}
       >
-        {/* Animated background particles */}
+        {/* Simplified background particles - reduced for performance */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-accent-blue rounded-full"
+              className="absolute w-1 h-1 bg-accent-blue rounded-full opacity-30"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${20 + i * 5}%`,
+                top: `${20 + (i % 3) * 30}%`,
               }}
               animate={{
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-                y: [0, -100, -200]
+                opacity: [0.3, 0.8, 0.3],
+                y: [0, -50, -100]
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: i * 0.2,
                 ease: "easeOut"
               }}
             />
@@ -115,48 +114,43 @@ export function LoadingScreen() {
               animate={{
                 boxShadow: [
                   '0 0 20px rgba(96, 165, 250, 0.3)',
-                  '0 0 40px rgba(52, 211, 153, 0.5)',
+                  '0 0 30px rgba(52, 211, 153, 0.4)',
                   '0 0 20px rgba(96, 165, 250, 0.3)'
                 ]
               }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 3, repeat: Infinity }}
             >
-              {/* Rotating background */}
+              {/* Simplified rotating background */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-accent-mint to-accent-blue"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
               />
               
-              {/* Central icon */}
+              {/* Central icon - simplified animation */}
               <motion.div
                 className="relative z-10 text-white text-3xl font-bold"
                 animate={{
-                  rotateY: [0, 180, 360],
-                  scale: [1, 1.1, 1]
+                  scale: [1, 1.05, 1]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
                 YZ
               </motion.div>
 
-              {/* Pulse rings */}
-              {[0, 1, 2].map(i => (
-                <motion.div
-                  key={i}
-                  className="absolute inset-0 border-2 border-accent-blue rounded-2xl"
-                  animate={{
-                    scale: [1, 1.5 + i * 0.3, 1],
-                    opacity: [0.8, 0, 0.8]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
+              {/* Single pulse ring for performance */}
+              <motion.div
+                className="absolute inset-0 border-2 border-accent-blue rounded-2xl"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.6, 0, 0.6]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
             </motion.div>
 
             <motion.h1 
@@ -208,13 +202,13 @@ export function LoadingScreen() {
                   style={{ width: `${progress}%` }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {/* Progress bar glow */}
+                  {/* Simplified progress bar glow */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-mint opacity-50 blur-sm"
+                    className="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-mint opacity-60 blur-sm"
                     animate={{
-                      opacity: [0.5, 1, 0.5]
+                      opacity: [0.6, 0.8, 0.6]
                     }}
-                    transition={{ duration: 1, repeat: Infinity }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </motion.div>
               </div>
@@ -261,7 +255,7 @@ export function LoadingScreen() {
             </motion.div>
           </motion.div>
 
-          {/* Bottom tech stack indicators */}
+          {/* Simplified tech stack indicators */}
           <motion.div
             className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 text-slate-500 text-sm"
             initial={{ opacity: 0, y: 20 }}
@@ -272,12 +266,12 @@ export function LoadingScreen() {
               <motion.span
                 key={tech}
                 animate={{
-                  color: ['#64748B', '#60A5FA', '#64748B']
+                  opacity: [0.6, 1, 0.6]
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
-                  delay: i * 0.5
+                  delay: i * 0.8
                 }}
               >
                 {tech}
