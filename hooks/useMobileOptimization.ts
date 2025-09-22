@@ -15,43 +15,56 @@ export function useMobileOptimization() {
     
     // Check if device is mobile
     const checkMobile = () => {
-      if (typeof window === 'undefined') return
-      
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      const isSmallScreen = window.innerWidth < 768
-      const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-      
-      const mobile = isMobileDevice || (isSmallScreen && isTouchDevice)
-      const tablet = isMediumScreen || (isMobileDevice && window.innerWidth >= 768)
-      
-      setIsMobile(mobile)
-      setIsTablet(tablet)
-      
-      if (mobile) {
-        setScreenSize('mobile')
-      } else if (tablet) {
-        setScreenSize('tablet')
-      } else {
+      try {
+        if (typeof window === 'undefined' || typeof navigator === 'undefined') return
+        
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        const isSmallScreen = window.innerWidth < 768
+        const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024
+        const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+        
+        const mobile = Boolean(isMobileDevice || (isSmallScreen && isTouchDevice))
+        const tablet = Boolean(isMediumScreen || (isMobileDevice && window.innerWidth >= 768))
+        
+        setIsMobile(mobile)
+        setIsTablet(tablet)
+        
+        if (mobile) {
+          setScreenSize('mobile')
+        } else if (tablet) {
+          setScreenSize('tablet')
+        } else {
+          setScreenSize('desktop')
+        }
+      } catch (error) {
+        console.warn('Error checking mobile device:', error)
+        // Fallback to desktop
+        setIsMobile(false)
+        setIsTablet(false)
         setScreenSize('desktop')
       }
     }
 
     // Check for low power mode indicators
     const checkLowPowerMode = () => {
-      if (typeof window === 'undefined') return
-      
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      
-      // Check for low-end device indicators
-      const isLowEndDevice = navigator.hardwareConcurrency <= 2
-      
-      // Check for slow network
-      const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
-      const isSlowNetwork = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
-      
-      setIsLowPowerMode(prefersReducedMotion || isLowEndDevice || isSlowNetwork)
+      try {
+        if (typeof window === 'undefined') return
+        
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        
+        // Check for low-end device indicators
+        const isLowEndDevice = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 2 : false
+        
+        // Check for slow network
+        const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
+        const isSlowNetwork = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
+        
+        setIsLowPowerMode(prefersReducedMotion || isLowEndDevice || isSlowNetwork)
+      } catch (error) {
+        console.warn('Error checking low power mode:', error)
+        setIsLowPowerMode(false)
+      }
     }
 
     // Only run on client-side
@@ -59,16 +72,31 @@ export function useMobileOptimization() {
       checkMobile()
       checkLowPowerMode()
 
-      // Listen for window resize
-      window.addEventListener('resize', checkMobile)
+      // Listen for window resize with debouncing
+      let resizeTimeout: NodeJS.Timeout
+      const handleResize = () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(checkMobile, 100)
+      }
+      
+      window.addEventListener('resize', handleResize)
       
       // Listen for reduced motion changes
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-      mediaQuery.addEventListener('change', checkLowPowerMode)
+      try {
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+        mediaQuery.addEventListener('change', checkLowPowerMode)
 
-      return () => {
-        window.removeEventListener('resize', checkMobile)
-        mediaQuery.removeEventListener('change', checkLowPowerMode)
+        return () => {
+          window.removeEventListener('resize', handleResize)
+          mediaQuery.removeEventListener('change', checkLowPowerMode)
+          clearTimeout(resizeTimeout)
+        }
+      } catch (error) {
+        console.warn('Error setting up media query listener:', error)
+        return () => {
+          window.removeEventListener('resize', handleResize)
+          clearTimeout(resizeTimeout)
+        }
       }
     }
   }, [])

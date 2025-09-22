@@ -52,7 +52,13 @@ export function SimpleParticleBackground() {
         const interval = setInterval(() => {
           setCurrentShape(prev => (prev + 1) % 4)
         }, 9000) // Extended by 1 second as requested (8s → 9s)
-        return () => clearInterval(interval)
+        return () => {
+          try {
+            clearInterval(interval)
+          } catch (error) {
+            console.warn('Error clearing particle interval:', error)
+          }
+        }
       }, [])
 
   // CRYSTAL CLEAR meaningful shapes with perfect structure
