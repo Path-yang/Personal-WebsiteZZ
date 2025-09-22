@@ -62,9 +62,13 @@ export function HeroSection() {
     })
   }
 
-  const scrollToNext = () => {
+  const scrollToNext = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     const aboutSection = document.getElementById('about')
-    aboutSection?.scrollIntoView({ behavior: 'smooth' })
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
 
@@ -387,58 +391,6 @@ export function HeroSection() {
             </motion.p>
           </motion.div>
 
-          {/* Floating Tech Icons */}
-          <motion.div 
-            className="relative mt-12 mb-8"
-            variants={heroElementVariants}
-          >
-            <div className="flex justify-center items-center gap-8 flex-wrap">
-              {[
-                { Icon: Zap, label: 'AI/ML', color: 'text-yellow-400' },
-                { Icon: Brain, label: 'Neural Networks', color: 'text-purple-400' },
-                { Icon: Code, label: 'Full-Stack', color: 'text-green-400' }
-              ].map(({ Icon, label, color }, i) => (
-                <motion.div
-                  key={label}
-                  className="flex flex-col items-center gap-2"
-                  custom={i}
-                  variants={iconVariants}
-                  whileHover={prefersReducedMotion ? {} : {
-                    scale: 1.2,
-                    y: -5,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <motion.div
-                    className={`p-4 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 backdrop-blur-sm ${color}`}
-                    animate={{
-                      y: [0, -8, 0],
-                      rotate: [0, 5, 0, -5, 0]
-                    }}
-                    transition={{
-                      duration: 3 + i * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: i * 0.3
-                    }}
-                    style={{
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-                    }}
-                  >
-                    <Icon size={32} />
-                  </motion.div>
-                  <motion.span
-                    className="text-xs text-slate-400 font-medium tracking-wider"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2 + i * 0.2 }}
-                  >
-                    {label}
-                  </motion.span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
       
           
           {/* Spectacular Scroll Indicator */}
@@ -467,6 +419,11 @@ export function HeroSection() {
             
             <motion.button
               onClick={scrollToNext}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                scrollToNext(e as any)
+              }}
               className="group relative p-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 border border-dark-border/50 rounded-full backdrop-blur-sm transition-all duration-500 overflow-hidden"
               whileHover={prefersReducedMotion ? {} : { 
                 scale: 1.1,
