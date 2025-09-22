@@ -115,7 +115,7 @@ export function AboutSection() {
             variants={itemVariants}
           >
             <motion.div
-              className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 mx-auto mb-8"
+              className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 mx-auto mb-8"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
