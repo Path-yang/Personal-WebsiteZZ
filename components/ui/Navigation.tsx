@@ -21,42 +21,32 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const [isVisible, setIsVisible] = useState(true) // Always visible from start
-  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   // Navigation is always visible, no scroll transforms needed
 
   // Track scroll position and active section
   useEffect(() => {
-    if (!isClient) return
     const handleScroll = () => {
-      try {
-        const scrollPosition = window.scrollY + 100
-        setIsVisible(true) // Always visible now
+      const scrollPosition = window.scrollY + 100
+      setIsVisible(true) // Always visible now
 
-        // Find active section
-        const sections = navigationItems.map(item => ({
-          id: item.sectionId,
-          element: document.getElementById(item.sectionId)
-        }))
+      // Find active section
+      const sections = navigationItems.map(item => ({
+        id: item.sectionId,
+        element: document.getElementById(item.sectionId)
+      }))
 
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const section = sections[i]
-          if (section.element) {
-            const rect = section.element.getBoundingClientRect()
-            const elementTop = rect.top + window.scrollY
-            if (scrollPosition >= elementTop - 200) {
-              setActiveSection(section.id)
-              break
-            }
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect()
+          const elementTop = rect.top + window.scrollY
+          if (scrollPosition >= elementTop - 200) {
+            setActiveSection(section.id)
+            break
           }
         }
-      } catch (error) {
-        console.warn('Error in navigation scroll handler:', error)
       }
     }
 
@@ -65,20 +55,16 @@ export function Navigation() {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Initial call
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isClient])
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
-    try {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        })
-      }
-    } catch (error) {
-      console.warn('Error scrolling to section:', error)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offsetTop = sectionId === 'hero' ? 0 : element.offsetTop - 80
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      })
     }
     setIsOpen(false)
   }

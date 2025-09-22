@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 interface TrailNode {
   id: number
@@ -18,19 +17,8 @@ export function CursorEffects() {
   const [cursorVariant, setCursorVariant] = useState('default')
   const [isVisible, setIsVisible] = useState(false)
   const [trailNodes, setTrailNodes] = useState<TrailNode[]>([])
-  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
-  const { isMobile } = useMobileOptimization()
   const nodeIdRef = useRef(0)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  // Don't render cursor effects on mobile devices or before client hydration
-  if (!isClient || isMobile) {
-    return null
-  }
 
   useEffect(() => {
     if (prefersReducedMotion) return

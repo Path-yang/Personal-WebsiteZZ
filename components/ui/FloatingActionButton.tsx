@@ -8,63 +8,37 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 export function FloatingActionButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
-  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  useEffect(() => {
-    if (!isClient) return
     const handleScroll = () => {
-      try {
-        setIsVisible(window.scrollY > 300)
-      } catch (error) {
-        console.warn('Error in FAB scroll handler:', error)
-      }
+      setIsVisible(window.scrollY > 300)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isClient])
+  }, [])
 
   const scrollToTop = () => {
-    try {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    } catch (error) {
-      console.warn('Error scrolling to top:', error)
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     setIsExpanded(false)
   }
 
   const scrollToContact = () => {
-    try {
-      const contactSection = document.getElementById('contact')
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' })
-      }
-    } catch (error) {
-      console.warn('Error scrolling to contact:', error)
+    const contactSection = document.getElementById('contact')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
     }
     setIsExpanded(false)
   }
 
   const contactEmail = () => {
-    try {
-      window.location.href = 'mailto:robertyzz02@gmail.com'
-    } catch (error) {
-      console.warn('Error opening email:', error)
-    }
+    window.location.href = 'mailto:robertyzz02@gmail.com'
     setIsExpanded(false)
   }
 
   const contactPhone = () => {
-    try {
-      window.location.href = 'tel:+6593598155'
-    } catch (error) {
-      console.warn('Error opening phone:', error)
-    }
+    window.location.href = 'tel:+6593598155'
     setIsExpanded(false)
   }
 

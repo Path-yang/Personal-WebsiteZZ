@@ -18,75 +18,65 @@ const shortcuts = [
 export function KeyboardShortcuts() {
   const [showHelp, setShowHelp] = useState(false)
   const [recentShortcut, setRecentShortcut] = useState<string | null>(null)
-  const [isClient, setIsClient] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  useEffect(() => {
-    if (!isClient) return
     const handleKeyDown = (e: KeyboardEvent) => {
-      try {
-        // Toggle help with '?' or 'h'
-        if (e.key === '?' || (e.key === 'h' && e.ctrlKey)) {
-          e.preventDefault()
-          setShowHelp(!showHelp)
-          return
-        }
+      // Toggle help with '?' or 'h'
+      if (e.key === '?' || (e.key === 'h' && e.ctrlKey)) {
+        e.preventDefault()
+        setShowHelp(!showHelp)
+        return
+      }
 
-        // Close help with escape
-        if (e.key === 'Escape') {
-          setShowHelp(false)
-          return
-        }
+      // Close help with escape
+      if (e.key === 'Escape') {
+        setShowHelp(false)
+        return
+      }
 
-        // Navigation shortcuts (1-7)
-        const shortcut = shortcuts.find(s => s.key === e.key)
-        if (shortcut && !e.ctrlKey && !e.altKey && !e.metaKey) {
-          e.preventDefault()
-          
-          const element = document.getElementById(shortcut.section)
-          if (element) {
-            const offsetTop = shortcut.section === 'hero' ? 0 : element.offsetTop - 80
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            })
-            
-            // Show visual feedback
-            setRecentShortcut(shortcut.key)
-            setTimeout(() => setRecentShortcut(null), 1500)
-          }
-        }
-
-        // Back to top with Home key
-        if (e.key === 'Home') {
-          e.preventDefault()
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-          setRecentShortcut('Home')
-          setTimeout(() => setRecentShortcut(null), 1500)
-        }
-
-        // Scroll to bottom with End key
-        if (e.key === 'End') {
-          e.preventDefault()
-          window.scrollTo({ 
-            top: document.documentElement.scrollHeight, 
-            behavior: 'smooth' 
+      // Navigation shortcuts (1-7)
+      const shortcut = shortcuts.find(s => s.key === e.key)
+      if (shortcut && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        e.preventDefault()
+        
+        const element = document.getElementById(shortcut.section)
+        if (element) {
+          const offsetTop = shortcut.section === 'hero' ? 0 : element.offsetTop - 80
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
           })
-          setRecentShortcut('End')
+          
+          // Show visual feedback
+          setRecentShortcut(shortcut.key)
           setTimeout(() => setRecentShortcut(null), 1500)
         }
-      } catch (error) {
-        console.warn('Error in keyboard shortcut handler:', error)
+      }
+
+      // Back to top with Home key
+      if (e.key === 'Home') {
+        e.preventDefault()
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setRecentShortcut('Home')
+        setTimeout(() => setRecentShortcut(null), 1500)
+      }
+
+      // Scroll to bottom with End key
+      if (e.key === 'End') {
+        e.preventDefault()
+        window.scrollTo({ 
+          top: document.documentElement.scrollHeight, 
+          behavior: 'smooth' 
+        })
+        setRecentShortcut('End')
+        setTimeout(() => setRecentShortcut(null), 1500)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [showHelp, isClient])
+  }, [showHelp])
 
   return (
     <>

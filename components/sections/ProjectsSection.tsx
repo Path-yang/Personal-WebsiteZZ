@@ -4,44 +4,9 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { SectionBackground } from '@/components/ui/SectionBackground'
-import { Brain, Ship, Shield, Heart, Camera, Database } from 'lucide-react'
+import { Brain, Ship, Shield, Heart } from 'lucide-react'
 
 const projects = [
-  {
-    id: 'sentinel-ai',
-    title: 'SentinelAI',
-    category: 'AI/ML • Cloud Infrastructure',
-    period: 'Dec 2024',
-    description: 'Cloud-based AI surveillance system that transforms ordinary commercial cameras into smart anomaly detectors using real-time video streaming and machine learning.',
-    highlights: [
-      'Built cloud-first architecture with RTSP to HLS streaming conversion',
-      'Implemented real-time AI anomaly detection using advanced ML models',
-      'Deployed production-ready infrastructure with Docker and Caddy reverse proxy',
-      'Created WebSocket-based alert system for instant notifications',
-      'Designed cross-platform compatibility for web and mobile access'
-    ],
-    icon: Camera,
-    tech: ['Python', 'FastAPI', 'Next.js', 'Docker', 'MediaMTX', 'WebSocket', 'RTSP', 'HLS'],
-    githubUrl: 'https://github.com/Path-yang/SentinelAI',
-    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
-  },
-  {
-    id: 'silver-sigma',
-    title: 'SilverSigma',
-    category: 'Full Stack • Database Management',
-    period: 'Nov 2024',
-    description: 'Comprehensive database management and analytics platform designed for enterprise-level data processing and visualization with advanced query optimization.',
-    highlights: [
-      'Developed scalable database architecture with advanced indexing strategies',
-      'Implemented real-time data processing and analytics dashboard',
-      'Built secure API endpoints with comprehensive authentication',
-      'Created intuitive data visualization tools for business intelligence',
-      'Optimized query performance for large-scale datasets'
-    ],
-    icon: Database,
-    tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'React', 'D3.js', 'Redis', 'JWT'],
-    githubUrl: 'https://github.com/Path-yang/SilverSigma'
-  },
   {
     id: 'maritime-hackathon',
     title: 'Maritime AI Classification',

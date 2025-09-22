@@ -7,36 +7,43 @@ export function useMobileOptimization() {
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
 
   useEffect(() => {
-    // Only run in browser
-    if (typeof window === 'undefined') return
-
-    try {
-      // Check if device is mobile
+    // Check if device is mobile
+    const checkMobile = () => {
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       const isSmallScreen = window.innerWidth < 768
-      const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
       
-      setIsMobile(Boolean(isMobileDevice || (isSmallScreen && isTouchDevice)))
+      setIsMobile(isMobileDevice || (isSmallScreen && isTouchDevice))
+    }
 
-      // Check for low power mode
+    // Check for low power mode indicators
+    const checkLowPowerMode = () => {
+      // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      const isLowEndDevice = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 2 : false
       
-      setIsLowPowerMode(prefersReducedMotion || isLowEndDevice)
+      // Check for low-end device indicators
+      const isLowEndDevice = navigator.hardwareConcurrency <= 2
+      
+      // Check for slow network
+      const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
+      const isSlowNetwork = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
+      
+      setIsLowPowerMode(prefersReducedMotion || isLowEndDevice || isSlowNetwork)
+    }
 
-      // Listen for resize
-      const handleResize = () => {
-        const isSmallScreen = window.innerWidth < 768
-        const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
-        setIsMobile(Boolean(isMobileDevice || (isSmallScreen && isTouchDevice)))
-      }
-      
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    } catch {
-      // Silent fail - return defaults
-      setIsMobile(false)
-      setIsLowPowerMode(false)
+    checkMobile()
+    checkLowPowerMode()
+
+    // Listen for window resize
+    window.addEventListener('resize', checkMobile)
+    
+    // Listen for reduced motion changes
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    mediaQuery.addEventListener('change', checkLowPowerMode)
+
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      mediaQuery.removeEventListener('change', checkLowPowerMode)
     }
   }, [])
 
