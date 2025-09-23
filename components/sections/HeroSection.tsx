@@ -30,11 +30,30 @@ export function HeroSection() {
   
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window))
+      }
     }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    
+    // Initial check with delay to ensure proper mounting
+    const timeoutId = setTimeout(checkMobile, 100)
+    
+    const handleResize = () => {
+      checkMobile()
+    }
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize)
+      window.addEventListener('orientationchange', handleResize)
+    }
+    
+    return () => {
+      clearTimeout(timeoutId)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize)
+        window.removeEventListener('orientationchange', handleResize)
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -45,24 +64,32 @@ export function HeroSection() {
   const handlePointerMove = useCallback((event: React.MouseEvent | React.TouchEvent) => {
     if (!heroRef.current || prefersReducedMotion) return
     
-    const rect = heroRef.current.getBoundingClientRect()
-    let clientX: number, clientY: number
-    
-    if ('touches' in event && event.touches.length > 0) {
-      clientX = event.touches[0].clientX
-      clientY = event.touches[0].clientY
-    } else if ('clientX' in event) {
-      clientX = event.clientX
-      clientY = event.clientY
-    } else {
-      return
+    try {
+      const rect = heroRef.current.getBoundingClientRect()
+      let clientX: number, clientY: number
+      
+      if ('touches' in event && event.touches.length > 0) {
+        clientX = event.touches[0].clientX
+        clientY = event.touches[0].clientY
+      } else if ('clientX' in event) {
+        clientX = event.clientX
+        clientY = event.clientY
+      } else {
+        return
+      }
+      
+      // Ensure valid dimensions
+      if (rect.width === 0 || rect.height === 0) return
+      
+      const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
+      const y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
+      
+      mouseX.set(x)
+      mouseY.set(y)
+    } catch (error) {
+      // Silently handle any touch/mouse errors on mobile
+      console.warn('Touch/mouse handling error:', error)
     }
-    
-    const x = (clientX - rect.left) / rect.width
-    const y = (clientY - rect.top) / rect.height
-    
-    mouseX.set(x)
-    mouseY.set(y)
   }, [mouseX, mouseY, prefersReducedMotion])
 
   const scrollToNext = () => {
