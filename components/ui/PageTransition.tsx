@@ -25,7 +25,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      rotateX: 5,
+      rotateX: prefersReducedMotion ? 0 : 5,
       y: 50
     },
     visible: {
@@ -46,7 +46,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     hidden: {
       opacity: 0,
       y: 40,
-      rotateX: -10
+      rotateX: prefersReducedMotion ? 0 : -10
     },
     visible: {
       opacity: 1,

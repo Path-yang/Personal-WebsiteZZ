@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { LucideIcon, Github, ExternalLink, Play, X } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 import { useRef, useState } from 'react'
 
 interface ProjectCardProps {
@@ -23,6 +24,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion()
+  const { isMobile } = useMobileOptimization()
   const Icon = project.icon
   const ref = useRef<HTMLDivElement>(null)
   const [showVideo, setShowVideo] = useState(false)
@@ -85,17 +87,26 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Links Section */}
-        <div className="relative z-10 flex flex-wrap gap-3">
+        <div className="relative z-20 flex flex-wrap gap-3">
           {/* GitHub Link */}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300 min-h-[44px] min-w-[44px]"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                pointerEvents: 'auto',
+                position: 'relative',
+                zIndex: 10
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
               }}
             >
               <Github size={16} />
@@ -110,10 +121,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300 min-h-[44px] min-w-[44px]"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                pointerEvents: 'auto',
+                position: 'relative',
+                zIndex: 10
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
               }}
             >
               <ExternalLink size={16} />
@@ -125,11 +145,23 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Demo Video Button */}
           {project.demoVideoUrl && (
             <button
-              onClick={() => setShowVideo(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowVideo(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300 min-h-[44px] min-w-[44px]"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                pointerEvents: 'auto',
+                position: 'relative',
+                zIndex: 10
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
               }}
             >
               <Play size={16} />

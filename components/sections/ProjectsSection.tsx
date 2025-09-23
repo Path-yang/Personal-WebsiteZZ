@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { SectionBackground } from '@/components/ui/SectionBackground'
 import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-react'
+import { useMobileOptimization } from '@/hooks/useMobileOptimization'
 
 const projects = [
   {
@@ -109,11 +110,13 @@ const projects = [
 ]
 
 export function ProjectsSection() {
+  const { isMobile, shouldReduceAnimations } = useMobileOptimization()
+  
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: isMobile ? 0.05 : 0.1
       }
     }
   }
@@ -130,11 +133,11 @@ export function ProjectsSection() {
         
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          style={{ perspective: '1000px' }}
+          style={{ perspective: isMobile ? 'none' : '1000px' }}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: isMobile ? "-5%" : "-10%" }}
         >
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
