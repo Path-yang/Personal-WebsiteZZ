@@ -108,6 +108,23 @@
     min-height: 44px;
     min-width: 44px;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  
+  /* Ensure all interactive elements work on mobile */
+  a[href], button {
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  /* Fix mobile button interactions */
+  .group a, .group button {
+    pointer-events: auto;
+    touch-action: manipulation;
   }
   
   /* Reduce font sizes slightly for better mobile readability */

@@ -95,7 +95,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                minHeight: '44px',
+                minWidth: '44px',
+                pointerEvents: 'auto'
               }}
             >
               <Github size={16} />
@@ -113,7 +116,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                minHeight: '44px',
+                minWidth: '44px',
+                pointerEvents: 'auto'
               }}
             >
               <ExternalLink size={16} />
@@ -129,7 +135,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                minHeight: '44px',
+                minWidth: '44px',
+                pointerEvents: 'auto'
               }}
             >
               <Play size={16} />

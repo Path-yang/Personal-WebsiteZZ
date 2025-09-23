@@ -24,6 +24,12 @@ export function CompactResumeButton() {
       }}
       whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
       title="View My Resume"
+      style={{ 
+        touchAction: 'manipulation',
+        WebkitTapHighlightColor: 'transparent',
+        minHeight: '44px',
+        minWidth: '44px'
+      }}
     >
       {/* Background shimmer effect */}
       <motion.div
