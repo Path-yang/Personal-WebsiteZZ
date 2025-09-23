@@ -27,8 +27,10 @@ export function HeroSection() {
   
   // Mobile optimization - reduce animations on smaller screens
   const [isMobile, setIsMobile] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   
   useEffect(() => {
+    setIsClient(true)
     const checkMobile = () => {
       if (typeof window !== 'undefined') {
         setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window))
@@ -93,8 +95,10 @@ export function HeroSection() {
   }, [mouseX, mouseY, prefersReducedMotion])
 
   const scrollToNext = () => {
-    const aboutSection = document.getElementById('about')
-    aboutSection?.scrollIntoView({ behavior: 'smooth' })
+    if (typeof window !== 'undefined') {
+      const aboutSection = document.getElementById('about')
+      aboutSection?.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   // Clean animation variants
@@ -126,6 +130,7 @@ export function HeroSection() {
       }
     }
   }
+
 
   return (
     <section
@@ -232,11 +237,12 @@ export function HeroSection() {
       {/* Enhanced floating particles with radiating effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Main floating particles */}
-        {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={`particle-${i}`}
             className="absolute w-1.5 h-1.5 bg-blue-400/30 rounded-full"
             style={{
+              display: isMobile && i >= 3 ? 'none' as const : undefined,
               left: `${20 + (i * (isMobile ? 30 : 15))}%`,
               top: `${30 + (i * 8) % 40}%`,
             }}
@@ -255,11 +261,12 @@ export function HeroSection() {
         ))}
         
         {/* Subtle radiating particles that respond to interaction */}
-        {[...Array(isMobile ? 8 : 12)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={`radiate-${i}`}
             className="absolute w-1 h-1 rounded-full"
             style={{
+              display: isMobile && i >= 8 ? 'none' as const : undefined,
               left: `${15 + (i * 8)}%`,
               top: `${25 + (i % 4) * 20}%`,
               backgroundColor: `rgba(${i % 3 === 0 ? '59, 130, 246' : i % 3 === 1 ? '168, 85, 247' : '34, 197, 94'}, 0.3)`,
@@ -283,11 +290,12 @@ export function HeroSection() {
         ))}
         
         {/* Floating particles that follow the fluid lights */}
-        {[...Array(isMobile ? 12 : 18)].map((_, i) => (
+        {[...Array(18)].map((_, i) => (
           <motion.div
             key={`follow-particle-${i}`}
             className="absolute w-0.5 h-0.5 rounded-full"
             style={{
+              display: isMobile && i >= 12 ? 'none' as const : undefined,
               backgroundColor: `rgba(${i % 3 === 0 ? '59, 130, 246' : i % 3 === 1 ? '168, 85, 247' : '34, 197, 94'}, 0.6)`,
               left: useTransform(
                 [mouseXSpring, mouseYSpring, interactionSpring],
@@ -492,7 +500,7 @@ export function HeroSection() {
               }}
               transition={{ delay: 2.0, duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              innovative AI-powered solutions
+              {' '}innovative AI-powered solutions
             </motion.span>
             {' '}that bridge cutting-edge technology with real-world impact. I thrive on building technology that makes a meaningful difference in people's lives.
           </motion.p>
@@ -511,7 +519,7 @@ export function HeroSection() {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             <ArrowDown size={20} className="text-accent-blue" />
-            <span className="text-lg font-medium">Scroll Down</span>
+            <span className="text-lg font-medium">Discover more about me</span>
             <ArrowDown size={20} className="text-accent-blue" />
           </motion.div>
 
