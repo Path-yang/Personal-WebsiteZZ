@@ -69,6 +69,12 @@ export function Navigation() {
     setIsOpen(false)
   }
 
+  const handleNavClick = (e: React.MouseEvent | React.TouchEvent, sectionId: string) => {
+    e.preventDefault()
+    e.stopPropagation()
+    scrollToSection(sectionId)
+  }
+
   const navVariants = {
     hidden: { 
       opacity: 0, 
@@ -233,7 +239,8 @@ export function Navigation() {
               {navigationItems.map((item, index) => (
                 <motion.button
                   key={item.sectionId}
-                  onClick={() => scrollToSection(item.sectionId)}
+                  onClick={(e) => handleNavClick(e, item.sectionId)}
+                  onTouchEnd={(e) => handleNavClick(e, item.sectionId)}
                   className="relative px-4 py-2 rounded-xl font-medium transition-all duration-200"
                   variants={linkVariants}
                   initial="inactive"
@@ -308,7 +315,8 @@ export function Navigation() {
             {navigationItems.map((item, index) => (
               <motion.button
                 key={item.sectionId}
-                onClick={() => scrollToSection(item.sectionId)}
+                onClick={(e) => handleNavClick(e, item.sectionId)}
+                onTouchEnd={(e) => handleNavClick(e, item.sectionId)}
                 className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
                 variants={mobileItemVariants}
                 whileHover={prefersReducedMotion ? {} : {

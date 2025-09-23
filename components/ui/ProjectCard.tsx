@@ -305,6 +305,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 transition: { duration: 0.2 }
               }}
               whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+              onClick={(e) => {
+                e.stopPropagation()
+                window.open(project.githubUrl, '_blank', 'noopener,noreferrer')
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                window.open(project.githubUrl, '_blank', 'noopener,noreferrer')
+              }}
             >
               <Github size={16} className="group-hover:rotate-12 transition-transform duration-300" />
               <span className="text-sm font-medium">GitHub</span>
@@ -328,6 +337,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 transition: { duration: 0.2 }
               }}
               whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+              onClick={(e) => {
+                e.stopPropagation()
+                window.open(project.demoUrl, '_blank', 'noopener,noreferrer')
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                window.open(project.demoUrl, '_blank', 'noopener,noreferrer')
+              }}
             >
               <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
               <span className="text-sm font-medium">Live Demo</span>
