@@ -238,7 +238,7 @@ export function HeroSection() {
             className="absolute w-1.5 h-1.5 bg-blue-400/30 rounded-full"
             style={{
               left: `${20 + (i * (isMobile ? 30 : 15))}%`,
-              top: `${30 + Math.random() * 40}%`,
+              top: `${30 + (i * 8) % 40}%`,
             }}
             animate={prefersReducedMotion ? {} : {
               y: [-20, 20],
