@@ -7,6 +7,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Fix mobile scrolling issues */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   }
   
   body {
@@ -14,6 +17,10 @@
     background-color: #0F172A;
     color: #F1F5F9;
     line-height: 1.6;
+    /* Fix mobile scrolling and touch issues */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    touch-action: manipulation;
   }
 
   * {
@@ -105,15 +112,26 @@
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
+  /* Fix mobile scrolling completely */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    touch-action: manipulation;
+    overscroll-behavior: none;
+  }
+  
   /* Optimize touch targets for mobile */
   button, a, [role="button"] {
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* Improve scroll performance on mobile */
   * {
     -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
   }
   
   /* Reduce font sizes slightly for better mobile readability */
@@ -125,6 +143,24 @@
   .hw-accelerated {
     transform: translate3d(0, 0, 0);
     will-change: auto;
+  }
+  
+  /* Disable complex animations on mobile for better performance */
+  .project-card {
+    will-change: auto;
+    transform: none;
+  }
+  
+  .project-card:hover {
+    transform: none !important;
+  }
+  
+  /* Fix mobile button interactions */
+  .project-card a,
+  .project-card button {
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

@@ -221,7 +221,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300 group"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                cursor: 'pointer'
               }}
             >
               <Github size={16} className="group-hover:rotate-12 transition-transform duration-300" />
@@ -239,7 +240,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300 group"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                cursor: 'pointer'
               }}
             >
               <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
@@ -255,7 +257,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300 group"
               style={{ 
                 touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                cursor: 'pointer'
               }}
             >
               <Play size={16} className="group-hover:scale-110 transition-transform duration-300" />
