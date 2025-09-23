@@ -98,7 +98,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
                 minWidth: '44px',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                cursor: 'pointer'
               }}
             >
               <Github size={16} />
@@ -119,7 +120,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
                 minWidth: '44px',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                cursor: 'pointer'
               }}
             >
               <ExternalLink size={16} />
@@ -138,7 +140,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
                 minWidth: '44px',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                cursor: 'pointer'
               }}
             >
               <Play size={16} />
