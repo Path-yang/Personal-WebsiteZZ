@@ -13,22 +13,10 @@
     scrollbar-width: auto;
   }
   
-  /* Ensure native scrollbar behavior */
-  html::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  html::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  html::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.3);
-    border-radius: 4px;
-  }
-  
-  html::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 163, 184, 0.5);
+  /* Use native browser scrollbar only */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
   }
   
   body {
@@ -40,8 +28,6 @@
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     touch-action: manipulation;
-    /* Ensure body can scroll properly - use default scroll behavior */
-    min-height: 100vh;
   }
 
   * {

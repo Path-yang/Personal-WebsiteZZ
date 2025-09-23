@@ -60,7 +60,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   }
 
   if (!isReady) {
-    return <div className="min-h-screen bg-dark-bg" />
+    return <div className="bg-dark-bg" />
   }
 
   return (
@@ -69,7 +69,6 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       initial="hidden"
       animate="visible"
       style={{ transformStyle: 'preserve-3d' }}
-      className="min-h-screen"
     >
       <motion.div
         variants={contentVariants}
