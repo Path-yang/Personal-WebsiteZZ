@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface SmoothScrollProviderProps {
@@ -9,8 +9,15 @@ interface SmoothScrollProviderProps {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const prefersReducedMotion = useReducedMotion()
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
     // Ensure smooth scrolling is enabled
     if (!prefersReducedMotion) {
       document.documentElement.style.scrollBehavior = 'smooth'
@@ -22,7 +29,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     return () => {
       document.documentElement.style.scrollBehavior = 'smooth'
     }
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, isClient])
 
   return <>{children}</>
 }
