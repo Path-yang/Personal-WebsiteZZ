@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ArrowDown, Sparkles } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useState, useEffect, useRef, useCallback } from 'react'
 
@@ -104,7 +104,7 @@ export function HeroSection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
+        delayChildren: 0.1
       }
     }
   }
@@ -121,7 +121,7 @@ export function HeroSection() {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
@@ -337,44 +337,44 @@ export function HeroSection() {
         ))}
       </div>
 
-        {/* Main content */}
-        <motion.div
-          className="relative z-10 text-center px-6 sm:px-8 max-w-6xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
-        >
+      {/* Main content */}
+      <motion.div
+        className="relative z-10 text-center px-6 sm:px-8 max-w-6xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
+      >
         {/* Greeting */}
-               <motion.div
-                 initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                 animate={{ 
-                   opacity: 1, 
-                   y: 0, 
-                   scale: 1,
-                   rotate: [0, 1, -1, 0]
-                 }}
-                 transition={{ 
-                   delay: 0.1,
-                   duration: 0.6, 
-                   ease: [0.25, 0.46, 0.45, 0.94],
-                   rotate: { delay: 0.8, duration: 2, ease: "easeInOut" }
-                 }}
-                 className="mb-6"
-               >
-                 <motion.p 
-                   className="text-3xl sm:text-4xl md:text-5xl text-blue-400 font-medium tracking-wide"
-                   animate={{
-                     textShadow: [
-                       '0 0 20px rgba(59, 130, 246, 0.4)',
-                       '0 0 30px rgba(59, 130, 246, 0.6)',
-                       '0 0 20px rgba(59, 130, 246, 0.4)'
-                     ]
-                   }}
-                   transition={{ delay: 1.0, duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                 >
-                   Hello, I'm
-                 </motion.p>
-               </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.9 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            rotate: [0, 1, -1, 0]
+          }}
+          transition={{ 
+            delay: 0.1,
+            duration: 0.6, 
+            ease: [0.25, 0.46, 0.45, 0.94],
+            rotate: { delay: 0.8, duration: 2, ease: "easeInOut" }
+          }}
+          className="mb-6"
+        >
+          <motion.p 
+            className="text-3xl sm:text-4xl md:text-5xl text-blue-400 font-medium tracking-wide"
+            animate={{
+              textShadow: [
+                '0 0 20px rgba(59, 130, 246, 0.4)',
+                '0 0 30px rgba(59, 130, 246, 0.6)',
+                '0 0 20px rgba(59, 130, 246, 0.4)'
+              ]
+            }}
+            transition={{ delay: 1.0, duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Hello, I'm
+          </motion.p>
+        </motion.div>
 
         {/* Name */}
         <motion.h1
@@ -510,43 +510,56 @@ export function HeroSection() {
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Sparkles size={16} className="text-blue-400" />
-            <span className="text-sm uppercase tracking-wider">Explore My Journey</span>
-            <Sparkles size={16} className="text-blue-400" />
+            <ArrowDown size={20} className="text-accent-blue" />
+            <span className="text-lg font-medium">Scroll Down</span>
+            <ArrowDown size={20} className="text-accent-blue" />
           </motion.div>
 
           <motion.button
             onClick={scrollToNext}
-            className="group relative p-4 sm:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full hover:border-blue-400/50 hover:bg-white/10 transition-all duration-300"
-            whileHover={{ scale: 1.1, y: -2 }}
+            className="group relative p-4 sm:p-6 bg-gradient-to-br from-dark-card/60 to-dark-card/30 border border-dark-border/50 rounded-full backdrop-blur-sm transition-all duration-500 overflow-hidden"
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to next section"
+            style={{ transformStyle: 'preserve-3d' }}
           >
-            {/* Pulsing ring */}
+            {/* Rotating background ring */}
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-blue-400/20"
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: 'conic-gradient(from 0deg, transparent, rgba(96, 165, 250, 0.3), transparent)',
+                padding: '2px'
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            />
+
+            {/* Arrow Icon */}
+            <motion.div
+              className="relative z-10 text-accent-blue"
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 0, 0.5]
+                y: [0, 8, 0],
+                rotateX: [0, 15, 0]
               }}
               transition={{
-                duration: 2,
+                duration: 1.5,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-            />
-
-            <motion.div
-              className="text-blue-400"
-              animate={{ y: [0, 3, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <ArrowDown size={24} />
             </motion.div>
           </motion.button>
+
+          {/* Scroll line indicator */}
+          <motion.div
+            className="w-px h-16 bg-gradient-to-b from-accent-blue/50 to-transparent"
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ delay: 2.0, duration: 0.8, ease: "easeOut" }}
+            style={{ transformOrigin: 'top' }}
+          />
         </motion.div>
       </motion.div>
-
     </section>
   )
 }
