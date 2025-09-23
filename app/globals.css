@@ -6,12 +6,9 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     /* Fix mobile scrolling issues */
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
-    /* Ensure smooth scrolling works properly */
-    scroll-padding-top: 80px;
     /* Remove any custom scrollbar styling */
     scrollbar-width: auto;
   }
@@ -32,17 +29,6 @@
   
   html::-webkit-scrollbar-thumb:hover {
     background: rgba(148, 163, 184, 0.5);
-  }
-  
-  /* Improve scroll performance and responsiveness */
-  * {
-    scroll-behavior: smooth;
-  }
-  
-  /* Ensure smooth scrolling works with mouse wheel */
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
   }
   
   body {
@@ -132,10 +118,6 @@
 
 /* Smooth scrolling for reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  
   *,
   *::before,
   *::after {
