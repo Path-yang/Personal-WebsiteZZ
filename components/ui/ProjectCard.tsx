@@ -50,7 +50,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"])
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion || !ref.current) return
+    if (prefersReducedMotion || !ref.current || window.innerWidth < 768) return
 
     const rect = ref.current.getBoundingClientRect()
     const width = rect.width
@@ -96,13 +96,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
           className="group relative h-full project-card"
       variants={cardVariants}
       style={{
-        rotateY: prefersReducedMotion ? 0 : rotateY,
-        rotateX: prefersReducedMotion ? 0 : rotateX,
+        rotateY: (prefersReducedMotion || window.innerWidth < 768) ? 0 : rotateY,
+        rotateX: (prefersReducedMotion || window.innerWidth < 768) ? 0 : rotateX,
         transformStyle: "preserve-3d",
       }}
       onMouseMove={throttledMouseMove}
       onMouseLeave={handleMouseLeave}
-          whileHover={prefersReducedMotion ? {} : { 
+          whileHover={(prefersReducedMotion || window.innerWidth < 768) ? {} : { 
             z: 25,
             transition: { duration: 0.2 }
           }}
@@ -291,86 +291,53 @@ export function ProjectCard({ project }: ProjectCardProps) {
         >
           {/* GitHub Link */}
           {project.githubUrl && (
-            <motion.a
+            <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300 group"
-              whileHover={prefersReducedMotion ? {} : { 
-                scale: 1.05,
-                backgroundColor: 'rgba(96, 165, 250, 0.1)',
-                borderColor: 'rgba(96, 165, 250, 0.5)',
-                boxShadow: '0 8px 25px rgba(96, 165, 250, 0.2)',
-                transform: "translateZ(30px)",
-                transition: { duration: 0.2 }
-              }}
-              whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-              onClick={(e) => {
-                e.stopPropagation()
-                window.open(project.githubUrl, '_blank', 'noopener,noreferrer')
-              }}
-              onTouchEnd={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                window.open(project.githubUrl, '_blank', 'noopener,noreferrer')
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
               }}
             >
               <Github size={16} className="group-hover:rotate-12 transition-transform duration-300" />
               <span className="text-sm font-medium">GitHub</span>
               <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-            </motion.a>
+            </a>
           )}
 
           {/* Demo Link */}
           {project.demoUrl && (
-            <motion.a
+            <a
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300 group"
-              whileHover={prefersReducedMotion ? {} : { 
-                scale: 1.05,
-                backgroundColor: 'rgba(52, 211, 153, 0.1)',
-                borderColor: 'rgba(52, 211, 153, 0.5)',
-                boxShadow: '0 8px 25px rgba(52, 211, 153, 0.2)',
-                transform: "translateZ(30px)",
-                transition: { duration: 0.2 }
-              }}
-              whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-              onClick={(e) => {
-                e.stopPropagation()
-                window.open(project.demoUrl, '_blank', 'noopener,noreferrer')
-              }}
-              onTouchEnd={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                window.open(project.demoUrl, '_blank', 'noopener,noreferrer')
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
               }}
             >
               <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
               <span className="text-sm font-medium">Live Demo</span>
               <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-            </motion.a>
+            </a>
           )}
 
               {/* Demo Video Button - Only show if video URL exists */}
               {project.demoVideoUrl && (
-                <motion.button
+                <button
                   onClick={() => setShowVideo(true)}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300 group"
-                  whileHover={prefersReducedMotion ? {} : { 
-                    scale: 1.05,
-                    backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                    borderColor: 'rgba(168, 85, 247, 0.5)',
-                    boxShadow: '0 8px 25px rgba(168, 85, 247, 0.2)',
-                    transform: "translateZ(30px)",
-                    transition: { duration: 0.2 }
+                  style={{ 
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent'
                   }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                 >
                   <Play size={16} className="group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm font-medium">Demo Video</span>
-                </motion.button>
+                </button>
               )}
         </motion.div>
       </motion.div>
