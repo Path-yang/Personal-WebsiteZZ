@@ -268,15 +268,12 @@ export function HeroSection() {
                   const mouseInfluence = 0.2 + (interaction * 0.5)
                   const mouseX = x * 100
                   
-                  // Follow the blob positions with floating movement
+                  // Follow the blob positions with static offset
                   const blobX = i < 6 ? 20 + (mouseX - 20) * mouseInfluence : 
                                i < 12 ? 80 + (mouseX - 80) * mouseInfluence : 
                                        60 + (mouseX - 60) * mouseInfluence
                   
-                  // Add floating offset that changes over time
-                  const floatOffset = Math.sin(Date.now() * 0.001 + i) * 8
-                  
-                  return `${blobX + (i * 2 - 18) + floatOffset}%`
+                  return `${blobX + (i * 2 - 18)}%`
                 }
               ),
               top: useTransform(
@@ -285,15 +282,12 @@ export function HeroSection() {
                   const mouseInfluence = 0.2 + (interaction * 0.5)
                   const mouseY = y * 100
                   
-                  // Follow the blob positions with floating movement
+                  // Follow the blob positions with static offset
                   const blobY = i < 6 ? 30 + (mouseY - 30) * mouseInfluence : 
                                i < 12 ? 70 + (mouseY - 70) * mouseInfluence : 
                                        20 + (mouseY - 20) * mouseInfluence
                   
-                  // Add floating offset that changes over time
-                  const floatOffset = Math.cos(Date.now() * 0.0008 + i * 0.5) * 6
-                  
-                  return `${blobY + (i * 1.5 - 13) + floatOffset}%`
+                  return `${blobY + (i * 1.5 - 13)}%`
                 }
               ),
               opacity: useTransform(interactionSpring, [0, 1], [0.3, 0.8]),
