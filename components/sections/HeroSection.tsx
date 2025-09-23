@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
@@ -30,28 +31,48 @@ export function HeroSection() {
   
   useEffect(() => {
     const checkMobile = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window))
+      try {
+        if (typeof window !== 'undefined') {
+          setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window))
+        }
+      } catch (error) {
+        console.warn('Mobile detection error:', error)
+      }
+    }
+    
+    // Throttled resize handler to prevent too many calls
+    let resizeTimeout: NodeJS.Timeout
+    const throttledResize = () => {
+      try {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(checkMobile, 100)
+      } catch (error) {
+        console.warn('Resize throttling error:', error)
       }
     }
     
     // Initial check with delay to ensure proper mounting
-    const timeoutId = setTimeout(checkMobile, 100)
+    const initialTimeout = setTimeout(checkMobile, 100)
     
-    const handleResize = () => {
-      checkMobile()
-    }
-    
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize)
-      window.addEventListener('orientationchange', handleResize)
+    try {
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', throttledResize, { passive: true })
+        window.addEventListener('orientationchange', throttledResize, { passive: true })
+      }
+    } catch (error) {
+      console.warn('Event listener setup error:', error)
     }
     
     return () => {
-      clearTimeout(timeoutId)
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', handleResize)
-        window.removeEventListener('orientationchange', handleResize)
+      try {
+        clearTimeout(initialTimeout)
+        clearTimeout(resizeTimeout)
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('resize', throttledResize)
+          window.removeEventListener('orientationchange', throttledResize)
+        }
+      } catch (error) {
+        console.warn('Cleanup error:', error)
       }
     }
   }, [])
@@ -128,21 +149,22 @@ export function HeroSection() {
   }
 
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      onMouseMove={handlePointerMove}
-      onTouchMove={handlePointerMove}
-      onMouseEnter={() => !prefersReducedMotion && setIsInteracting(true)}
-      onMouseLeave={() => setIsInteracting(false)}
-      onTouchStart={(e) => {
-        if (!prefersReducedMotion) {
-          setIsInteracting(true)
-          handlePointerMove(e)
-        }
-      }}
-      onTouchEnd={() => setIsInteracting(false)}
-    >
+    <ErrorBoundary>
+      <section
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        onMouseMove={handlePointerMove}
+        onTouchMove={handlePointerMove}
+        onMouseEnter={() => !prefersReducedMotion && setIsInteracting(true)}
+        onMouseLeave={() => setIsInteracting(false)}
+        onTouchStart={(e) => {
+          if (!prefersReducedMotion) {
+            setIsInteracting(true)
+            handlePointerMove(e)
+          }
+        }}
+        onTouchEnd={() => setIsInteracting(false)}
+      >
       {/* Base background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-black" />
       
@@ -560,6 +582,7 @@ export function HeroSection() {
           />
         </motion.div>
       </motion.div>
-    </section>
+      </section>
+    </ErrorBoundary>
   )
 }
