@@ -143,12 +143,12 @@ export function Navigation() {
     <>
       {/* Navigation Bar */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-3 sm:py-4"
         variants={navVariants}
         initial="hidden"
         animate={isVisible || prefersReducedMotion ? "visible" : "hidden"}
         style={{
-          backgroundColor: 'rgba(15, 23, 42, 0.9)',
+          backgroundColor: 'rgba(15, 23, 42, 0.95)',
           backdropFilter: 'blur(10px)',
           borderBottom: '1px solid rgba(96, 165, 250, 0.2)'
         }}
@@ -158,48 +158,35 @@ export function Navigation() {
           style={{ transformStyle: 'preserve-3d' }}
         >
           <motion.div
-            className="bg-dark-card/80 backdrop-blur-xl border border-dark-border/50 rounded-2xl px-6 py-3 flex items-center justify-between shadow-lg"
+            className="bg-dark-card/80 backdrop-blur-xl border border-dark-border/50 rounded-xl sm:rounded-2xl px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-lg"
             style={{
               background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%)',
               boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(96, 165, 250, 0.1)'
             }}
-            whileHover={prefersReducedMotion ? {} : {
-              boxShadow: '0 25px 50px rgba(96, 165, 250, 0.15), 0 0 0 1px rgba(96, 165, 250, 0.2)',
-              transition: { duration: 0.3 }
-            }}
           >
             {/* Logo and Name */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <motion.div 
-                className="flex items-center gap-3"
-                whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-                whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                className="flex items-center gap-2 sm:gap-3"
+                whileTap={{ scale: 0.95 }}
               >
                 <motion.div
-                  className="p-2 bg-gradient-to-br from-accent-blue/20 to-accent-mint/20 rounded-xl border border-accent-blue/30"
+                  className="p-1.5 sm:p-2 bg-gradient-to-br from-accent-blue/20 to-accent-mint/20 rounded-lg sm:rounded-xl border border-accent-blue/30"
                   animate={prefersReducedMotion ? {} : {
                     rotate: [0, 360],
-                    scale: [1, 1.1, 1]
+                    scale: [1, 1.05, 1]
                   }}
                   transition={{
                     duration: 8,
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  whileHover={prefersReducedMotion ? {} : {
-                    scale: 1.2,
-                    rotate: 180,
-                    transition: { duration: 0.3 }
-                  }}
                 >
-                  <Zap size={20} className="text-accent-blue" />
+                  <Zap size={16} className="text-accent-blue sm:w-5 sm:h-5" />
                 </motion.div>
                 <motion.span 
-                  className="font-semibold text-white text-lg hidden sm:block"
-                  whileHover={prefersReducedMotion ? {} : {
-                    textShadow: '0 0 20px rgba(96, 165, 250, 0.6)',
-                    transition: { duration: 0.3 }
-                  }}
+                  className="font-semibold text-white text-sm sm:text-lg"
+                  whileTap={{ scale: 0.95 }}
                 >
                   Yang Zhenzhao
                 </motion.span>
@@ -210,22 +197,18 @@ export function Navigation() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="hidden sm:flex items-center gap-3"
+                className="hidden sm:flex items-center gap-2 sm:gap-3"
               >
                 {/* LinkedIn Button */}
                 <motion.a
                   href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
-                  whileHover={prefersReducedMotion ? {} : { 
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)'
-                  }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                  className="p-1.5 sm:p-2 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Linkedin size={18} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                  <Linkedin size={16} className="text-blue-400 group-hover:text-blue-300 transition-colors sm:w-[18px] sm:h-[18px]" />
                 </motion.a>
 
                 {/* GitHub Button */}
@@ -233,15 +216,11 @@ export function Navigation() {
                   href="https://github.com/Zhenzha0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
-                  whileHover={prefersReducedMotion ? {} : { 
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: '0 8px 25px rgba(107, 114, 128, 0.3)'
-                  }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                  className="p-1.5 sm:p-2 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Github size={18} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
+                  <Github size={16} className="text-gray-400 group-hover:text-gray-300 transition-colors sm:w-[18px] sm:h-[18px]" />
                 </motion.a>
 
                 {/* Resume Button */}

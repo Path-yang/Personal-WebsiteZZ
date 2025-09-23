@@ -6,7 +6,6 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { FloatingActionButton } from '@/components/ui/FloatingActionButton'
 import { KeyboardShortcuts } from '@/components/ui/KeyboardShortcuts'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
-import { CursorEffects } from '@/components/ui/CursorEffects'
 
 export const metadata: Metadata = {
   title: 'Yang Zhenzhao - AI Engineer & Full-Stack Developer',
@@ -36,7 +35,6 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
         <LoadingScreen />
-        <CursorEffects />
         <SmoothScrollProvider>
           <ScrollProgress />
           <Navigation />

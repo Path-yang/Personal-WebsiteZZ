@@ -49,6 +49,24 @@
     perspective: 1000px;
   }
 
+  /* Hero section styles */
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(96, 165, 250, 0.3);
+  }
+
+  .grid-animation {
+    animation: grid-move 20s linear infinite;
+  }
+
+  @keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
   /* Optimize 3D transforms */
   .preserve-3d {
     transform-style: preserve-3d;
