@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { LucideIcon, Github, ExternalLink, Play, X } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useRef, useState } from 'react'
-import { Portal } from '@/components/ui/Portal'
+import { createPortal } from 'react-dom'
 
 interface ProjectCardProps {
   project: {
@@ -222,7 +222,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                textDecoration: 'none'
               }}
             >
               <Github size={16} className="group-hover:rotate-12 transition-transform duration-300" />
@@ -241,7 +246,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                textDecoration: 'none'
               }}
             >
               <ExternalLink size={16} className="group-hover:rotate-12 transition-transform duration-300" />
@@ -258,7 +268,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                border: 'none',
+                background: 'linear-gradient(to right, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2))',
+                borderRadius: '0.5rem'
               }}
             >
               <Play size={16} className="group-hover:scale-110 transition-transform duration-300" />
@@ -269,75 +286,74 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Video Modal Overlay - Rendered at document body level */}
-      <Portal>
+      {showVideo && createPortal(
         <AnimatePresence>
-          {showVideo && (
+          <motion.div
+            className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/90 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowVideo(false)}
+            style={{ 
+              zIndex: 999999,
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0
+            }}
+          >
             <motion.div
-              className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/90 backdrop-blur-md"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowVideo(false)}
-              style={{ 
-                zIndex: 999999,
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0
-              }}
+              className="relative w-[90vw] max-w-4xl bg-dark-card rounded-2xl overflow-hidden shadow-2xl border border-dark-border"
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{ zIndex: 1000000 }}
             >
-              <motion.div
-                className="relative w-[90vw] max-w-4xl bg-dark-card rounded-2xl overflow-hidden shadow-2xl border border-dark-border"
-                initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.8, opacity: 0, y: 50 }}
-                onClick={(e) => e.stopPropagation()}
-                style={{ zIndex: 1000000 }}
-              >
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-dark-border">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gradient-to-br from-accent-blue/20 to-accent-blue/10 rounded-lg text-accent-blue">
-                      <Icon size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
-                      <p className="text-slate-400">{project.category}</p>
-                    </div>
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-dark-border">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-gradient-to-br from-accent-blue/20 to-accent-blue/10 rounded-lg text-accent-blue">
+                    <Icon size={24} />
                   </div>
-                  <motion.button
-                    onClick={() => setShowVideo(false)}
-                    className="p-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-slate-700/50"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <X size={24} />
-                  </motion.button>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                    <p className="text-slate-400">{project.category}</p>
+                  </div>
                 </div>
+                <motion.button
+                  onClick={() => setShowVideo(false)}
+                  className="p-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-slate-700/50"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X size={24} />
+                </motion.button>
+              </div>
 
-                {/* Video Content */}
-                <div className="p-6">
-                  <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden">
-                    <video
-                      src={project.demoVideoUrl}
-                      className="w-full h-full"
-                      controls
-                      preload="metadata"
-                      title={`${project.title} Demo Video`}
-                    >
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <p className="text-slate-400 text-sm mt-4 text-center">
-                    Click outside the video or press the X button to close
-                  </p>
+              {/* Video Content */}
+              <div className="p-6">
+                <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden">
+                  <video
+                    src={project.demoVideoUrl}
+                    className="w-full h-full"
+                    controls
+                    preload="metadata"
+                    title={`${project.title} Demo Video`}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
-              </motion.div>
+                <p className="text-slate-400 text-sm mt-4 text-center">
+                  Click outside the video or press the X button to close
+                </p>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </Portal>
+          </motion.div>
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   )
 }

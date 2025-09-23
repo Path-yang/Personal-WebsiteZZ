@@ -97,27 +97,34 @@ export function HeroSection() {
   const scrollToNext = () => {
     if (typeof window !== 'undefined') {
       const aboutSection = document.getElementById('about')
-      aboutSection?.scrollIntoView({ behavior: 'smooth' })
+      if (aboutSection) {
+        // Use native smooth scrolling for better mobile support
+        aboutSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        })
+      }
     }
   }
 
-  // Clean animation variants
+  // Clean animation variants - optimized for mobile
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: isMobile ? 0.1 : 0.2,
+        delayChildren: isMobile ? 0.05 : 0.1
       }
     }
   }
 
-  // Simple text animation - NO CHARACTER STAGGER
+  // Simple text animation - optimized for mobile
   const textVariants = {
     hidden: { 
       opacity: 0,
-      y: 30,
+      y: isMobile ? 20 : 30,
       scale: 0.95
     },
     visible: {
@@ -125,7 +132,7 @@ export function HeroSection() {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0.4 : 0.6,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
