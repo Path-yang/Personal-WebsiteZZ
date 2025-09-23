@@ -10,8 +10,8 @@
     /* Fix mobile scrolling issues */
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
-    /* Prevent mobile zoom on double tap */
-    touch-action: manipulation;
+    /* Ensure smooth scrolling works properly */
+    scroll-padding-top: 80px;
   }
   
   body {
@@ -23,8 +23,9 @@
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     touch-action: manipulation;
-    /* Prevent mobile bounce scrolling */
-    overscroll-behavior: none;
+    /* Ensure body can scroll properly */
+    min-height: 100vh;
+    overflow-y: auto;
   }
 
   * {
@@ -122,13 +123,6 @@
     overflow-x: hidden;
     touch-action: manipulation;
     overscroll-behavior: none;
-    position: relative;
-  }
-  
-  /* Ensure smooth scrolling on mobile */
-  html {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
   }
   
   /* Optimize touch targets for mobile */
@@ -137,9 +131,6 @@
     min-width: 44px;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
   }
   
   /* Improve scroll performance on mobile */
@@ -163,7 +154,6 @@
   .project-card {
     will-change: auto;
     transform: none;
-    backface-visibility: hidden;
   }
   
   .project-card:hover {
@@ -176,31 +166,6 @@
     pointer-events: auto;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    position: relative;
-    z-index: 10;
-  }
-  
-  /* Optimize motion elements for mobile */
-  .motion-element {
-    will-change: auto;
-    transform: none;
-  }
-  
-  /* Reduce particle complexity on mobile */
-  .particle-container {
-    will-change: auto;
-    transform: none;
-  }
-  
-  /* Fix mobile scrolling containers */
-  .overflow-hidden {
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Optimize hero section for mobile */
-  .hero-content {
-    will-change: auto;
-    transform: none;
   }
 }
 

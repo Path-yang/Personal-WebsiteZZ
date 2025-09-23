@@ -243,22 +243,23 @@ export function HeroSection() {
 
       {/* Enhanced floating particles with radiating effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Main floating particles - reduced for mobile */}
-        {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+        {/* Main floating particles */}
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={`particle-${i}`}
             className="absolute w-1.5 h-1.5 bg-blue-400/30 rounded-full"
             style={{
+              display: isMobile && i >= 3 ? 'none' as const : undefined,
               left: `${20 + (i * (isMobile ? 30 : 15))}%`,
               top: `${30 + (i * 8) % 40}%`,
             }}
-            animate={prefersReducedMotion || isMobile ? {} : {
+            animate={prefersReducedMotion ? {} : {
               y: [-20, 20],
               opacity: [0.2, 0.6, 0.2],
               scale: [0.8, 1.2, 0.8]
             }}
             transition={{
-              duration: isMobile ? 6 + i : 4 + i,
+              duration: 4 + i,
               repeat: Infinity,
               delay: i * 0.5,
               ease: "easeInOut"
@@ -266,27 +267,28 @@ export function HeroSection() {
           />
         ))}
         
-        {/* Subtle radiating particles that respond to interaction - reduced for mobile */}
-        {[...Array(isMobile ? 6 : 12)].map((_, i) => (
+        {/* Subtle radiating particles that respond to interaction */}
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={`radiate-${i}`}
             className="absolute w-1 h-1 rounded-full"
             style={{
-              left: `${15 + (i * (isMobile ? 12 : 8))}%`,
+              display: isMobile && i >= 8 ? 'none' as const : undefined,
+              left: `${15 + (i * 8)}%`,
               top: `${25 + (i % 4) * 20}%`,
               backgroundColor: `rgba(${i % 3 === 0 ? '59, 130, 246' : i % 3 === 1 ? '168, 85, 247' : '34, 197, 94'}, 0.3)`,
-              opacity: isMobile ? 0.2 : useTransform(interactionSpring, [0, 1], [0.1, 0.4]),
-              scale: isMobile ? 1 : useTransform(interactionSpring, [0, 1], [0.5, 1.2]),
-              x: isMobile ? 0 : useTransform(mouseXSpring, [0, 1], [-5 + i * 2, 5 - i * 2]),
-              y: isMobile ? 0 : useTransform(mouseYSpring, [0, 1], [-3 + i, 3 - i]),
+              opacity: useTransform(interactionSpring, [0, 1], [0.1, 0.4]),
+              scale: useTransform(interactionSpring, [0, 1], [0.5, 1.2]),
+              x: useTransform(mouseXSpring, [0, 1], [-5 + i * 2, 5 - i * 2]),
+              y: useTransform(mouseYSpring, [0, 1], [-3 + i, 3 - i]),
             }}
-            animate={prefersReducedMotion || isMobile ? {} : {
+            animate={prefersReducedMotion ? {} : {
               y: [-8, 8],
               opacity: [0.1, 0.5, 0.1],
               rotate: [0, 360]
             }}
             transition={{
-              duration: isMobile ? 8 + i * 0.5 : 6 + i * 0.3,
+              duration: 6 + i * 0.3,
               repeat: Infinity,
               delay: i * 0.2,
               ease: "easeInOut"
@@ -294,14 +296,15 @@ export function HeroSection() {
           />
         ))}
         
-        {/* Floating particles that follow the fluid lights - significantly reduced for mobile */}
-        {[...Array(isMobile ? 6 : 18)].map((_, i) => (
+        {/* Floating particles that follow the fluid lights */}
+        {[...Array(18)].map((_, i) => (
           <motion.div
             key={`follow-particle-${i}`}
             className="absolute w-0.5 h-0.5 rounded-full"
             style={{
+              display: isMobile && i >= 12 ? 'none' as const : undefined,
               backgroundColor: `rgba(${i % 3 === 0 ? '59, 130, 246' : i % 3 === 1 ? '168, 85, 247' : '34, 197, 94'}, 0.6)`,
-              left: isMobile ? `${20 + (i * 15)}%` : useTransform(
+              left: useTransform(
                 [mouseXSpring, mouseYSpring, interactionSpring],
                 ([x, y, interaction]: number[]) => {
                   const mouseInfluence = 0.2 + (interaction * 0.5)
@@ -315,7 +318,7 @@ export function HeroSection() {
                   return `${blobX + (i * 2 - 18)}%`
                 }
               ),
-              top: isMobile ? `${30 + (i * 10) % 60}%` : useTransform(
+              top: useTransform(
                 [mouseXSpring, mouseYSpring, interactionSpring],
                 ([x, y, interaction]: number[]) => {
                   const mouseInfluence = 0.2 + (interaction * 0.5)
@@ -329,10 +332,10 @@ export function HeroSection() {
                   return `${blobY + (i * 1.5 - 13)}%`
                 }
               ),
-              opacity: isMobile ? 0.4 : useTransform(interactionSpring, [0, 1], [0.3, 0.8]),
-              scale: isMobile ? 1 : useTransform(interactionSpring, [0, 1], [0.8, 1.5]),
+              opacity: useTransform(interactionSpring, [0, 1], [0.3, 0.8]),
+              scale: useTransform(interactionSpring, [0, 1], [0.8, 1.5]),
             }}
-            animate={prefersReducedMotion || isMobile ? {} : {
+            animate={prefersReducedMotion ? {} : {
               scale: [0.8, 1.2, 0.8],
               opacity: [0.3, 0.7, 0.3],
               x: [0, Math.sin(i) * 15, 0],
@@ -340,7 +343,7 @@ export function HeroSection() {
               rotate: [0, 180, 360]
             }}
             transition={{
-              duration: isMobile ? 5 + i * 0.3 : 3 + i * 0.2,
+              duration: 3 + i * 0.2,
               repeat: Infinity,
               delay: i * 0.15,
               ease: "easeInOut"
