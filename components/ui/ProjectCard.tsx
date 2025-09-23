@@ -1,22 +1,10 @@
 'use client'
 
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { LucideIcon, Github, ExternalLink, Play, X } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useRef, MouseEvent, useState, useCallback } from 'react'
+import { useRef, useState } from 'react'
 import { Portal } from '@/components/ui/Portal'
-
-// Simple throttle function
-function throttle<T extends (...args: any[]) => any>(func: T, limit: number): T {
-  let inThrottle: boolean
-  return ((...args: any[]) => {
-    if (!inThrottle) {
-      func(...args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
-    }
-  }) as T
-}
 
 interface ProjectCardProps {
   project: {
@@ -40,81 +28,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [showVideo, setShowVideo] = useState(false)
 
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const mouseXSpring = useSpring(x)
-  const mouseYSpring = useSpring(y)
-
-      const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"])
-      const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"])
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion || !ref.current || window.innerWidth < 768) return
-
-    const rect = ref.current.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = e.clientX - rect.left
-    const mouseY = e.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct)
-    y.set(yPct)
-  }
-
-  // Throttle mouse move for better performance
-  const throttledMouseMove = useCallback(
-    throttle(handleMouseMove, 16), // ~60fps
-    [prefersReducedMotion, ref]
-  )
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: prefersReducedMotion ? 0 : 0.8,
-        ease: [0.645, 0.045, 0.355, 1.000],
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  }
-
   return (
-        <motion.div
-          ref={ref}
-          className="group relative h-full project-card"
-      variants={cardVariants}
-      style={{
-        rotateY: (prefersReducedMotion || window.innerWidth < 768) ? 0 : rotateY,
-        rotateX: (prefersReducedMotion || window.innerWidth < 768) ? 0 : rotateX,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={throttledMouseMove}
-      onMouseLeave={handleMouseLeave}
-          whileHover={(prefersReducedMotion || window.innerWidth < 768) ? {} : { 
-            z: 25,
-            transition: { duration: 0.2 }
-          }}
+    <div
+      ref={ref}
+      className="group relative h-full project-card"
     >
-      <motion.div 
+      <div 
         className="relative bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl p-6 h-full transition-all duration-500 group-hover:border-accent-blue/40 overflow-hidden"
         style={{
           transform: prefersReducedMotion ? "translateZ(0)" : "translateZ(20px)",
           boxShadow: prefersReducedMotion ? "none" : "0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)"
-        }}
-        whileHover={{
-          boxShadow: prefersReducedMotion ? "none" : "0 30px 60px rgba(96, 165, 250, 0.15), 0 0 0 1px rgba(96, 165, 250, 0.2)"
         }}
       >
         {/* Animated background gradient */}
@@ -325,22 +248,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </a>
           )}
 
-              {/* Demo Video Button - Only show if video URL exists */}
-              {project.demoVideoUrl && (
-                <button
-                  onClick={() => setShowVideo(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300 group"
-                  style={{ 
-                    touchAction: 'manipulation',
-                    WebkitTapHighlightColor: 'transparent'
-                  }}
-                >
-                  <Play size={16} className="group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-sm font-medium">Demo Video</span>
-                </button>
-              )}
+          {/* Demo Video Button - Only show if video URL exists */}
+          {project.demoVideoUrl && (
+            <button
+              onClick={() => setShowVideo(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300 group"
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+            >
+              <Play size={16} className="group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-sm font-medium">Demo Video</span>
+            </button>
+          )}
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Video Modal Overlay - Rendered at document body level */}
       <Portal>
@@ -412,7 +335,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </AnimatePresence>
       </Portal>
-    </motion.div>
+    </div>
   )
 }
-

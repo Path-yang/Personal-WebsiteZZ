@@ -4,7 +4,6 @@ import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvide
 import { Navigation } from '@/components/ui/Navigation'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { FloatingActionButton } from '@/components/ui/FloatingActionButton'
-import { KeyboardShortcuts } from '@/components/ui/KeyboardShortcuts'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
 
 export const metadata: Metadata = {
@@ -40,7 +39,6 @@ export default function RootLayout({
           <Navigation />
           {children}
           <FloatingActionButton />
-          <KeyboardShortcuts />
         </SmoothScrollProvider>
       </body>
     </html>
