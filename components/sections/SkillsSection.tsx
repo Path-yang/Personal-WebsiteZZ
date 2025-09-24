@@ -219,16 +219,16 @@ export function SkillsSection() {
                   key={category.title}
                   variants={categoryVariants}
                   style={{ transformStyle: 'preserve-3d' }}
-                  className="group"
+                  className="group px-3 sm:px-6"
                 >
                   {/* Category Header */}
                   <motion.div
-                    className="flex items-center justify-center gap-4 mb-8"
+                    className="flex items-center justify-center gap-4 mb-8 px-4"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
                     <motion.div
-                      className={`p-3 bg-gradient-to-br ${category.color} ${category.borderColor} border rounded-xl backdrop-blur-sm`}
+                      className={`px-4 py-3 sm:px-4 sm:py-3.5 bg-gradient-to-br ${category.color} ${category.borderColor} border rounded-xl backdrop-blur-sm shadow-lg`}
                       animate={{
                         y: [-2, 2, -2],
                         rotateY: [0, 5, 0, -5, 0]
@@ -334,4 +334,3 @@ export function SkillsSection() {
     </Section>
   )
 }
-

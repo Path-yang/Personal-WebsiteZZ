@@ -8,71 +8,21 @@ import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-rea
 
 const projects = [
   {
-    id: 'maritime-hackathon',
-    title: 'Maritime AI Classification',
-    category: 'Machine Learning',
-    period: 'Jan 2025',
-    description: 'Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    id: 'silver-sigma',
+    title: 'SilverSigma',
+    category: 'Full Stack Development • AI Integration',
+    period: 'Sep 2025',
+    description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
-      'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
-      'Achieved 90%+ accuracy in classification tasks',
-      'Processed dataset of 10,000+ ship entries'
-    ],
-    icon: Ship,
-    tech: ['Python', 'Machine Learning', 'Data Analysis', 'Algorithm Design'],
-    githubUrl: 'https://github.com/Path-yang/Maritime-Hackathon-2025'
-  },
-  {
-    id: 'lifehack',
-    title: 'Sigma Health',
-    category: 'React Native • AI Integration',
-    period: 'June 2025',
-    description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
-    highlights: [
-      'Integrated real-time Singapore health data',
-      'GPT-powered health guidance and recommendations',
-      'Community reporting features for public health',
-      'Finalist achievement in competitive hackathon'
+      'Developed AI-powered companion platform for elderly care',
+      'Implemented real-time avatar conversation system',
+      'Built hobby discovery and social networking features',
+      'Created secure social space for senior community engagement'
     ],
     icon: Heart,
-    tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
-    githubUrl: 'https://github.com/clemenong1/SigmaHealth',
-    demoVideoUrl: '/SigmaHealth-demo-video.mp4'
-  },
-  {
-    id: 'dsta-brainhack',
-    title: 'Sigma Shield',
-    category: 'React Native • Community Intelligence',
-    period: 'June 2025',
-    description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
-    highlights: [
-      'Combined AI detection with community reporting',
-      'Real-time scam URL analysis and flagging',
-      'Interactive educational modules for scam awareness',
-      'Top 20 finalist in DSTA Brainhack competition'
-    ],
-    icon: Shield,
-    tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
-    githubUrl: 'https://github.com/Path-yang/DSTA-Code-Exp-2025',
-    demoVideoUrl: '/SigmaShield-demo-video.mp4'
-  },
-  {
-    id: 'hackomania',
-    title: 'No Fap',
-    category: 'Full Stack Development',
-    period: 'Feb 2025',
-    description: 'Full-stack donation platform connecting users seeking support with community contributors through micro-donations.',
-    highlights: [
-      'Built with Next.js, TypeScript, and MySQL',
-      'Integrated Open Payments API for secure transactions',
-      'Designed user-friendly interface for addiction support',
-      'Scalable architecture for community growth'
-    ],
-    icon: Brain,
-    tech: ['Next.js', 'TypeScript', 'MySQL', 'Open Payments API'],
-    githubUrl: 'https://github.com/Path-yang/Hackomania_2025',
-    demoUrl: 'https://geekshackinghackathon-8ygu.vercel.app/'
-  },
+    tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
+    githubUrl: 'https://github.com/Path-yang/SilverSigma',
+    demoUrl: 'https://silver-sigma.vercel.app/'  },
   {
     id: 'sentinel-ai',
     title: 'SentinelAI',
@@ -88,23 +38,73 @@ const projects = [
     icon: Shield,
     tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
     githubUrl: 'https://github.com/Path-yang/SentinelAI',
-    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
-  },
+    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/',
+    pitchVideoUrl: 'https://www.youtube.com/watch?v=mX03emoBGes&feature=youtu.be'  },
   {
-    id: 'silver-sigma',
-    title: 'SilverSigma',
+    id: 'lifehack',
+    title: 'SigmaHealth',
     category: 'Full Stack Development • AI Integration',
-    period: 'Sep 2025',
-    description: 'Part of a team of 5 to build an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
+    period: 'July 2025',
+    description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
     highlights: [
-      'Developed AI-powered companion platform for elderly care',
-      'Implemented real-time avatar conversation system',
-      'Built hobby discovery and social networking features',
-      'Created secure social space for senior community engagement'
+      'Integrated real-time Singapore health data',
+      'GPT-powered health guidance and recommendations',
+      'Community reporting features for public health',
+      'Finalist achievement in competitive hackathon'
     ],
     icon: Heart,
-    tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
-    githubUrl: 'https://github.com/Path-yang/SilverSigma'
+    tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
+    githubUrl: 'https://github.com/clemenong1/SigmaHealth',
+    demoUrl: 'https://www.youtube.com/watch?v=y4ql2yiB7j4'
+  },
+  {
+    id: 'dsta-brainhack',
+    title: 'SigmaShield',
+    category: 'Full Stack Development • AI Integration',
+    period: 'June 2025 - July 2025',
+    description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
+    highlights: [
+      'Combined AI detection with community reporting',
+      'Real-time scam URL analysis and flagging',
+      'Interactive educational modules for scam awareness',
+      'Top 20 finalist in DSTA Brainhack competition'
+    ],
+    icon: Shield,
+    tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
+    githubUrl: 'https://github.com/Path-yang/DSTA-Code-Exp-2025',
+    demoUrl: 'https://www.canva.com/design/DAGqDBMHrzE/HRmg8WpRrwy6EB30zSUjJg/edit'
+  },
+  {
+    id: 'hackomania',
+    title: 'NoFap',
+    category: 'Full Stack Development',
+    period: 'Feb 2025',
+    description: 'Full-stack donation platform connecting users seeking support with community contributors through micro-donations.',
+    highlights: [
+      'Built with Next.js, TypeScript, and MySQL',
+      'Integrated Open Payments API for secure transactions',
+      'Designed user-friendly interface for addiction support',
+      'Scalable architecture for community growth'
+    ],
+    icon: Brain,
+    tech: ['Next.js', 'TypeScript', 'MySQL', 'Open Payments API'],
+    githubUrl: 'https://github.com/Path-yang/Hackomania_2025',
+    demoUrl: 'https://geekshackinghackathon-8ygu.vercel.app/'
+  },
+  {
+    id: 'maritime-hackathon',
+    title: 'Maritime AI Classification',
+    category: 'Machine Learning',
+    period: 'Jan 2025',
+    description: 'Top 3 - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    highlights: [
+      'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
+      'Achieved 90%+ accuracy in classification tasks',
+      'Processed dataset of 10,000+ ship entries'
+    ],
+    icon: Ship,
+    tech: ['Python', 'Machine Learning', 'Data Analysis', 'Algorithm Design'],
+    githubUrl: 'https://github.com/Path-yang/Maritime-Hackathon-2025'
   }
 ]
 
@@ -144,4 +144,3 @@ export function ProjectsSection() {
     </Section>
   )
 }
-
