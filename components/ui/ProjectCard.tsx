@@ -29,8 +29,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [showVideo, setShowVideo] = useState(false)
 
+  const handleInteractiveClick = (event: React.MouseEvent | React.TouchEvent) => {
+    event.stopPropagation()
+  }
+
   return (
-    <div ref={ref} className="group relative h-full">
+    <div ref={ref} className="project-card group relative h-full">
       <div className="relative bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl p-6 h-full transition-all duration-500 group-hover:border-accent-blue/40 overflow-hidden">
         
         {/* Header */}
@@ -103,6 +107,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 pointerEvents: 'auto',
                 cursor: 'pointer'
               }}
+              onClick={handleInteractiveClick}
+              onTouchStart={handleInteractiveClick}
             >
               <Github size={16} />
               <span className="text-sm font-medium">GitHub</span>
@@ -125,6 +131,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 pointerEvents: 'auto',
                 cursor: 'pointer'
               }}
+              onClick={handleInteractiveClick}
+              onTouchStart={handleInteractiveClick}
             >
               {project.id === 'dsta-brainhack' ? <Presentation size={16} /> : <ExternalLink size={16} />}
               <span className="text-sm font-medium">
@@ -153,6 +161,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 pointerEvents: 'auto',
                 cursor: 'pointer'
               }}
+              onClick={handleInteractiveClick}
+              onTouchStart={handleInteractiveClick}
             >
               <Presentation size={16} />
               <span className="text-sm font-medium">Slides</span>
@@ -175,6 +185,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 pointerEvents: 'auto',
                 cursor: 'pointer'
               }}
+              onClick={handleInteractiveClick}
+              onTouchStart={handleInteractiveClick}
             >
               <Play size={16} />
               <span className="text-sm font-medium">Pitch Video</span>
@@ -185,7 +197,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Demo Video Button */}
           {project.demoVideoUrl && (
             <button
-              onClick={() => setShowVideo(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300"
               style={{
                 touchAction: 'manipulation',
@@ -195,6 +206,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 pointerEvents: 'auto',
                 cursor: 'pointer'
               }}
+              onClick={(event) => {
+                handleInteractiveClick(event)
+                setShowVideo(true)
+              }}
+              onTouchStart={handleInteractiveClick}
             >
               <Play size={16} />
               <span className="text-sm font-medium">Demo Video</span>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Menu, X, Zap } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -315,118 +315,124 @@ export function Navigation() {
       </motion.nav>
 
       {/* Mobile Menu */}
-      <motion.div
-        className="fixed top-20 left-0 right-0 z-40 px-6 md:hidden"
-        variants={mobileMenuVariants}
-        initial="closed"
-        animate={isOpen ? "open" : "closed"}
-        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
-      >
-        <motion.div
-          className="bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl p-6 shadow-2xl"
-          style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%)',
-            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
-          }}
-        >
-          <div className="space-y-3">
-            {navigationItems.map((item, index) => (
-              <motion.button
-                key={item.sectionId}
-                onClick={(e) => handleNavClick(e, item.sectionId)}
-                className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
-                variants={mobileItemVariants}
-                whileHover={prefersReducedMotion ? {} : {
-                  scale: 1.02,
-                  backgroundColor: 'rgba(96, 165, 250, 0.1)',
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              key="mobile-menu"
+              className="fixed top-20 left-0 right-0 z-40 px-6 md:hidden"
+              variants={mobileMenuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              <motion.div
+                className="bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl p-6 shadow-2xl"
                 style={{
-                  color: activeSection === item.sectionId ? '#60A5FA' : '#94A3B8'
+                  background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%)',
+                  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
                 }}
               >
-                {/* Active indicator */}
-                <motion.div
-                  className="w-2 h-2 rounded-full bg-accent-blue"
-                  initial={{ scale: 0 }}
-                  animate={{ 
-                    scale: activeSection === item.sectionId ? 1 : 0,
-                    opacity: activeSection === item.sectionId ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                
-                <span>{item.label}</span>
-              </motion.button>
-            ))}
-            
-            {/* Mobile Social Buttons */}
-            <motion.div
-              className="pt-4 border-t border-dark-border/30"
-              variants={mobileItemVariants}
-            >
-              <div className="flex items-center justify-center gap-4 mb-4">
-                {/* LinkedIn Button */}
-                <a
-                  href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
-                  style={{ 
-                    touchAction: 'manipulation',
-                    WebkitTapHighlightColor: 'transparent',
-                    minHeight: '44px',
-                    minWidth: '44px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    pointerEvents: 'auto'
-                  }}
-                >
-                  <Linkedin size={20} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
-                </a>
+                <div className="space-y-3">
+                  {navigationItems.map((item, index) => (
+                    <motion.button
+                      key={item.sectionId}
+                      onClick={(e) => handleNavClick(e, item.sectionId)}
+                      className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
+                      variants={mobileItemVariants}
+                      whileHover={prefersReducedMotion ? {} : {
+                        scale: 1.02,
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+                      style={{
+                        color: activeSection === item.sectionId ? '#60A5FA' : '#94A3B8'
+                      }}
+                    >
+                      {/* Active indicator */}
+                      <motion.div
+                        className="w-2 h-2 rounded-full bg-accent-blue"
+                        initial={{ scale: 0 }}
+                        animate={{ 
+                          scale: activeSection === item.sectionId ? 1 : 0,
+                          opacity: activeSection === item.sectionId ? 1 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      
+                      <span>{item.label}</span>
+                    </motion.button>
+                  ))}
+                  
+                  {/* Mobile Social Buttons */}
+                  <motion.div
+                    className="pt-4 border-t border-dark-border/30"
+                    variants={mobileItemVariants}
+                  >
+                    <div className="flex items-center justify-center gap-4 mb-4">
+                      {/* LinkedIn Button */}
+                      <a
+                        href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
+                        style={{ 
+                          touchAction: 'manipulation',
+                          WebkitTapHighlightColor: 'transparent',
+                          minHeight: '44px',
+                          minWidth: '44px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          pointerEvents: 'auto'
+                        }}
+                      >
+                        <Linkedin size={20} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                      </a>
 
-                {/* GitHub Button */}
-                <a
-                  href="https://github.com/Zhenzha0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
-                  style={{ 
-                    touchAction: 'manipulation',
-                    WebkitTapHighlightColor: 'transparent',
-                    minHeight: '44px',
-                    minWidth: '44px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    pointerEvents: 'auto'
-                  }}
-                >
-                  <Github size={20} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
-                </a>
-              </div>
-              
-              {/* Resume Button */}
-              <CompactResumeButton />
+                      {/* GitHub Button */}
+                      <a
+                        href="https://github.com/Zhenzha0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
+                        style={{ 
+                          touchAction: 'manipulation',
+                          WebkitTapHighlightColor: 'transparent',
+                          minHeight: '44px',
+                          minWidth: '44px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          pointerEvents: 'auto'
+                        }}
+                      >
+                        <Github size={20} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
+                      </a>
+                    </div>
+                    
+                    {/* Resume Button */}
+                    <CompactResumeButton />
+                  </motion.div>
+                </div>
+              </motion.div>
             </motion.div>
-          </div>
-        </motion.div>
-      </motion.div>
 
-      {/* Mobile Menu Backdrop */}
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+            {/* Mobile Menu Backdrop */}
+            <motion.div
+              key="mobile-backdrop"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }
