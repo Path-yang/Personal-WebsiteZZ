@@ -125,7 +125,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               }}
             >
               <ExternalLink size={16} />
-              <span className="text-sm font-medium">Live Demo</span>
+              <span className="text-sm font-medium">Website</span>
               <ExternalLink size={14} />
             </a>
           )}

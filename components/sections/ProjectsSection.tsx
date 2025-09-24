@@ -55,7 +55,7 @@ const projects = [
     icon: Heart,
     tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
     githubUrl: 'https://github.com/clemenong1/SigmaHealth',
-    demoVideoUrl: '/SigmaHealth-demo-video.mp4'
+    demoUrl: 'https://www.youtube.com/watch?v=y4ql2yiB7j4'
   },
   {
     id: 'dsta-brainhack',
