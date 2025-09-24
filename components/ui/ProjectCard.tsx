@@ -95,7 +95,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue/20 to-accent-mint/20 border border-accent-blue/30 rounded-lg text-accent-blue hover:text-white transition-all duration-300"
-              style={{ 
+              style={{
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
@@ -117,7 +117,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${project.id === 'dsta-brainhack' ? 'bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 text-orange-400 hover:text-white' : 'bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 text-accent-mint hover:text-white'}`}
-              style={{ 
+              style={{
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
@@ -127,17 +127,47 @@ export function ProjectCard({ project }: ProjectCardProps) {
               }}
             >
               {project.id === 'dsta-brainhack' ? <Presentation size={16} /> : <ExternalLink size={16} />}
-              <span className="text-sm font-medium">{project.id === 'dsta-brainhack' ? 'Demo Slides' : (project.id === 'lifehack' ? 'Demo Video' : 'Website')}</span>
+              <span className="text-sm font-medium">
+                {project.id === 'dsta-brainhack'
+                  ? 'Demo Slides'
+                  : project.id === 'lifehack'
+                    ? 'Demo Video'
+                    : 'Website'}
+              </span>
+              <ExternalLink size={14} />
+            </a>
           )}
 
-          {/* Pitch Video Button */}
+          {/* Demo Slides Link */}
+          {project.demoSlidesUrl && (
+            <a
+              href={project.demoSlidesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white transition-all duration-300"
+              style={{
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent',
+                minHeight: '44px',
+                minWidth: '44px',
+                pointerEvents: 'auto',
+                cursor: 'pointer'
+              }}
+            >
+              <Presentation size={16} />
+              <span className="text-sm font-medium">Slides</span>
+              <ExternalLink size={14} />
+            </a>
+          )}
+
+          {/* Pitch Video Link */}
           {project.pitchVideoUrl && (
             <a
               href={project.pitchVideoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg text-red-400 hover:text-white transition-all duration-300"
-              style={{ 
+              style={{
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
@@ -150,8 +180,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <span className="text-sm font-medium">Pitch Video</span>
               <ExternalLink size={14} />
             </a>
-          )}              <ExternalLink size={14} />
-            </a>
           )}
 
           {/* Demo Video Button */}
@@ -159,7 +187,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <button
               onClick={() => setShowVideo(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg text-purple-400 hover:text-white transition-all duration-300"
-              style={{ 
+              style={{
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
                 minHeight: '44px',
