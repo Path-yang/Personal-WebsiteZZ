@@ -219,7 +219,7 @@ export function SkillsSection() {
                   key={category.title}
                   variants={categoryVariants}
                   style={{ transformStyle: 'preserve-3d' }}
-                  className="group"
+                  className="group px-3 sm:px-6"
                 >
                   {/* Category Header */}
                   <motion.div
@@ -334,4 +334,3 @@ export function SkillsSection() {
     </Section>
   )
 }
-
