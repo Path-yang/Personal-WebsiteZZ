@@ -142,7 +142,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
       onMouseMove={handlePointerMove}
       onTouchMove={handlePointerMove}
       onMouseEnter={() => !prefersReducedMotion && setIsInteracting(true)}
