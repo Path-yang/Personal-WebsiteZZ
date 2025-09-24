@@ -206,28 +206,46 @@ export function Navigation() {
                 className="hidden sm:flex items-center gap-2 sm:gap-3"
               >
                 {/* LinkedIn Button */}
-                <motion.a
+                <a
                   href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1.5 sm:p-2 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
-                  whileHover={{ scale: 1.05, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
+                  style={{ 
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent',
+                    minHeight: '44px',
+                    minWidth: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    pointerEvents: 'auto'
+                  }}
                 >
                   <Linkedin size={16} className="text-blue-400 group-hover:text-blue-300 transition-colors sm:w-[18px] sm:h-[18px]" />
-                </motion.a>
+                </a>
 
                 {/* GitHub Button */}
-                <motion.a
+                <a
                   href="https://github.com/Zhenzha0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1.5 sm:p-2 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
-                  whileHover={{ scale: 1.05, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
+                  style={{ 
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent',
+                    minHeight: '44px',
+                    minWidth: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    pointerEvents: 'auto'
+                  }}
                 >
                   <Github size={16} className="text-gray-400 group-hover:text-gray-300 transition-colors sm:w-[18px] sm:h-[18px]" />
-                </motion.a>
+                </a>
 
                 {/* Resume Button */}
                 <CompactResumeButton />
@@ -349,36 +367,46 @@ export function Navigation() {
             >
               <div className="flex items-center justify-center gap-4 mb-4">
                 {/* LinkedIn Button */}
-                <motion.a
+                <a
                   href="https://www.linkedin.com/in/zhenzhao-yang-6b30b2165"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gradient-to-br from-blue-600/20 to-blue-500/20 border border-blue-500/30 rounded-lg backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300 group"
-                  whileHover={prefersReducedMotion ? {} : { 
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)'
+                  style={{ 
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent',
+                    minHeight: '44px',
+                    minWidth: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    pointerEvents: 'auto'
                   }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                 >
                   <Linkedin size={20} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
-                </motion.a>
+                </a>
 
                 {/* GitHub Button */}
-                <motion.a
+                <a
                   href="https://github.com/Zhenzha0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gradient-to-br from-gray-700/20 to-gray-600/20 border border-gray-500/30 rounded-lg backdrop-blur-sm hover:border-gray-400/50 transition-all duration-300 group"
-                  whileHover={prefersReducedMotion ? {} : { 
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: '0 8px 25px rgba(107, 114, 128, 0.3)'
+                  style={{ 
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent',
+                    minHeight: '44px',
+                    minWidth: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    pointerEvents: 'auto'
                   }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
                 >
                   <Github size={20} className="text-gray-400 group-hover:text-gray-300 transition-colors" />
-                </motion.a>
+                </a>
               </div>
               
               {/* Resume Button */}

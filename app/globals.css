@@ -108,6 +108,45 @@
     min-height: 44px;
     min-width: 44px;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  
+  /* Ensure all interactive elements work on mobile */
+  a[href], button {
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  /* Fix mobile button interactions */
+  .group a, .group button {
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+  
+  /* Force mobile button functionality */
+  a[href], button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  
+  /* Ensure buttons are always clickable on mobile */
+  @media (max-width: 768px) {
+    a, button {
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
   }
   
   /* Reduce font sizes slightly for better mobile readability */
