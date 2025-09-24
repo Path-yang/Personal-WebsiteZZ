@@ -320,6 +320,7 @@ export function Navigation() {
         variants={mobileMenuVariants}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
+        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       >
         <motion.div
           className="bg-dark-card/95 backdrop-blur-xl border border-dark-border/50 rounded-2xl p-6 shadow-2xl"
