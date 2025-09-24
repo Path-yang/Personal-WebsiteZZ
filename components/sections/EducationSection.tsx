@@ -23,10 +23,7 @@ const educationData = [
     degree: 'GCE A-Levels',
     period: '2020 – 2021',
     status: 'completed' as const,
-    description: [
-      'Science stream with a focus on Mathematics, Physics, and Chemistry',
-      'Leadership roles in student initiatives and community service projects'
-    ],
+    description: [],
     icon: Award,
     location: 'Singapore'
   },
