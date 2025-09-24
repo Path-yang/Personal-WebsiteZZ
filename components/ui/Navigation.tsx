@@ -240,7 +240,6 @@ export function Navigation() {
                 <motion.button
                   key={item.sectionId}
                   onClick={(e) => handleNavClick(e, item.sectionId)}
-                  onTouchEnd={(e) => handleNavClick(e, item.sectionId)}
                   className="relative px-4 py-2 rounded-xl font-medium transition-all duration-200"
                   variants={linkVariants}
                   initial="inactive"
@@ -316,7 +315,6 @@ export function Navigation() {
               <motion.button
                 key={item.sectionId}
                 onClick={(e) => handleNavClick(e, item.sectionId)}
-                onTouchEnd={(e) => handleNavClick(e, item.sectionId)}
                 className="w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-3"
                 variants={mobileItemVariants}
                 whileHover={prefersReducedMotion ? {} : {
