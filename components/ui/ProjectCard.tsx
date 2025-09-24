@@ -128,7 +128,29 @@ export function ProjectCard({ project }: ProjectCardProps) {
             >
               {project.id === 'dsta-brainhack' ? <Presentation size={16} /> : <ExternalLink size={16} />}
               <span className="text-sm font-medium">{project.id === 'dsta-brainhack' ? 'Demo Slides' : (project.id === 'lifehack' ? 'Demo Video' : 'Website')}</span>
+          )}
+
+          {/* Pitch Video Button */}
+          {project.pitchVideoUrl && (
+            <a
+              href={project.pitchVideoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg text-red-400 hover:text-white transition-all duration-300"
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent',
+                minHeight: '44px',
+                minWidth: '44px',
+                pointerEvents: 'auto',
+                cursor: 'pointer'
+              }}
+            >
+              <Play size={16} />
+              <span className="text-sm font-medium">Pitch Video</span>
               <ExternalLink size={14} />
+            </a>
+          )}              <ExternalLink size={14} />
             </a>
           )}
 
