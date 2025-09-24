@@ -33,10 +33,7 @@ const educationData = [
     degree: 'Integrated Program',
     period: '2016 – 2019',
     status: 'completed' as const,
-    description: [
-      'Integrated Programme with emphasis on advanced mathematics and computing foundations',
-      'Co-curricular leadership in technology clubs and community outreach initiatives'
-    ],
+    description: [],
     icon: BookOpen,
     location: 'Singapore'
   }
