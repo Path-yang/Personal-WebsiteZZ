@@ -43,7 +43,7 @@ const projects = [
   {
     id: 'lifehack',
     title: 'SigmaHealth',
-    category: 'React Native • AI Integration',
+    category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
     description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
     highlights: [
@@ -60,7 +60,7 @@ const projects = [
   {
     id: 'dsta-brainhack',
     title: 'SigmaShield',
-    category: 'React Native • Community Intelligence',
+    category: 'Full Stack Development • AI Integration',
     period: 'June 2025 - July 2025',
     description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
     highlights: [
@@ -76,7 +76,7 @@ const projects = [
   },
   {
     id: 'hackomania',
-    title: 'No Fap',
+    title: 'NoFap',
     category: 'Full Stack Development',
     period: 'Feb 2025',
     description: 'Full-stack donation platform connecting users seeking support with community contributors through micro-donations.',
