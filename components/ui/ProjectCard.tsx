@@ -35,10 +35,32 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div ref={ref} className="project-card group relative h-full">
-      <div className="relative bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl p-6 h-full transition-all duration-500 group-hover:border-accent-blue/40 overflow-hidden">
-        
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4 relative z-10">
+      <motion.div
+        className="relative bg-gradient-to-br from-dark-card/60 to-dark-card/30 backdrop-blur-sm border border-dark-border rounded-2xl p-6 h-full transition-all duration-500 overflow-hidden"
+        style={{
+          transformStyle: 'preserve-3d',
+          boxShadow: '0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)'
+        }}
+        whileHover={prefersReducedMotion ? {} : {
+          rotateY: 2,
+          scale: 1.02,
+          boxShadow: '0 25px 60px rgba(96, 165, 250, 0.18), 0 15px 35px rgba(15, 23, 42, 0.45)',
+          borderColor: 'rgba(96, 165, 250, 0.35)',
+          filter: 'drop-shadow(0 0 30px rgba(96, 165, 250, 0.25))',
+          transition: { duration: 0.35, ease: [0.23, 1, 0.320, 1] }
+        }}
+        transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
+      >
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300"
+          style={{
+            background: 'linear-gradient(135deg, rgba(96, 165, 250, 0.12) 0%, rgba(52, 211, 153, 0.12) 100%)'
+          }}
+        />
+
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-br from-accent-blue/20 to-accent-blue/10 rounded-xl text-accent-blue border border-accent-blue/20">
               <Icon size={24} />
@@ -58,12 +80,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Description */}
-        <p className="text-slate-300 leading-relaxed mb-6 relative z-10">
-          {project.description}
-        </p>
+          <p className="text-slate-300 leading-relaxed mb-6">
+            {project.description}
+          </p>
 
         {/* Highlights */}
-        <div className="mb-6 relative z-10">
+        <div className="mb-6">
           <h4 className="text-white font-medium mb-3">Key Achievements</h4>
           <ul className="space-y-2">
             {project.highlights.map((highlight, index) => (
@@ -76,7 +98,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Tech Stack */}
-        <div className="relative z-10 mb-6">
+        <div className="mb-6">
           <h4 className="text-white font-medium mb-3">Technologies</h4>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((tech, index) => (
@@ -217,7 +239,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </button>
           )}
         </div>
-      </div>
+        </div>
+      </motion.div>
 
       {/* Video Modal */}
       {showVideo && (

@@ -227,10 +227,7 @@ export function ContactSection() {
             className="mt-16 pt-8 border-t border-dark-border text-center"
             variants={itemVariants}
           >
-            <p className="text-slate-400 text-sm">
-              Built with Next.js, Tailwind CSS, and Framer Motion
-            </p>
-            <p className="text-slate-500 text-xs mt-2">
+            <p className="text-slate-500 text-xs">
               © 2025 Yang Zhenzhao. All rights reserved.
             </p>
           </motion.div>
@@ -273,4 +270,3 @@ export function ContactSection() {
     </Section>
   )
 }
-
