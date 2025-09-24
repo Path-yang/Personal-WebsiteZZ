@@ -93,10 +93,10 @@ const projects = [
   },
   {
     id: 'maritime-hackathon',
-    title: 'Top 3 - Maritime AI Classification',
+    title: 'Maritime AI Classification',
     category: 'Machine Learning',
     period: 'Jan 2025',
-    description: 'Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    description: 'Top 3 - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
     highlights: [
       'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
       'Achieved 90%+ accuracy in classification tasks',
