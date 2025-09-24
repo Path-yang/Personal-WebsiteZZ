@@ -45,7 +45,7 @@ export function SkillCloud({ skills, categoryColor = 'from-slate-500/20 to-gray-
   }
 
   return (
-    <div className="flex flex-wrap justify-center gap-4">
+    <div className="flex flex-wrap justify-center gap-4 px-2 sm:px-4">
       {skills.map((skill, index) => (
         <motion.button
           key={skill}
@@ -134,4 +134,3 @@ export function SkillCloud({ skills, categoryColor = 'from-slate-500/20 to-gray-
     </div>
   )
 }
-

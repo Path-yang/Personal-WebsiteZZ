@@ -12,7 +12,7 @@ const projects = [
     title: 'SilverSigma',
     category: 'Full Stack Development • AI Integration',
     period: 'Sep 2025',
-    description: 'Part of a team of 5 to build an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
+    description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
       'Developed AI-powered companion platform for elderly care',
       'Implemented real-time avatar conversation system',
