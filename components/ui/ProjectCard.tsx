@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { LucideIcon, Github, ExternalLink, Play, X } from 'lucide-react'
+import { LucideIcon, Github, ExternalLink, Play, X, Presentation } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useRef, useState } from 'react'
 
@@ -114,7 +114,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 rounded-lg text-accent-mint hover:text-white transition-all duration-300"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${project.id === 'dsta-brainhack' ? 'bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 text-orange-400 hover:text-white' : 'bg-gradient-to-r from-accent-mint/20 to-purple-500/20 border border-accent-mint/30 text-accent-mint hover:text-white'}`}
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent',
@@ -124,8 +124,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 cursor: 'pointer'
               }}
             >
-              <ExternalLink size={16} />
-              <span className="text-sm font-medium">Website</span>
+              {project.id === 'dsta-brainhack' ? <Presentation size={16} /> : <ExternalLink size={16} />}
+              <span className="text-sm font-medium">{project.id === 'dsta-brainhack' ? 'Demo Slides' : 'Website'}</span>
               <ExternalLink size={14} />
             </a>
           )}

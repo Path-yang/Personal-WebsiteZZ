@@ -72,7 +72,7 @@ const projects = [
     icon: Shield,
     tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
     githubUrl: 'https://github.com/Path-yang/DSTA-Code-Exp-2025',
-    demoVideoUrl: '/SigmaShield-demo-video.mp4'
+    demoUrl: 'https://www.canva.com/design/DAGqDBMHrzE/HRmg8WpRrwy6EB30zSUjJg/edit'
   },
   {
     id: 'hackomania',
