@@ -8,19 +8,37 @@ import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-rea
 
 const projects = [
   {
-    id: 'maritime-hackathon',
-    title: 'Maritime AI Classification',
-    category: 'Machine Learning',
-    period: 'Jan 2025',
-    description: 'Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    id: 'silver-sigma',
+    title: 'SilverSigma',
+    category: 'Full Stack Development • AI Integration',
+    period: 'Sep 2025',
+    description: 'Part of a team of 5 to build an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
-      'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
-      'Achieved 90%+ accuracy in classification tasks',
-      'Processed dataset of 10,000+ ship entries'
+      'Developed AI-powered companion platform for elderly care',
+      'Implemented real-time avatar conversation system',
+      'Built hobby discovery and social networking features',
+      'Created secure social space for senior community engagement'
     ],
-    icon: Ship,
-    tech: ['Python', 'Machine Learning', 'Data Analysis', 'Algorithm Design'],
-    githubUrl: 'https://github.com/Path-yang/Maritime-Hackathon-2025'
+    icon: Heart,
+    tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
+    githubUrl: 'https://github.com/Path-yang/SilverSigma'
+  },
+  {
+    id: 'sentinel-ai',
+    title: 'SentinelAI',
+    category: 'Machine Learning • Full Stack Development',
+    period: 'Aug 2025 - Sep 2025',
+    description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
+    highlights: [
+      'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
+      'Developed cloud-based streaming technology for global camera access',
+      'Implemented WebSocket-based alerts and real-time video streaming',
+      'Gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
+    ],
+    icon: Shield,
+    tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
+    githubUrl: 'https://github.com/Path-yang/SentinelAI',
+    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
   },
   {
     id: 'lifehack',
@@ -74,37 +92,19 @@ const projects = [
     demoUrl: 'https://geekshackinghackathon-8ygu.vercel.app/'
   },
   {
-    id: 'sentinel-ai',
-    title: 'SentinelAI',
-    category: 'Machine Learning • Full Stack Development',
-    period: 'Aug 2025 - Sep 2025',
-    description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
+    id: 'maritime-hackathon',
+    title: 'Maritime AI Classification',
+    category: 'Machine Learning',
+    period: 'Jan 2025',
+    description: 'Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
     highlights: [
-      'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
-      'Developed cloud-based streaming technology for global camera access',
-      'Implemented WebSocket-based alerts and real-time video streaming',
-      'Gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
+      'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
+      'Achieved 90%+ accuracy in classification tasks',
+      'Processed dataset of 10,000+ ship entries'
     ],
-    icon: Shield,
-    tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
-    githubUrl: 'https://github.com/Path-yang/SentinelAI',
-    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
-  },
-  {
-    id: 'silver-sigma',
-    title: 'SilverSigma',
-    category: 'Full Stack Development • AI Integration',
-    period: 'Sep 2025',
-    description: 'Part of a team of 5 to build an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
-    highlights: [
-      'Developed AI-powered companion platform for elderly care',
-      'Implemented real-time avatar conversation system',
-      'Built hobby discovery and social networking features',
-      'Created secure social space for senior community engagement'
-    ],
-    icon: Heart,
-    tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
-    githubUrl: 'https://github.com/Path-yang/SilverSigma'
+    icon: Ship,
+    tech: ['Python', 'Machine Learning', 'Data Analysis', 'Algorithm Design'],
+    githubUrl: 'https://github.com/Path-yang/Maritime-Hackathon-2025'
   }
 ]
 
@@ -144,4 +144,3 @@ export function ProjectsSection() {
     </Section>
   )
 }
-
