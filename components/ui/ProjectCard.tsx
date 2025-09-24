@@ -18,6 +18,8 @@ interface ProjectCardProps {
     githubUrl?: string
     demoUrl?: string
     demoVideoUrl?: string
+    demoSlidesUrl?: string
+    pitchVideoUrl?: string
   }
 }
 
@@ -125,7 +127,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               }}
             >
               {project.id === 'dsta-brainhack' ? <Presentation size={16} /> : <ExternalLink size={16} />}
-              <span className="text-sm font-medium">{project.id === 'dsta-brainhack' ? 'Demo Slides' : 'Website'}</span>
+              <span className="text-sm font-medium">{project.id === 'dsta-brainhack' ? 'Demo Slides' : (project.id === 'lifehack' ? 'Demo Video' : 'Website')}</span>
               <ExternalLink size={14} />
             </a>
           )}

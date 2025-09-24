@@ -21,8 +21,8 @@ const projects = [
     ],
     icon: Heart,
     tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
-    githubUrl: 'https://github.com/Path-yang/SilverSigma'
-  },
+    githubUrl: 'https://github.com/Path-yang/SilverSigma',
+    demoUrl: 'https://silver-sigma.vercel.app/'  },
   {
     id: 'sentinel-ai',
     title: 'SentinelAI',
@@ -38,8 +38,8 @@ const projects = [
     icon: Shield,
     tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
     githubUrl: 'https://github.com/Path-yang/SentinelAI',
-    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/'
-  },
+    demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/',
+    pitchVideoUrl: 'https://www.youtube.com/watch?v=mX03emoBGes&feature=youtu.be'  },
   {
     id: 'lifehack',
     title: 'SigmaHealth',
