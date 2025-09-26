@@ -14,8 +14,8 @@ const projects = [
     period: 'Sep 2025',
     event: (
       <>
-        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@SUTD WTH</span>
-        <span className="inline md:block whitespace-nowrap">2025</span>
+        <span className="inline md:inline whitespace-nowrap md:mr-2">@SUTD WTH</span>
+        <span className="inline md:inline whitespace-nowrap">2025</span>
       </>
     ),
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
@@ -59,8 +59,8 @@ const projects = [
     period: 'July 2025',
     event: (
       <>
-        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@NUS LIFEHACK</span>
-        <span className="inline md:block whitespace-nowrap">2025</span>
+        <span className="inline md:inline whitespace-nowrap md:mr-2">@NUS LIFEHACK</span>
+        <span className="inline md:inline whitespace-nowrap">2025</span>
       </>
     ),
     description: (
