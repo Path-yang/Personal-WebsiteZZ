@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { LucideIcon, Github, ExternalLink, Play, X, Presentation } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 
 interface ProjectCardProps {
   project: {
@@ -11,8 +12,9 @@ interface ProjectCardProps {
     title: string
     category: string
     period: string
-    description: string
-    highlights: string[]
+    event?: ReactNode
+    description: ReactNode
+    highlights: ReactNode[]
     icon: LucideIcon
     tech: string[]
     githubUrl?: string
@@ -60,7 +62,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-br from-accent-blue/20 to-accent-blue/10 rounded-xl text-accent-blue border border-accent-blue/20">
               <Icon size={24} />
@@ -74,9 +76,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </p>
             </div>
           </div>
-          <span className="text-slate-400 text-sm whitespace-nowrap">
-            {project.period}
-          </span>
+          <div className="flex flex-col gap-1 text-left md:items-end md:text-right">
+            {project.event && (
+              <div className="text-xs font-semibold tracking-[0.12em] text-accent-blue leading-tight whitespace-pre-line md:whitespace-pre">
+                {project.event}
+              </div>
+            )}
+            <span className="text-slate-400 text-sm whitespace-nowrap">
+              {project.period}
+            </span>
+          </div>
         </div>
 
         {/* Description */}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { SectionBackground } from '@/components/ui/SectionBackground'
-import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-react'
+import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3, Camera, UsersRound } from 'lucide-react'
 
 const projects = [
   {
@@ -12,6 +12,12 @@ const projects = [
     title: 'SilverSigma',
     category: 'Full Stack Development • AI Integration',
     period: 'Sep 2025',
+    event: (
+      <>
+        <span className="inline md:inline whitespace-nowrap md:mr-2">@SUTD WTH</span>
+        <span className="inline md:inline whitespace-nowrap">2025</span>
+      </>
+    ),
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
       'Developed AI-powered companion platform for elderly care',
@@ -19,7 +25,7 @@ const projects = [
       'Built hobby discovery and social networking features',
       'Created secure social space for senior community engagement'
     ],
-    icon: Heart,
+    icon: UsersRound,
     tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
     githubUrl: 'https://github.com/Path-yang/SilverSigma',
     demoUrl: 'https://silver-sigma.vercel.app/'  },
@@ -28,14 +34,20 @@ const projects = [
     title: 'SentinelAI',
     category: 'Machine Learning • Full Stack Development',
     period: 'Aug 2025 - Sep 2025',
+    event: (
+      <>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@IDP IDEATE 2025</span>
+        <span className="inline md:block whitespace-nowrap">@SOC VIP 24/25 SEM 1</span>
+      </>
+    ),
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
     highlights: [
       'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
       'Developed cloud-based streaming technology for global camera access',
       'Implemented WebSocket-based alerts and real-time video streaming',
-      'Gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
+      'Even though SentinelAI did not move forward, we gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
     ],
-    icon: Shield,
+    icon: Camera,
     tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
     githubUrl: 'https://github.com/Path-yang/SentinelAI',
     demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/',
@@ -45,12 +57,24 @@ const projects = [
     title: 'SigmaHealth',
     category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
-    description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
+    event: (
+      <>
+        <span className="inline md:inline whitespace-nowrap md:mr-2">@NUS LIFEHACK</span>
+        <span className="inline md:inline whitespace-nowrap">2025</span>
+      </>
+    ),
+    description: (
+      <>
+        <span className="text-orange-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
+        <span className="text-orange-300 font-semibold">Best Usage of Data</span>,{' '}
+        <span className="text-orange-300 font-semibold">Best Team for Theme 1 (Health &amp; Wellbeing)</span>
+        {' '} - React Native app integrating real-time Singapore health data with GPT-powered health guidance.
+      </>
+    ),
     highlights: [
       'Integrated real-time Singapore health data',
       'GPT-powered health guidance and recommendations',
-      'Community reporting features for public health',
-      'Finalist achievement in competitive hackathon'
+      'Community reporting features for public health'
     ],
     icon: Heart,
     tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
@@ -62,12 +86,21 @@ const projects = [
     title: 'SigmaShield',
     category: 'Full Stack Development • AI Integration',
     period: 'June 2025 - July 2025',
-    description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
+    event: (
+      <>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@DSTA BRAINHACK</span>
+        <span className="inline md:block whitespace-nowrap">CODE EXP 2025</span>
+      </>
+    ),
+    description: (
+      <>
+        <span className="text-orange-300 font-semibold">Finalist (top 20 out of 80+ teams)</span> - AI-powered app using community insights to detect and prevent online scams.
+      </>
+    ),
     highlights: [
       'Combined AI detection with community reporting',
       'Real-time scam URL analysis and flagging',
-      'Interactive educational modules for scam awareness',
-      'Top 20 finalist in DSTA Brainhack competition'
+      'Interactive educational modules for scam awareness'
     ],
     icon: Shield,
     tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
@@ -79,6 +112,7 @@ const projects = [
     title: 'NoFap',
     category: 'Full Stack Development',
     period: 'Feb 2025',
+    event: '@HACKOMANIA 2025',
     description: 'Full-stack donation platform connecting users seeking support with community contributors through micro-donations.',
     highlights: [
       'Built with Next.js, TypeScript, and MySQL',
@@ -96,7 +130,17 @@ const projects = [
     title: 'Maritime AI Classification',
     category: 'Machine Learning',
     period: 'Jan 2025',
-    description: 'Top 3 - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    event: (
+      <>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@MARITIME HACKATHON</span>
+        <span className="inline md:block whitespace-nowrap">2025</span>
+      </>
+    ),
+    description: (
+      <>
+        <span className="text-orange-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.
+      </>
+    ),
     highlights: [
       'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
       'Achieved 90%+ accuracy in classification tasks',
