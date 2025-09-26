@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
           <div className="flex flex-col items-end gap-1 text-right">
             {project.event && (
-              <span className="text-xs font-semibold tracking-[0.2em] text-accent-blue">
+              <span className="text-xs font-semibold tracking-[0.2em] text-accent-blue whitespace-pre-line">
                 {project.event}
               </span>
             )}
