@@ -12,7 +12,12 @@ const projects = [
     title: 'SilverSigma',
     category: 'Full Stack Development • AI Integration',
     period: 'Sep 2025',
-    event: <span className="whitespace-nowrap">@SUTD WTH 2025</span>,
+    event: (
+      <>
+        <span className="block md:inline">@SUTD WTH</span>
+        <span className="block md:inline md:ml-2">2025</span>
+      </>
+    ),
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
       'Developed AI-powered companion platform for elderly care',
@@ -31,8 +36,9 @@ const projects = [
     period: 'Aug 2025 - Sep 2025',
     event: (
       <>
-        <span className="block">@IDP IDEATE 2025</span>
-        <span className="block whitespace-nowrap">@SOC VIP 24/25 SEM 1</span>
+        <span className="block md:inline">@IDP IDEATE 2025</span>
+        <span className="block md:inline md:ml-2">@SOC VIP 24/25</span>
+        <span className="block md:inline md:ml-2">SEM 1</span>
       </>
     ),
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
@@ -52,7 +58,12 @@ const projects = [
     title: 'SigmaHealth',
     category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
-    event: <span className="whitespace-nowrap">@NUS LIFEHACK 2025</span>,
+    event: (
+      <>
+        <span className="block md:inline">@NUS LIFEHACK</span>
+        <span className="block md:inline md:ml-2">2025</span>
+      </>
+    ),
     description: (
       <>
         <span className="text-orange-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
@@ -76,7 +87,13 @@ const projects = [
     title: 'SigmaShield',
     category: 'Full Stack Development • AI Integration',
     period: 'June 2025 - July 2025',
-    event: '@DSTA BRAINHACK CODE EXP 2025',
+    event: (
+      <>
+        <span className="block md:inline">@DSTA BRAINHACK</span>
+        <span className="block md:inline md:ml-2">CODE EXP</span>
+        <span className="block md:inline md:ml-2">2025</span>
+      </>
+    ),
     description: (
       <>
         <span className="text-orange-300 font-semibold">Finalist (top 20 out of 80+ teams)</span> - AI-powered app using community insights to detect and prevent online scams.
@@ -115,7 +132,12 @@ const projects = [
     title: 'Maritime AI Classification',
     category: 'Machine Learning',
     period: 'Jan 2025',
-    event: <span className="whitespace-nowrap">@MARITIME HACKATHON 2025</span>,
+    event: (
+      <>
+        <span className="block md:inline">@MARITIME HACKATHON</span>
+        <span className="block md:inline md:ml-2">2025</span>
+      </>
+    ),
     description: (
       <>
         <span className="text-orange-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.

@@ -62,7 +62,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-br from-accent-blue/20 to-accent-blue/10 rounded-xl text-accent-blue border border-accent-blue/20">
               <Icon size={24} />
@@ -76,9 +76,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-1 text-right">
+          <div className="flex flex-col gap-1 text-left md:items-end md:text-right">
             {project.event && (
-              <div className="text-xs font-semibold tracking-[0.12em] text-accent-blue leading-tight">
+              <div className="text-xs font-semibold tracking-[0.12em] text-accent-blue leading-tight whitespace-pre-line md:whitespace-pre">
                 {project.event}
               </div>
             )}
