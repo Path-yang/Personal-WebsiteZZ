@@ -14,8 +14,8 @@ const projects = [
     period: 'Sep 2025',
     event: (
       <>
-        <span className="block md:inline">@SUTD WTH</span>
-        <span className="block md:inline md:ml-2">2025</span>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@SUTD WTH</span>
+        <span className="inline md:block whitespace-nowrap">2025</span>
       </>
     ),
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
@@ -36,8 +36,8 @@ const projects = [
     period: 'Aug 2025 - Sep 2025',
     event: (
       <>
-        <span className="block md:block">@IDP IDEATE 2025</span>
-        <span className="block md:block">@SOC VIP 24/25 SEM 1</span>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@IDP IDEATE 2025</span>
+        <span className="inline md:block whitespace-nowrap">@SOC VIP 24/25 SEM 1</span>
       </>
     ),
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
@@ -59,8 +59,8 @@ const projects = [
     period: 'July 2025',
     event: (
       <>
-        <span className="block md:inline">@NUS LIFEHACK</span>
-        <span className="block md:inline md:ml-2">2025</span>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@NUS LIFEHACK</span>
+        <span className="inline md:block whitespace-nowrap">2025</span>
       </>
     ),
     description: (
@@ -88,8 +88,8 @@ const projects = [
     period: 'June 2025 - July 2025',
     event: (
       <>
-        <span className="block md:block">@DSTA BRAINHACK</span>
-        <span className="block md:block">CODE EXP 2025</span>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@DSTA BRAINHACK</span>
+        <span className="inline md:block whitespace-nowrap">CODE EXP 2025</span>
       </>
     ),
     description: (
@@ -132,8 +132,8 @@ const projects = [
     period: 'Jan 2025',
     event: (
       <>
-        <span className="block md:inline">@MARITIME HACKATHON</span>
-        <span className="block md:inline md:ml-2">2025</span>
+        <span className="inline md:block whitespace-nowrap mr-2 md:mr-0">@MARITIME HACKATHON</span>
+        <span className="inline md:block whitespace-nowrap">2025</span>
       </>
     ),
     description: (
