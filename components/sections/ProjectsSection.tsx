@@ -36,9 +36,8 @@ const projects = [
     period: 'Aug 2025 - Sep 2025',
     event: (
       <>
-        <span className="block md:inline">@IDP IDEATE 2025</span>
-        <span className="block md:inline md:ml-2">@SOC VIP 24/25</span>
-        <span className="block md:inline md:ml-2">SEM 1</span>
+        <span className="block md:block">@IDP IDEATE 2025</span>
+        <span className="block md:block">@SOC VIP 24/25 SEM 1</span>
       </>
     ),
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
@@ -89,9 +88,8 @@ const projects = [
     period: 'June 2025 - July 2025',
     event: (
       <>
-        <span className="block md:inline">@DSTA BRAINHACK</span>
-        <span className="block md:inline md:ml-2">CODE EXP</span>
-        <span className="block md:inline md:ml-2">2025</span>
+        <span className="block md:block">@DSTA BRAINHACK</span>
+        <span className="block md:block">CODE EXP 2025</span>
       </>
     ),
     description: (
