@@ -12,7 +12,7 @@ const projects = [
     title: 'SilverSigma',
     category: 'Full Stack Development • AI Integration',
     period: 'Sep 2025',
-    event: '@SUTD WTH 2025',
+    event: <span className="whitespace-nowrap">@SUTD WTH 2025</span>,
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
       'Developed AI-powered companion platform for elderly care',
@@ -52,7 +52,7 @@ const projects = [
     title: 'SigmaHealth',
     category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
-    event: '@NUS LIFEHACK 2025',
+    event: <span className="whitespace-nowrap">@NUS LIFEHACK 2025</span>,
     description: (
       <>
         <span className="text-orange-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
@@ -115,7 +115,7 @@ const projects = [
     title: 'Maritime AI Classification',
     category: 'Machine Learning',
     period: 'Jan 2025',
-    event: '@MARITIME HACKATHON 2025',
+    event: <span className="whitespace-nowrap">@MARITIME HACKATHON 2025</span>,
     description: (
       <>
         <span className="text-orange-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.
