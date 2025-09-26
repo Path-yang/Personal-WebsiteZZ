@@ -29,7 +29,12 @@ const projects = [
     title: 'SentinelAI',
     category: 'Machine Learning • Full Stack Development',
     period: 'Aug 2025 - Sep 2025',
-    event: '@IDP IDEATE 2025 @SOC VIP 24/25 SEM 1',
+    event: (
+      <>
+        <span className="block">@IDP IDEATE 2025</span>
+        <span className="block whitespace-nowrap">@SOC VIP 24/25 SEM 1</span>
+      </>
+    ),
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
     highlights: [
       'Built AI-powered CCTV/IP camera system for real-time anomaly detection',

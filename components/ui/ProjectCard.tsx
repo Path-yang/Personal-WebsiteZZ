@@ -12,7 +12,7 @@ interface ProjectCardProps {
     title: string
     category: string
     period: string
-    event?: string
+    event?: ReactNode
     description: ReactNode
     highlights: ReactNode[]
     icon: LucideIcon
@@ -78,9 +78,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
           <div className="flex flex-col items-end gap-1 text-right">
             {project.event && (
-              <span className="text-xs font-semibold tracking-[0.2em] text-accent-blue whitespace-pre-line">
+              <div className="text-xs font-semibold tracking-[0.12em] text-accent-blue leading-tight">
                 {project.event}
-              </span>
+              </div>
             )}
             <span className="text-slate-400 text-sm whitespace-nowrap">
               {project.period}
