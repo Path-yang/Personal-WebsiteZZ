@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { SectionBackground } from '@/components/ui/SectionBackground'
-import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3 } from 'lucide-react'
+import { Brain, Ship, Shield, Heart, MessageCircle, BarChart3, Camera, UsersRound } from 'lucide-react'
 
 const projects = [
   {
@@ -25,7 +25,7 @@ const projects = [
       'Built hobby discovery and social networking features',
       'Created secure social space for senior community engagement'
     ],
-    icon: Heart,
+    icon: UsersRound,
     tech: ['React', 'Node.js', 'AI/ML', 'WebSocket', 'Social Platform'],
     githubUrl: 'https://github.com/Path-yang/SilverSigma',
     demoUrl: 'https://silver-sigma.vercel.app/'  },
@@ -46,9 +46,9 @@ const projects = [
       'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
       'Developed cloud-based streaming technology for global camera access',
       'Implemented WebSocket-based alerts and real-time video streaming',
-      'Even thought SentinelAI did not move forward, we gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
+      'Even though SentinelAI did not move forward, we gained valuable lessons in technical feasibility, privacy, and sustainable AI deployment'
     ],
-    icon: Shield,
+    icon: Camera,
     tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'RTSP', 'HLS'],
     githubUrl: 'https://github.com/Path-yang/SentinelAI',
     demoUrl: 'https://sentinel-ai-web-ll3v.vercel.app/',
