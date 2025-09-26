@@ -29,7 +29,7 @@ const projects = [
     title: 'SentinelAI',
     category: 'Machine Learning • Full Stack Development',
     period: 'Aug 2025 - Sep 2025',
-    event: '@IDP IDEATE 2025\n@SOC VIP 24/25 SEM 1',
+    event: '@IDP IDEATE 2025 @SOC VIP 24/25 SEM 1',
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
     highlights: [
       'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
@@ -50,19 +50,16 @@ const projects = [
     event: '@NUS LIFEHACK 2025',
     description: (
       <>
-        <span className="text-sky-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
-        <span className="text-rose-300 font-semibold">Best Usage of Data</span>,{' '}
-        <span className="text-amber-300 font-semibold">Best Team for Theme 1 (Health &amp; Wellbeing)</span>
+        <span className="text-orange-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
+        <span className="text-orange-300 font-semibold">Best Usage of Data</span>,{' '}
+        <span className="text-orange-300 font-semibold">Best Team for Theme 1 (Health &amp; Wellbeing)</span>
         {' '} - React Native app integrating real-time Singapore health data with GPT-powered health guidance.
       </>
     ),
     highlights: [
       'Integrated real-time Singapore health data',
       'GPT-powered health guidance and recommendations',
-      'Community reporting features for public health',
-      <>
-        <span className="text-sky-300 font-semibold">Finalist</span> achievement in competitive hackathon
-      </>
+      'Community reporting features for public health'
     ],
     icon: Heart,
     tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
@@ -83,10 +80,7 @@ const projects = [
     highlights: [
       'Combined AI detection with community reporting',
       'Real-time scam URL analysis and flagging',
-      'Interactive educational modules for scam awareness',
-      <>
-        <span className="text-orange-300 font-semibold">Top 20 finalist</span> in DSTA Brainhack competition
-      </>
+      'Interactive educational modules for scam awareness'
     ],
     icon: Shield,
     tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
@@ -119,7 +113,7 @@ const projects = [
     event: '@MARITIME HACKATHON 2025',
     description: (
       <>
-        <span className="text-blue-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.
+        <span className="text-orange-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.
       </>
     ),
     highlights: [
