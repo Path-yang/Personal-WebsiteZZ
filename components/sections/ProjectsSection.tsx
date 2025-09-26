@@ -12,6 +12,7 @@ const projects = [
     title: 'SilverSigma',
     category: 'Full Stack Development • AI Integration',
     period: 'Sep 2025',
+    event: '@SUTD WTH 2025',
     description: 'Built an AI-powered companion platform for seniors featuring real-time avatar conversations, hobby discovery, and a secure social space.',
     highlights: [
       'Developed AI-powered companion platform for elderly care',
@@ -28,6 +29,7 @@ const projects = [
     title: 'SentinelAI',
     category: 'Machine Learning • Full Stack Development',
     period: 'Aug 2025 - Sep 2025',
+    event: '@IDP IDEATE 2025 @SOC VIP 24/25 SEM 1',
     description: 'Co-developed SentinelAI, a prototype using CCTV/IP cameras with AI to detect falls, strokes, and industrial accidents in real time.',
     highlights: [
       'Built AI-powered CCTV/IP camera system for real-time anomaly detection',
@@ -45,6 +47,7 @@ const projects = [
     title: 'SigmaHealth',
     category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
+    event: '@NUS LIFEHACK 2025',
     description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
     highlights: [
       'Integrated real-time Singapore health data',
@@ -62,6 +65,7 @@ const projects = [
     title: 'SigmaShield',
     category: 'Full Stack Development • AI Integration',
     period: 'June 2025 - July 2025',
+    event: '@DSTA BRAINHACK CODE EXP 2025',
     description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
     highlights: [
       'Combined AI detection with community reporting',
@@ -79,6 +83,7 @@ const projects = [
     title: 'NoFap',
     category: 'Full Stack Development',
     period: 'Feb 2025',
+    event: '@HACKOMANIA 2025',
     description: 'Full-stack donation platform connecting users seeking support with community contributors through micro-donations.',
     highlights: [
       'Built with Next.js, TypeScript, and MySQL',
@@ -96,6 +101,7 @@ const projects = [
     title: 'Maritime AI Classification',
     category: 'Machine Learning',
     period: 'Jan 2025',
+    event: '@MARITIME HACKATHON 2025',
     description: 'Top 3 - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
     highlights: [
       'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
