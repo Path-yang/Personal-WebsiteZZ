@@ -48,12 +48,21 @@ const projects = [
     category: 'Full Stack Development • AI Integration',
     period: 'July 2025',
     event: '@NUS LIFEHACK 2025',
-    description: 'Finalist (top 10 out of 60+ teams) - React Native app integrating real-time Singapore health data with GPT-powered health guidance.',
+    description: (
+      <>
+        <span className="text-sky-300 font-semibold">Finalist (top 10 of 60+ teams)</span>,{' '}
+        <span className="text-rose-300 font-semibold">Best Usage of Data</span>,{' '}
+        <span className="text-amber-300 font-semibold">Best Team for Theme 1 (Health &amp; Wellbeing)</span>
+        {' '} - React Native app integrating real-time Singapore health data with GPT-powered health guidance.
+      </>
+    ),
     highlights: [
       'Integrated real-time Singapore health data',
       'GPT-powered health guidance and recommendations',
       'Community reporting features for public health',
-      'Finalist achievement in competitive hackathon'
+      <>
+        <span className="text-sky-300 font-semibold">Finalist</span> achievement in competitive hackathon
+      </>
     ],
     icon: Heart,
     tech: ['React Native', 'GPT Integration', 'Real-time Data', 'Public Health APIs'],
@@ -66,12 +75,18 @@ const projects = [
     category: 'Full Stack Development • AI Integration',
     period: 'June 2025 - July 2025',
     event: '@DSTA BRAINHACK CODE EXP 2025',
-    description: 'Finalist (top 20 out of 80+ teams) - AI-powered app using community insights to detect and prevent online scams.',
+    description: (
+      <>
+        <span className="text-orange-300 font-semibold">Finalist (top 20 out of 80+ teams)</span> - AI-powered app using community insights to detect and prevent online scams.
+      </>
+    ),
     highlights: [
       'Combined AI detection with community reporting',
       'Real-time scam URL analysis and flagging',
       'Interactive educational modules for scam awareness',
-      'Top 20 finalist in DSTA Brainhack competition'
+      <>
+        <span className="text-orange-300 font-semibold">Top 20 finalist</span> in DSTA Brainhack competition
+      </>
     ],
     icon: Shield,
     tech: ['React Native', 'AI/ML', 'Community Intelligence', 'Cybersecurity'],
@@ -102,7 +117,11 @@ const projects = [
     category: 'Machine Learning',
     period: 'Jan 2025',
     event: '@MARITIME HACKATHON 2025',
-    description: 'Top 3 - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.',
+    description: (
+      <>
+        <span className="text-blue-300 font-semibold">Top 3</span> - Developed a machine learning model with over 90% accuracy to classify ship repair severity levels using a dataset of 10,000+ ship entries.
+      </>
+    ),
     highlights: [
       'Designed Python algorithm to consolidate severity annotations from three different Subject Matter Experts',
       'Achieved 90%+ accuracy in classification tasks',

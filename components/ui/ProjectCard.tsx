@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { LucideIcon, Github, ExternalLink, Play, X, Presentation } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 
 interface ProjectCardProps {
   project: {
@@ -12,8 +13,8 @@ interface ProjectCardProps {
     category: string
     period: string
     event?: string
-    description: string
-    highlights: string[]
+    description: ReactNode
+    highlights: ReactNode[]
     icon: LucideIcon
     tech: string[]
     githubUrl?: string
